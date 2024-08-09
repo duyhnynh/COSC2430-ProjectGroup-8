@@ -7,7 +7,7 @@
   height: 6vh;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   transition: background-color 0.5s ease;
 }
@@ -26,11 +26,13 @@
 
 #nav-bar {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 #nav-bar a {
   font-size: 18px;
   font-weight: 500;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 #banner {
   background-size: cover;
