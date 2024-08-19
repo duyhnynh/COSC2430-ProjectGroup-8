@@ -4,7 +4,7 @@
 #header {
   position: fixed;
   width: 100vw;
-  height: 6vh;
+  height: 60px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -26,7 +26,6 @@
 
 #nav-bar {
   display: flex;
-  justify-content: space-between;
 }
 #nav-bar a {
   font-size: 18px;
@@ -40,4 +39,39 @@
   position: relative;
   z-index: -1;
   height: 100vh;
+}
+
+#mobile-vertical-navbar {
+  position: fixed;
+  right: 0;
+  display: none;
+}
+#hidden-vertical-navbar {
+  position: fixed;
+  height: 100%;
+  right: 0;
+  padding: 10px;
+  padding-right: 30px;
+  padding-left: 30px;
+  background-color: #999897;
+  display: none;
+  flex-direction: column;
+}
+#mobile-vertical-navbar a {
+  font-size: 18px;
+  font-weight: 500;
+  color: black;
+}
+#mobile-vertical-navbar img {
+  height: 50px;
+  width: 50px;
+}
+
+@media (max-width: 1199px) {
+  #mobile-vertical-navbar {
+    display: block;
+  }
+  #nav-bar {
+    display: none;
+  }
 }
