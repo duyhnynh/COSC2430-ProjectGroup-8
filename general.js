@@ -9,14 +9,10 @@ window.addEventListener("scroll", function () {
 });
 
 function showVerticalNavbar() {
-  var navbarStatus = 0;
   var verticalNavbar = document.querySelector("#hidden-vertical-navbar");
-  if (navbarStatus == 0) {
+  if (verticalNavbar.style.display == "none") {
     verticalNavbar.style.display = "flex";
-    navbarStatus = 1;
-  }
-  if (navbarStatus == 1) {
+  } else {
     verticalNavbar.style.display = "none";
-    navbarStatus = 0;
   }
 }
