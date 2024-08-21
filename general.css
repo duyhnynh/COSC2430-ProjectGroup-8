@@ -70,13 +70,27 @@
   height: 50px;
   width: 50px;
 }
-
+#image-container {
+  position: absolute;
+  top: 30%;
+  left: 10%;
+}
+#image-container h1 {
+  font-size: 7vw;
+}
 @media (max-width: 1199px) {
   #mobile-vertical-navbar {
     display: block;
   }
   #nav-bar {
     display: none;
+  }
+  #image-container {
+    top: 3%;
+    left: 73%;
+  }
+  #image-container h1 {
+    font-size: 8vw;
   }
 }
 
