@@ -37,6 +37,9 @@
 #banner {
   background-size: cover;
   width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: right;
   position: relative;
   z-index: -1;
   height: 100vh;
@@ -74,5 +77,11 @@
   }
   #nav-bar {
     display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  #hidden-vertical-navbar {
+    width: 100%;
   }
 }
