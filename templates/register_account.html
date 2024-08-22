@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/static/general.css" />
+    <title>Document</title>
+  </head>
+  <body style="height: 10000px">
+    <header class="header" id="header">
+      <div class="">random image</div>
+      <nav class="" id="nav-bar">
+        <a href="home.html">Home</a>
+        <a href="">About Us</a>
+        <a href="">Pricing</a>
+        <a href="">My Account</a>
+        <a href="">Browse</a>
+        <a href="">FAQs</a>
+        <a href="">Contact</a>
+      </nav>
+      <nav id="mobile-vertical-navbar">
+        <img
+          src="/static/img/vertical_menu_button.png"
+          id="vertical-menu-button"
+          onclick="showVerticalNavbar()"
+        />
+        <div id="hidden-vertical-navbar">
+          <a href="home.html">Home</a>
+          <a href="">About Us</a>
+          <a href="">Pricing</a>
+          <a href="">My Account</a>
+          <a href="">Browse</a>
+          <a href="">FAQs</a>
+          <a href="">Contact</a>
+        </div>
+      </nav>
+    </header>
+    <!-- <img src="/static/img/banner.png" id="banner" /> -->
+     
+    <form action="/register" method="POST" id="register-form" enctype="multipart/form-data">
+      <!-- email -->
+      <div>
+       <label for="email">Email Address*</label>
+       <input type="email" name="email" id="email" required />
+      </div>
+      <!-- phone -->
+      <div>
+        <label for="phone">Phone Number*</label>
+        <input type="tel" name="phone" id="phone" required />
+      </div>
+      <!-- password -->
+      <div>
+        <label for="password">Password*</label>
+        <input type="password" name="password" id="password" required />
+      </div>
+      <!-- retype password -->
+      <div>
+        <label for="retype-password">Retype Password*</label>
+        <input type="password" name="retype-password" id="retype-password" required />
+      </div>
+      <!-- profile picture -->
+      <div>
+        <label for="profile-picture">Profile Picture</label>
+        <input type="file" name="profile-picture" id="profile-picture" />
+      </div>
+      <!-- first name -->
+      <div>
+        <label for="first-name">First Name*</label>
+        <input type="text" name="first-name" id="first-name" required />
+      </div>
+      <!-- last name -->
+      <div>
+        <label for="last-name">Last Name*</label>
+        <input type="text" name="last-name" id="last-name" required />
+      </div>
+      <!-- address -->
+      <div>
+        <label for="address">Address*</label>
+        <input type="text" name="address" id="address" required />
+      </div>
+      <!-- city -->
+      <div>
+        <label for="city">City*</label>
+        <input type="text" name="city" id="city" required />
+      </div>
+      <!-- zipcode -->
+      <div>
+        <label for="zipcode">Zipcode*</label>
+         <input type="number" minlength="4" maxlength="6" required>
+      </div>
+      <!-- TODO: country dropdown from csv MISSING!!! -->
+      <div>
+        <label for="country">Country*</label>
+        <select name="country" id="country" required>
+          <option value="" disabled selected>Select Country</option>
+          <option value="">Vietnam</option>
+          <option value="">USA</option>
+          <option value="">Canada</option>
+        </select>
+      </div>
+      <!-- accont type -->
+      <div class="account-type-div">
+        <p>Account Type*</p>
+        <input type="radio" name="account-type" value="instructor" id="instructor" required />
+        <label for="instructor">Instructor</label>
+        <input type="radio" name="account-type" value="learner" id="learner" required />
+        <label for="learner">Learner</label>
+      </div>
+      <!-- display only if instructor is selected -->
+      <div id="instructor-fields" style="display: none">
+        <!-- school name -->
+        <label for="school-name">School Name*</label>
+        <input type="text" name="school-name" id="school-name" />
+
+        <!-- job title -->
+        <label for="job-title">Job Title*</label>
+        <input type="text" name="job-title" id="job-title" />
+
+        <!-- specialization -->
+        <label for="specialization">Specialization*</label>
+        <input type="checkbox" id="s1" name="s1" value="History">
+        <label for="s1">History</label>
+        <input type="checkbox" id="s2" name="s2" value="Math">
+        <label for="s2">Math</label>
+        <input type="checkbox" id="s3" name="s3" value="Science">
+        <label for="s3">Science</label>
+        <input type="checkbox" id="s4" name="s4" value="Art">
+        <label for="s4">Art</label>
+        <input type="checkbox" id="s5" name="s5" value="Music">
+        <label for="s5">Music</label>
+      </div>
+      <!-- submit button -->
+      <div>
+        <button type="submit">Register</button>
+      </div>
+    </form>
+
+    <!-- get flashed mesage -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <p class="flashed-msg">{{ messages[-1]}}</p>
+        {% endif %}
+    {% endwith %}
+
+
+    <script src="/static/general.js"></script>
+  </body>
+</html>
