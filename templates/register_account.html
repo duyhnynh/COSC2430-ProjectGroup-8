@@ -90,16 +90,17 @@
       <!-- zipcode -->
       <div>
         <label for="zipcode">Zipcode*</label>
-         <input type="number" minlength="4" maxlength="6" required>
+         <input type="number" name="zipcode" id="zipcode" minlength="4" maxlength="6" required>
       </div>
       <!-- TODO: country dropdown from csv MISSING!!! -->
       <div>
         <label for="country">Country*</label>
         <select name="country" id="country" required>
           <option value="" disabled selected>Select Country</option>
-          <option value="">Vietnam</option>
-          <option value="">USA</option>
-          <option value="">Canada</option>
+          <!-- TODO: change value for countries later, maybe do mapping -->
+          <option value="Vietnam">Vietnam</option> 
+          <option value="USA">USA</option>
+          <option value="Canada">Canada</option>
         </select>
       </div>
       <!-- accont type -->
