@@ -51,14 +51,21 @@
             <p>Phone: {{user_data.phone}}</p>
             <!-- TODO: IMAGE!! MISSING -->
             <!-- <img src="{{user_data.profile_picture}}" alt="Profile Picture" />  -->
+        
+            <!-- temporary logout -->
+            <a href="/logout">Log out</a>
         {% else %}
             <!-- login box -->
             <h1>Login</h1>
             <form action="/login" method="POST">
-                <label for="username">Email or Phone:</label>
-                <input type="text" id="username" name="username" required>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <div>
+                    <label for="username">Email or Phone:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
                 <button type="submit">Login</button>
             </form>
             
