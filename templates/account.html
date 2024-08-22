@@ -14,7 +14,7 @@
     <header class="header" id="header">
       <div class="">random image</div>
       <nav class="" id="nav-bar">
-        <a href="">Home</a>
+        <a href="/">Home</a>
         <a href="">About Us</a>
         <a href="">Pricing</a>
         <a href="">My Account</a>
@@ -43,14 +43,16 @@
     <!-- Account Page -->
     <div id="account-page">
         {% if user_data %}
+            <!-- account info -->
             <h1>Account Information</h1>
             <p>Full name: {{user_data.full_name}}</p>
             <p>Address: {{user_data.address}}</p>
             <p>Email: {{user_data.email}}</p>
             <p>Phone: {{user_data.phone}}</p>
             <!-- TODO: IMAGE!! MISSING -->
-            <img src="{{user_data.profile_picture}}" alt="Profile Picture" /> 
+            <!-- <img src="{{user_data.profile_picture}}" alt="Profile Picture" />  -->
         {% else %}
+            <!-- login box -->
             <h1>Login</h1>
             <form action="/login" method="POST">
                 <label for="username">Email or Phone:</label>
@@ -59,6 +61,11 @@
                 <input type="password" id="password" name="password" required>
                 <button type="submit">Login</button>
             </form>
+            
+            <!-- forgot password link -->
+            <a href="/forgot_password">Forgot Password?</a>
+            <a href="/register">Register</a>
+
             <!-- get flashed mesage -->
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
