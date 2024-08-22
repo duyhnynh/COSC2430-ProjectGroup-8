@@ -160,6 +160,54 @@ def register():
     
     return render_template('register_account.html')
 
+@app.route('/forgot_password', methods=['GET', 'POST'])
+def forgot_password():
+    """
+    Handles the forgot password functionality.
+    @returns: if the email exists, it sends a password reset link to the email.
+              otherwise, it renders the 'forgot_password.html' template.
+    """
+    reset_link = False
+    if request.method == 'POST':
+        email = request.form.get('email')
+        
+        # check if email exists
+        if not db.check_existing_user('user', email=email):
+            flash('Email does not exist')
+            return redirect('/forgot_password')
+        
+        # TODO: make a password reset link to reset password
+        # temporary solution: show reset input field
+        reset_link = True
+        session['reset_email'] = email
+    
+    return render_template('forgot_password.html', reset_link=reset_link)
+
+@app.route('/reset_password', methods=['POST'])
+def reset_password():
+    """
+    Resets password.
+    @returns: if the password is successfully reset, it redirects to the login page.
+              Or it will render 'forgot_password.html'.
+    """
+    if request.method == 'POST':
+        email = session.get('reset_email')
+        password = request.form.get('password')
+        confirm_password = request.form.get('confirm-password')
+        
+        # check if passwords match
+        if password != confirm_password:
+            flash('Passwords do not match')
+            return redirect('/reset_password')
+        
+        # update password in database
+        db.update_data('user', email, {'password': password})
+        flash('Password successfully reset')
+        
+        return redirect('/login')
+    
+    return render_template('reset_password.html')
+
 @app.route('/logout')
 def logout():
     session.pop('user', None)
