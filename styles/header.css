@@ -1,4 +1,7 @@
 #header {
+  top: 0;
+  left: 0;
+  right: 0;
   position: fixed;
   padding-right: 20px;
   width: 100vw;
@@ -27,10 +30,11 @@
   display: flex;
 }
 #nav-bar a {
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 19px;
+  font-weight: 600;
   padding-left: 10px;
   padding-right: 10px;
+  text-decoration: none;
 }
 
 #mobile-vertical-navbar {
