@@ -1,0 +1,30 @@
+body {
+  margin: 0px;
+}
+#footer {
+  background-color: #333; /* Dark background for the footer */
+  color: white;
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer-content {
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-nav {
+  margin-top: 10px;
+}
+
+.footer-nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.footer-nav a:hover {
+  text-decoration: underline;
+}

@@ -10,11 +10,29 @@ iframe.addEventListener("load", function () {
     }
   });
 });
+
+window.onload = function () {
+  var navbarHeight = document.querySelector("#iframe-header");
+
+  if (!navbarHeight) {
+    console.error("#iframe-header not found in the DOM.");
+  } else {
+    console.log(navbarHeight);
+    // Proceed with your logic
+  }
+};
+
 function showVerticalNavbar() {
+  var parentDocument = window.parent.document;
   var verticalNavbar = document.querySelector("#hidden-vertical-navbar");
+  var navbarHeight = parentDocument.querySelector("#iframe-header");
+  var navbarHeight = window.parent.document.querySelector("#iframe-header");
+  console.log("Navbar Height:", navbarHeight);
   if (verticalNavbar.style.display == "none") {
     verticalNavbar.style.display = "flex";
+    navbarHeight.style.height = "100%";
   } else {
     verticalNavbar.style.display = "none";
+    navbarHeight.style.height = "60px";
   }
 }
