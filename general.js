@@ -23,11 +23,8 @@ window.onload = function () {
 };
 
 function showVerticalNavbar() {
-  var parentDocument = window.parent.document;
   var verticalNavbar = document.querySelector("#hidden-vertical-navbar");
-  var navbarHeight = parentDocument.querySelector("#iframe-header");
   var navbarHeight = window.parent.document.querySelector("#iframe-header");
-  console.log("Navbar Height:", navbarHeight);
   if (verticalNavbar.style.display == "none") {
     verticalNavbar.style.display = "flex";
     navbarHeight.style.height = "100%";

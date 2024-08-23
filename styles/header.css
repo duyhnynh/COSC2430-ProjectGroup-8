@@ -45,6 +45,7 @@
   margin-bottom: 100px;
 }
 #hidden-vertical-navbar {
+  display: none;
   position: fixed;
   height: 400px;
   top: 60px;
@@ -53,7 +54,7 @@
   padding-right: 100px;
   padding-left: 100px;
   background-color: White;
-  display: none;
+
   flex-direction: column;
   z-index: 100;
   text-align: right;
