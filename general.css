@@ -11,6 +11,7 @@
   justify-content: space-between;
   align-items: center;
   transition: background-color 0.5s ease;
+  z-index: 100;
 }
 .header {
   background-color: white;
@@ -41,7 +42,7 @@
   object-fit: cover;
   object-position: right;
   position: relative;
-  z-index: -1;
+  z-index: -10;
   height: 100vh;
 }
 
@@ -49,20 +50,26 @@
   position: fixed;
   right: 0;
   display: none;
+  z-index: 100;
+  margin-bottom: 100px;
 }
 #hidden-vertical-navbar {
   position: fixed;
-  height: 100%;
+  height: 400px;
+  top: 60px;
   right: 0;
   padding: 10px;
-  padding-right: 30px;
-  padding-left: 30px;
-  background-color: #999897;
+  padding-right: 100px;
+  padding-left: 100px;
+  background-color: White;
   display: none;
   flex-direction: column;
+  z-index: 100;
+  text-align: right;
 }
 #mobile-vertical-navbar a {
-  font-size: 18px;
+  font-size: 20px;
+  padding: 10px;
   font-weight: 500;
   color: black;
 }
@@ -77,6 +84,7 @@
 }
 #image-container h1 {
   font-size: 7vw;
+  z-index: -1;
 }
 @media (max-width: 1199px) {
   #mobile-vertical-navbar {
