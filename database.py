@@ -24,8 +24,15 @@ class Database():
             # get all data
             query = self.client.query(kind=kind)
             results = list(query.fetch())
+            if kind == 'user':
+                for entity in results:
+                    entity['email'] = entity.key.name
+            elif kind == 'course':
+                for entity in results:
+                    entity['name'] = entity.key.name
             return results
-        elif phone:
+        elif phone and id == 'user':
+            # get data by phone number
             query = self.client.query(kind=kind)
             query.add_filter('phone', '=', int(phone))
             results = list(query.fetch())
@@ -34,6 +41,13 @@ class Database():
             # get data by id
             key = self.client.key(kind, id)
             entity = self.client.get(key)
+            if entity != None:
+                if kind == 'user':
+                    # add email to the elemnt
+                    entity['email'] = entity.key.name
+                elif kind == 'course':
+                    # add course name to element
+                    entity['name'] = entity.key.name
             return entity
 
     def insert_data(self, kind, id, data) -> None:
