@@ -8,37 +8,14 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="/static/general.css" />
+    <link rel="stylesheet" href="/static/styles/home.css" />
+    <link rel="stylesheet" href="/static/styles/header.css"/>
     <title>My Account</title>
   </head>
   <body style="height: 10000px">
-    <header class="header" id="header">
-      <div class="">random image</div>
-      <nav class="" id="nav-bar">
-        <a href="/">Home</a>
-        <a href="">About Us</a>
-        <a href="">Pricing</a>
-        <a href="">My Account</a>
-        <a href="">Browse</a>
-        <a href="">FAQs</a>
-        <a href="">Contact</a>
-      </nav>
-    </header>
-    <nav id="mobile-vertical-navbar">
-      <img
-        src="vertical_menu_button.png"
-        id="vertical-menu-button"
-        onclick="showVerticalNavbar()"
-      />
-      <div id="hidden-vertical-navbar">
-        <a href="">Home</a>
-        <a href="">About Us</a>
-        <a href="">Pricing</a>
-        <a href="">My Account</a>
-        <a href="">Browse</a>
-        <a href="">FAQs</a>
-        <a href="">Contact</a>
-      </div>
-    </nav>
+    <div id="body-container">
+      <iframe src="/header" id="iframe-header"></iframe>
+    </div>
 
     <!-- Account Page -->
     <div id="account-page">
@@ -82,6 +59,7 @@
         {% endif %}
     </div>
 
+    <iframe src="/footer" id="iframe-footer"></iframe>
     <script src="/static/general.js"></script>
   </body>
 </html>
