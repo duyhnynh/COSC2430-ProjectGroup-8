@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/static/styles/home.css" />
+    <link rel="stylesheet" href="/static/styles/header.css"/>
+    <link rel="stylesheet" href="/static/general.css">
+    <title>Browse Courses</title>
+  </head>
+  <body>
+    <div id="body-container">
+      <iframe src="/header" id="iframe-header"></iframe>
+    </div>
+
+    <!-- display all courses -->
+    <div class="course-container">
+        <h1>Browse Courses by Name</h1>
+        {% for course in courses %}
+            <div class="course-card">
+                <img src="{{ course.img }}" alt="{{ course.key.name }}">
+                <div class="course-info">
+                    <h3><a href="#">{{ course.key.name }}</a></h3>
+                    <p>Category: {{ course.category }}</p>
+                    <p>Price: ${{ course.price }}</p>
+                </div>
+            </div>
+        {% endfor %}
+     </div>
+
+   
+    <iframe src="/footer" id="iframe-footer"></iframe>
+    <script src="/static/general.js"></script>
+  </body>
+</html>
