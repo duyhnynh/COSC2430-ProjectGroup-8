@@ -41,6 +41,7 @@ def login():
             email = request.form.get('username')
         else:
             phone = int(request.form.get('username'))
+            email = None
         password = request.form.get('password')
 
         if email:
@@ -49,8 +50,13 @@ def login():
                 flash('Email does not exist')
             # get user data
             user_data = db.get_data('user', email)
+
+            if not user_data:
+                flash('Email does not exist')
+                return redirect('/login')
+
             # check if password is correct
-            if user_data['password'] != password:
+            if not db.check_credentials('user', password, email=email):
                 flash('Incorrect password')
         else:
             # check if phone number exists
@@ -60,8 +66,7 @@ def login():
             # get user data
             user_data = db.get_data('user', phone=phone)
             # check if password is correct
-            if user_data['password'] != password:
-                # flash message if password is incorrect
+            if not db.check_credentials('user', password, phone=phone):
                 flash('Incorrect password')
 
         user_data['email'] = user_data.key.name
@@ -142,14 +147,14 @@ def register():
         
         # create data dictionary
         data = {
-            'phone': phone,
+            'phone': int(phone),
             'password': password,
             # 'profile_picture': profile_picture,  TODO: connect til google storage - MANGLER!!!!!
             'first_name': first_name,
             'last_name': last_name,
             'address': address,
             'city': city,
-            'zipcode': zipcode,
+            'zipcode': int(zipcode),
             'country': country,
             'role': account_type
         }
@@ -228,7 +233,13 @@ def browse_by_name():
     courses = db.get_data('course')
 
     # sort courses by alphabetical order of id
-    courses = sorted(courses, key=lambda x: x['course_name'])
+    courses = sorted(courses, key=lambda x: x['name'])
+
+    # create slug for course names
+    for course in courses:
+        course['slug'] = generate_slug(course['name'])
+
+    session['courses'] = courses
 
     return render_template('browse_courses_name.html', courses=courses)
 
@@ -239,6 +250,11 @@ def browse_by_category():
 
     # sort courses by category
     courses = sorted(courses, key=lambda x: x['category'])
+    # save courses by categories in session
+
+    # create slug for course names
+    for course in courses:
+        course['slug'] = generate_slug(course.key.name)
 
     # get unique categories
     categories = set([course['category'] for course in courses])
@@ -251,6 +267,24 @@ def browse_by_category():
         courses_by_categories[category] = [course for course in courses if course['category'] == category]
 
     return render_template('browse_courses_category.html', courses=courses_by_categories)
+
+def generate_slug(name):
+    return name.replace(' ', '-').lower()
+
+@app.route('/courses/<course_slug>')
+def course_details(course_slug):
+    # get courses by categories from session
+    courses = session.get('courses')
+
+    # find course by slug
+    course = [course for course in courses if generate_slug(course['name']) == course_slug][0]
+    print(course)
+
+    # get user role - default is 'guest' if not logged in
+    user = session.get('user')
+    user_role = user.get('role') if user else 'guest'
+
+    return render_template('course_details.html', course=course, user_role=user_role)
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True)
