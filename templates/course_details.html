@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/static/styles/home.css" />
+    <link rel="stylesheet" href="/static/styles/header.css"/>
+    <link rel="stylesheet" href="/static/general.css">
+    <title>Course Details - {{ course.name }}</title>
+  </head>
+  <body>
+    <div id="body-container">
+      <iframe src="/header" id="iframe-header"></iframe>
+    </div>
+
+    <div id="course-detail">
+      <h1>{{ course.name }}</h1>
+      <p>{{ course.description }}</p>
+      <img src="{{course.img}}" alt="{{course.name}}">
+      <p><strong>Category:</strong> {{ course.category }}</p>
+      <p><strong>Instructor:</strong> {{ course.instructor }}</p>
+      <p><strong>Price:</strong> ${{ course.price }}</p>
+      <p><strong>Created At:</strong> {{ course.created_at }}</p>
+      
+      {% if user_role == 'learner' %}
+        <button>Trial For 2-Day</button>
+        <button>Enrol</button>
+      {% elif user_role == 'instructor' %}
+        <button>Edit course</button>
+      {% endif %}
+    </div>
+   
+    <iframe src="/footer" id="iframe-footer"></iframe>
+    <script src="/static/general.js"></script>
+  </body>
+</html>
