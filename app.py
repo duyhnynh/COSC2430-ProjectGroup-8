@@ -18,7 +18,16 @@ def root():
     """
     return render_template('home.html')
 
-### LOGIN ROUTES ###
+### HEADER AND FOOTER ROUTES ###
+@app.route('/header')
+def header():
+    return render_template('header.html')
+
+@app.route('/footer')
+def footer():
+    return render_template('footer.html')
+
+### LOGIN ROUTE ###
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     """
@@ -212,6 +221,36 @@ def reset_password():
 def logout():
     session.pop('user', None)
     return redirect('/')
+
+@app.route('/courses/browse/name')
+def browse_by_name():
+    # get all courses
+    courses = db.get_data('course')
+
+    # sort courses by alphabetical order of id
+    courses = sorted(courses, key=lambda x: x['course_name'])
+
+    return render_template('browse_courses_name.html', courses=courses)
+
+@app.route('/courses/browse/category')
+def browse_by_category():
+    # get all courses
+    courses = db.get_data('course')
+
+    # sort courses by category
+    courses = sorted(courses, key=lambda x: x['category'])
+
+    # get unique categories
+    categories = set([course['category'] for course in courses])
+
+    # create dictionary with categories as keys and courses as values
+    courses_by_categories = {}
+
+    # add courses to categories
+    for category in categories:
+        courses_by_categories[category] = [course for course in courses if course['category'] == category]
+
+    return render_template('browse_courses_category.html', courses=courses_by_categories)
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True)
