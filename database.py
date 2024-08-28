@@ -31,12 +31,12 @@ class Database():
                 for entity in results:
                     entity['name'] = entity.key.name
             return results
-        elif phone and id == 'user':
+        elif phone and kind == 'user':
             # get data by phone number
             query = self.client.query(kind=kind)
             query.add_filter('phone', '=', int(phone))
             results = list(query.fetch())
-            return results
+            return results[0]
         else:
             # get data by id
             key = self.client.key(kind, id)
