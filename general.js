@@ -1,7 +1,6 @@
-var iframe = document.querySelector("iframe"); // Correctly target the iframe
+var iframe = document.querySelector("iframe");
 iframe.addEventListener("load", function () {
-  var header = iframe.contentDocument.querySelector("header"); // Access the header inside the iframe
-
+  var header = iframe.contentDocument.querySelector("header");
   window.addEventListener("scroll", function () {
     if (window.scrollY > 0) {
       header.className = "header-scroll";
@@ -10,17 +9,6 @@ iframe.addEventListener("load", function () {
     }
   });
 });
-
-window.onload = function () {
-  var navbarHeight = document.querySelector("#iframe-header");
-
-  if (!navbarHeight) {
-    console.error("#iframe-header not found in the DOM.");
-  } else {
-    console.log(navbarHeight);
-    // Proceed with your logic
-  }
-};
 
 function showVerticalNavbar() {
   var verticalNavbar = document.querySelector("#hidden-vertical-navbar");
@@ -33,3 +21,19 @@ function showVerticalNavbar() {
     navbarHeight.style.height = "60px";
   }
 }
+
+iframe.addEventListener("load", function () {
+  const iframeDocument =
+    iframe.contentDocument || iframe.contentWindow.document;
+  const dropdown = iframeDocument.querySelector(".dropdown");
+
+  dropdown.addEventListener("mouseover", () => {
+    console.log("Hovering over dropdown button.");
+    const navbarHeight = iframe;
+    navbarHeight.style.height = "200px";
+  });
+  dropdown.addEventListener("mouseleave", () => {
+    const navbarHeight = iframe;
+    navbarHeight.style.height = "60px";
+  });
+});

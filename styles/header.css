@@ -29,14 +29,57 @@
 #nav-bar {
   display: flex;
 }
-#nav-bar a {
+.dropdown-button {
+  background-color: transparent;
+  font-family: inherit;
+  padding: 0;
+}
+
+#nav-bar a,
+.dropdown-button {
   font-size: 19px;
   font-weight: 600;
   padding-left: 10px;
   padding-right: 10px;
   text-decoration: none;
+  padding-right: 20px;
+  padding-left: 20px;
+  color: black;
+  vertical-align: middle; /* Aligns the text vertically */
+  border: none;
+  cursor: pointer;
 }
 
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: none;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {
+  background-color: #b4b4b4;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.header-scroll .dropdown-button {
+  color: white;
+}
+.header-scroll .dropdown-content {
+  background-color: #999897;
+}
 #mobile-vertical-navbar {
   position: fixed;
   right: 0;
