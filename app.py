@@ -93,7 +93,6 @@ def account():
               otherwise, redirects to the login page.
     """
     if session.get('user'):
-        print(session['user'])
         user_data = {
             'full_name': f"{session['user']['first_name']} {session['user']['last_name']}",
             'address': f"{session['user']['address']}, {session['user']['city']}, {session['user']['zipcode']}, {session['user']['country']}",
@@ -284,7 +283,6 @@ def course_details(course_slug):
 
     # find course by slug
     course = [course for course in courses if generate_slug(course['name']) == course_slug][0]
-    print(course)
 
     # get user role - default is 'guest' if not logged in
     user = session.get('user')
