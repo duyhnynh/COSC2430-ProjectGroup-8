@@ -1,3 +1,5 @@
+from datetime import datetime
+import pytz
 from flask import Flask, flash, render_template, request, session, redirect
 from database import Database
 import os
@@ -8,6 +10,9 @@ app.secret_key = 'super secret' # used to encrypt session data, change later
 
 # create database object
 db = Database()
+
+# set timezone
+vn_tz = pytz.timezone('Asia/Ho_Chi_Minh')
 
 ### HOME ROUTE ###
 @app.route('/')
@@ -156,7 +161,8 @@ def register():
             'city': city,
             'zipcode': int(zipcode),
             'country': country,
-            'role': account_type
+            'role': account_type,
+            'created_at': datetime.now(vn_tz).strftime('%Y-%m-%d %H:%M:%S')
         }
 
         # add additional data if account type is instructor
