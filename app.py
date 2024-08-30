@@ -1,13 +1,19 @@
+from datetime import datetime
 from flask import Flask, flash, render_template, request, session, redirect
 from database import Database
-import os
+from storage import Storage
+import pytz
 
 # create flask app
 app = Flask(__name__)
 app.secret_key = 'super secret' # used to encrypt session data, change later
 
-# create database object
+# create database and storage object
 db = Database()
+storage = Storage()
+
+# set timezone
+vn_tz = pytz.timezone('Asia/Ho_Chi_Minh')
 
 ### HOME ROUTE ###
 @app.route('/')
@@ -16,7 +22,9 @@ def root():
     Renders the home page.
     @returns: renders 'home.html'.
     """
-    return render_template('home.html')
+    instructors = db.get_instructors()
+
+    return render_template('home.html', instructors=instructors)
 
 ### HEADER AND FOOTER ROUTES ###
 @app.route('/header')
@@ -88,9 +96,9 @@ def account():
               otherwise, redirects to the login page.
     """
     if session.get('user'):
-        print(session['user'])
         user_data = {
             'full_name': f"{session['user']['first_name']} {session['user']['last_name']}",
+            'image': session['user']['image'],
             'address': f"{session['user']['address']}, {session['user']['city']}, {session['user']['zipcode']}, {session['user']['country']}",
             'email': session['user']['email'],
             'phone': session['user']['phone'],
@@ -115,7 +123,7 @@ def register():
         phone = request.form.get('phone')
         password = request.form.get('password')
         password_retype = request.form.get('retype-password')
-        profile_picture = request.form.get('profile-picture') ## TODO: connect til google storage - MANGLER!!!!!
+        profile_picture = request.files.get('profile-picture')
         first_name = request.form.get('first-name')
         last_name = request.form.get('last-name')
         address = request.form.get('address')
@@ -145,18 +153,26 @@ def register():
             flash('Passwords do not match')
             return redirect('/register')
         
+        # upload profile picture to google storage
+        if profile_picture:
+            print('has profile picture')
+            storage.upload_file(profile_picture, email=email)
+            picture_url = storage.get_file(email=email)
+            print(picture_url)
+        
         # create data dictionary
         data = {
             'phone': int(phone),
             'password': password,
-            # 'profile_picture': profile_picture,  TODO: connect til google storage - MANGLER!!!!!
+            'image': picture_url if profile_picture else None,
             'first_name': first_name,
             'last_name': last_name,
             'address': address,
             'city': city,
             'zipcode': int(zipcode),
             'country': country,
-            'role': account_type
+            'role': account_type,
+            'created_at': datetime.now(vn_tz).strftime('%Y-%m-%d %H:%M:%S')
         }
 
         # add additional data if account type is instructor
@@ -278,13 +294,42 @@ def course_details(course_slug):
 
     # find course by slug
     course = [course for course in courses if generate_slug(course['name']) == course_slug][0]
-    print(course)
 
     # get user role - default is 'guest' if not logged in
     user = session.get('user')
     user_role = user.get('role') if user else 'guest'
 
     return render_template('course_details.html', course=course, user_role=user_role)
+
+@app.route('/instructor/<email>')
+def instructor_profile(email):
+    # get instructor data
+    instructor = db.get_data('user', id=email)
+    
+    if instructor is not None:
+        # add full name to instructor
+        instructor['full_name'] = instructor['first_name'] + ' ' + instructor['last_name']
+
+        # get courses by instructor
+        courses = db.get_data('course')
+
+        # filter courses by instructor
+        courses = [course for course in courses if course['instructor'] == instructor['full_name']]
+
+        # add slug to course names
+        for course in courses:
+            course['slug'] = generate_slug(course['name'])
+
+        # save courses in session
+        session['courses'] = courses
+
+        # get latest 5 courses
+        new_courses = sorted(courses, key=lambda x: x['created_at'], reverse=True)[:5]
+
+        return render_template('instructor_profile.html', instructor=instructor, new_courses=new_courses, courses=courses)
+
+    flash('Instructor does not exist')
+    return redirect('/') # redirect to home page if instructor does not exist
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True)

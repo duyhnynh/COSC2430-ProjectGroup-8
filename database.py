@@ -114,3 +114,13 @@ class Database():
                 return True
         
         return False
+    
+    def get_instructors(self) -> list:
+        """
+        Retrieves all instructors from the database.
+        @returns: a list of instructors.
+        """
+        query = self.client.query(kind='user')
+        query.add_filter('role', '=', 'instructor')
+        results = list(query.fetch())
+        return results
