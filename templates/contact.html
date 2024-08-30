@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../styles/general.css" />
+    <link rel="stylesheet" href="../styles/header.css" />
+    <link rel="stylesheet" href="../styles/home.css" />
+    <link rel="stylesheet" href="../styles/contact.css" /> <!-- New CSS file for contact page -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            background-color: #f9f9f9;
+            padding-top: 60px;
+            /* Space between header and content */
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2d2d2d;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px 60px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            margin-bottom: 60px;
+            /* Space before footer */
+        }
+
+        .form-group label {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+            color: #555;
+        }
+
+        /* Adjust dropdown for full text visibility */
+        select.form-control {
+            font-size: 1rem;
+            padding: 8px;
+            overflow: hidden;
+        }
+
+        .form-control {
+            font-size: 1rem;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            font-size: 1rem;
+            padding: 10px 20px;
+        }
+
+        .btn-secondary {
+            font-size: 1rem;
+            padding: 10px 20px;
+        }
+    </style>
+    <title>Contact Us</title>
+</head>
+
+<body>
+    <div id="body-container">
+        <iframe src="header.html" id="iframe-header"></iframe>
+    </div>
+
+    <div class="container mt-5">
+        <h1>Contact Us</h1>
+        <form action="/contact_submit" method="POST">
+            <div class="form-group">
+                <label for="purpose">Contact Purpose</label>
+                <select class="form-control" id="purpose" name="purpose" required>
+                    <option value="general">General Inquiry</option>
+                    <option value="support">Technical Support</option>
+                    <option value="billing">Billing</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" minlength="3" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" class="form-control" id="phone" name="phone" minlength="9" maxlength="11">
+            </div>
+
+            <div class="form-group">
+                <label>Preferred Contact Method</label><br>
+                <input type="radio" id="contact-email" name="contact_method" value="email" required>
+                <label for="contact-email">Email</label>
+                <input type="radio" id="contact-phone" name="contact_method" value="phone" required>
+                <label for="contact-phone">Phone</label>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="5" minlength="50" maxlength="500"
+                    required></textarea>
+            </div>
+
+            <div class="form-group">
+                <button type="reset" class="btn btn-secondary">Clear</button>
+                <button type="submit" class="btn btn-primary">Send</button>
+            </div>
+        </form>
+    </div>
+
+    <iframe src="footer.html" id="iframe-footer"></iframe>
+    <script src="../general.js"></script>
+</body>
+
+</html>
