@@ -9,6 +9,7 @@
     />
     <link rel="stylesheet" href="/static/styles/home.css" />
     <link rel="stylesheet" href="/static/styles/header.css"/>
+    <link rel="stylesheet" href="/static/general.css">
     <title>Home</title>
   </head>
   <body>
@@ -18,7 +19,7 @@
 
     <!-- HEADER -->
     <header class="header" id="header">
-      <img id="instructor-profile-pic" src="{{instructor.image}}" alt="instructor profile picture">
+      <img id="profile-image" class="profile-image" src="{{instructor.image}}" alt="instructor profile picture">
       <nav id="nav-bar">
         <a href="/" target="_parent">Home</a>
         <a href="" target="_parent">About Us</a>
@@ -56,7 +57,7 @@
     <main>
         <h1>{{instructor.first_name}} {{instructor.last_name}}</h1>
         <!-- image -->
-        <img src="{{instructor.image}}" alt="instructor profile picture">
+        <img id="profile-image" class="profile-image" src="{{instructor.image}}" alt="instructor profile picture">
 
         <!-- about -->
         <div id="instructor-about">
