@@ -21,7 +21,9 @@ def root():
     Renders the home page.
     @returns: renders 'home.html'.
     """
-    return render_template('home.html')
+    instructors = db.get_instructors()
+
+    return render_template('home.html', instructors=instructors)
 
 ### HEADER AND FOOTER ROUTES ###
 @app.route('/header')
@@ -289,6 +291,36 @@ def course_details(course_slug):
     user_role = user.get('role') if user else 'guest'
 
     return render_template('course_details.html', course=course, user_role=user_role)
+
+@app.route('/instructor/<email>')
+def instructor_profile(email):
+    # get instructor data
+    instructor = db.get_data('user', id=email)
+    
+    if instructor is not None:
+        # add full name to instructor
+        instructor['full_name'] = instructor['first_name'] + ' ' + instructor['last_name']
+
+        # get courses by instructor
+        courses = db.get_data('course')
+
+        # filter courses by instructor
+        courses = [course for course in courses if course['instructor'] == instructor['full_name']]
+
+        # add slug to course names
+        for course in courses:
+            course['slug'] = generate_slug(course['name'])
+
+        # save courses in session
+        session['courses'] = courses
+
+        # get latest 5 courses
+        new_courses = sorted(courses, key=lambda x: x['created_at'], reverse=True)[:5]
+
+        return render_template('instructor_profile.html', instructor=instructor, new_courses=new_courses, courses=courses)
+
+    flash('Instructor does not exist')
+    return redirect('/') # redirect to home page if instructor does not exist
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True)
