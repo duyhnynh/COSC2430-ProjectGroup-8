@@ -7,24 +7,42 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="../styles/home.css" />
-    <link rel="stylesheet" href="../styles/header.css"/>
+    <link rel="stylesheet" href="/static/styles/home.css" />
+    <link rel="stylesheet" href="/static/styles/header.css"/>
+    <link rel="stylesheet" href="/static/general.css">
     <title>Home</title>
   </head>
   <body>
     <div id="body-container">
-      <iframe src="header.html" id="iframe-header"></iframe>
-      <!-- <embed src="header.html"> -->
-      <div>
-          <img src="../banner.png" id="banner" />
+      <iframe src="/header" id="iframe-header"></iframe>
+      <!-- <div>
+          <img src="/static/img/banner.png" id="banner" />
           <div id="image-container">
             <h1>Your App Name</h1>
             <h4>Your Slogan here here <br>  your slogan your slogan here</h2>
           </div>
-        </div>
+        </div> -->
     </div>
+
+    <!-- MAIN CONTENT AREA -->
+     <div id="main-content-area">
+      <!-- New instructors -->
+      <h2>All Instructors</h2>
+        <div id="instructor-container">
+          {% for instructor in instructors %}
+            <a href="/instructor/{{instructor.key.name}}">
+              <img id="profile-image" class="profile-image" src="{{instructor.image}}" alt="instructor profile picture">
+            </a>
+            <a href="/instructor/{{instructor.key.name}}">
+              {{instructor.first_name}} {{instructor.last_name}}
+            </a>
+            <br>
+          {% endfor %}
+        </div>
+
+     </div>
    
-    <iframe src="footer.html" id="iframe-footer"></iframe>
-    <script src="../general.js"></script>
+    <iframe src="/footer" id="iframe-footer"></iframe>
+    <script src="/static/general.js"></script>
   </body>
 </html>

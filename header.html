@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/styles/header.css" />
+    <title>Header</title>
+  </head>
+  <body>
+    <header class="header" id="header">
+      <div>random image</div>
+      <nav id="nav-bar">
+        <a href="/" target="_parent">Home</a>
+        <a href="" target="_parent">About Us</a>
+        <a href="" target="_parent">Pricing</a>
+        <a href="/account" target="_parent">My Account</a>
+        <a href="/courses/browse/name" target="_parent">Browse</a>
+        <a href="" target="_parent">FAQs</a>
+        <a href="" target="_parent">Contact</a>
+      </nav>
+    </header>
+    <nav id="mobile-vertical-navbar">
+      <img
+        src="/static/img/vertical_menu_button.png"
+        id="vertical-menu-button"
+        onclick="showVerticalNavbar()"
+      />
+      <div id="hidden-vertical-navbar" style="display: none">
+        <a href="/" target="_parent">Home</a>
+        <a href="" target="_parent">About Us</a>
+        <a href="" target="_parent">Pricing</a>
+        <a href="/account" target="_parent">My Account</a>
+        <a href="/courses/browse/name" target="_parent">Browse</a>
+        <a href="" target="_parent">FAQs</a>
+        <a href="" target="_parent">Contact</a>
+      </div>
+    </nav>
+    <script src="/static/general.js"></script>
+  </body>
+</html>
