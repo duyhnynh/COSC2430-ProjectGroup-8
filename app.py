@@ -26,6 +26,10 @@ def root():
 
     return render_template('home.html', instructors=instructors)
 
+@app.route('/privacy')
+def privacy():
+    return render_template('privacy.html')
+
 ### HEADER AND FOOTER ROUTES ###
 @app.route('/header')
 def header():
