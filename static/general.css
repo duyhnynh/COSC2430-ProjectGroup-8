@@ -1,0 +1,144 @@
+* {
+  box-sizing: border-box;
+}
+#header {
+  position: fixed;
+  padding-right: 20px;
+  width: 100vw;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.5s ease;
+}
+.header {
+  background-color: white;
+}
+.header-scroll {
+  background-color: #999897;
+}
+.header-scroll #nav-bar a {
+  color: white;
+}
+.header #nav-bar a {
+  color: black;
+}
+
+#nav-bar {
+  display: flex;
+}
+#nav-bar a {
+  font-size: 18px;
+  font-weight: 500;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#banner {
+  background-size: cover;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: right;
+  position: relative;
+  z-index: -1;
+  height: 100vh;
+}
+
+#mobile-vertical-navbar {
+  position: fixed;
+  right: 0;
+  display: none;
+}
+#hidden-vertical-navbar {
+  position: fixed;
+  height: 100%;
+  right: 0;
+  padding: 10px;
+  padding-right: 30px;
+  padding-left: 30px;
+  background-color: #999897;
+  display: none;
+  flex-direction: column;
+}
+#mobile-vertical-navbar a {
+  font-size: 18px;
+  font-weight: 500;
+  color: black;
+}
+#mobile-vertical-navbar img {
+  height: 50px;
+  width: 50px;
+}
+#image-container {
+  position: absolute;
+  top: 30%;
+  left: 10%;
+}
+#image-container h1 {
+  font-size: 7vw;
+}
+@media (max-width: 1199px) {
+  #mobile-vertical-navbar {
+    display: block;
+  }
+  #nav-bar {
+    display: none;
+  }
+  #image-container {
+    top: 3%;
+    left: 73%;
+  }
+  #image-container h1 {
+    font-size: 8vw;
+  }
+}
+
+@media (max-width: 767px) {
+  #hidden-vertical-navbar {
+    width: 100%;
+  }
+}
+
+#register-form, #account-page, #forgot-password, #reset-link, #course-detail {
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#register-form div {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+
+.flashed-msg {
+  color: red;
+  display: flex;
+  justify-content: center;
+}
+
+.course-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.course-card {
+  width: 60%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+#profile-image {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
