@@ -1,4 +1,5 @@
 Flask
 google-cloud-datastore
+google-cloud-storage
 requests
 pytz
