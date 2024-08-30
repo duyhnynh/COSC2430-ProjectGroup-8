@@ -1,15 +1,16 @@
 from datetime import datetime
-import pytz
 from flask import Flask, flash, render_template, request, session, redirect
 from database import Database
-import os
+from storage import Storage
+import pytz
 
 # create flask app
 app = Flask(__name__)
 app.secret_key = 'super secret' # used to encrypt session data, change later
 
-# create database object
+# create database and storage object
 db = Database()
+storage = Storage()
 
 # set timezone
 vn_tz = pytz.timezone('Asia/Ho_Chi_Minh')
@@ -97,6 +98,7 @@ def account():
     if session.get('user'):
         user_data = {
             'full_name': f"{session['user']['first_name']} {session['user']['last_name']}",
+            'image': session['user']['image'],
             'address': f"{session['user']['address']}, {session['user']['city']}, {session['user']['zipcode']}, {session['user']['country']}",
             'email': session['user']['email'],
             'phone': session['user']['phone'],
@@ -121,7 +123,7 @@ def register():
         phone = request.form.get('phone')
         password = request.form.get('password')
         password_retype = request.form.get('retype-password')
-        profile_picture = request.form.get('profile-picture') ## TODO: connect til google storage - MANGLER!!!!!
+        profile_picture = request.files.get('profile-picture')
         first_name = request.form.get('first-name')
         last_name = request.form.get('last-name')
         address = request.form.get('address')
@@ -151,11 +153,18 @@ def register():
             flash('Passwords do not match')
             return redirect('/register')
         
+        # upload profile picture to google storage
+        if profile_picture:
+            print('has profile picture')
+            storage.upload_file(profile_picture, email=email)
+            picture_url = storage.get_file(email=email)
+            print(picture_url)
+        
         # create data dictionary
         data = {
             'phone': int(phone),
             'password': password,
-            # 'profile_picture': profile_picture,  TODO: connect til google storage - MANGLER!!!!!
+            'image': picture_url if profile_picture else None,
             'first_name': first_name,
             'last_name': last_name,
             'address': address,
