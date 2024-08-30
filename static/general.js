@@ -11,17 +11,6 @@ iframe.addEventListener("load", function () {
   });
 });
 
-window.onload = function () {
-  var navbarHeight = document.querySelector("#iframe-header");
-
-  if (!navbarHeight) {
-    console.error("#iframe-header not found in the DOM.");
-  } else {
-    console.log(navbarHeight);
-    // Proceed with your logic
-  }
-};
-
 function showVerticalNavbar() {
   var verticalNavbar = document.querySelector("#hidden-vertical-navbar");
   var navbarHeight = window.parent.document.querySelector("#iframe-header");

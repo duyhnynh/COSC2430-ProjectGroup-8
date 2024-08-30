@@ -32,6 +32,7 @@
 .dropdown-button {
   background-color: transparent;
   font-family: inherit;
+  text-decoration: inherit;
   padding: 0;
 }
 
@@ -45,7 +46,7 @@
   padding-right: 20px;
   padding-left: 20px;
   color: black;
-  vertical-align: middle; /* Aligns the text vertically */
+  vertical-align: middle;
   border: none;
   cursor: pointer;
 }
@@ -60,8 +61,6 @@
 }
 
 .dropdown-content a {
-  color: black;
-  padding: 12px;
   text-decoration: none;
   display: block;
 }
@@ -74,6 +73,9 @@
   display: block;
 }
 
+.dropdown:active .dropdown-content {
+  display: block;
+}
 .header-scroll .dropdown-button {
   color: white;
 }
@@ -97,10 +99,24 @@
   padding-right: 100px;
   padding-left: 100px;
   background-color: White;
-
   flex-direction: column;
   z-index: 100;
   text-align: right;
+}
+#hidden-vertical-navbar .dropdown {
+  position: relative;
+}
+#hidden-vertical-navbar .dropdown-button {
+  font-weight: inherit;
+  background-color: transparent;
+  font-family: "Times New Roman", Times, serif;
+  text-decoration: underline;
+  padding: 10px;
+}
+#hidden-vertical-navbar .dropdown-content {
+  color: black;
+  text-decoration: none;
+  right: 0;
 }
 #mobile-vertical-navbar a {
   font-size: 20px;
