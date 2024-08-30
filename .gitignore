@@ -22,3 +22,5 @@ pip-selfcheck.json
 __pycache__/
 
 .history/
+
+service-account-key.json
