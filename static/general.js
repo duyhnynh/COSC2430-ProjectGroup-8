@@ -34,23 +34,41 @@ function showVerticalNavbar() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+iframe.addEventListener("load", function () {
+  const iframeDocument =
+    iframe.contentDocument || iframe.contentWindow.document;
+  const dropdown = iframeDocument.querySelector(".dropdown");
+
+  dropdown.addEventListener("mouseover", () => {
+    console.log("Hovering over dropdown button.");
+    const navbarHeight = iframe;
+    navbarHeight.style.height = "200px";
+  });
+  dropdown.addEventListener("mouseleave", () => {
+    const navbarHeight = iframe;
+    navbarHeight.style.height = "60px";
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
   // Function to toggle instructor fields
   function toggleInstructorFields() {
-      var instructorRadio = document.getElementById('instructor');
-      var instructorFields = document.getElementById('instructor-fields');
-      
-      if (instructorRadio.checked) {
-          instructorFields.style.display = 'block';
-      } else {
-          instructorFields.style.display = 'none';
-      }
+    var instructorRadio = document.getElementById("instructor");
+    var instructorFields = document.getElementById("instructor-fields");
+
+    if (instructorRadio.checked) {
+      instructorFields.style.display = "block";
+    } else {
+      instructorFields.style.display = "none";
+    }
   }
 
   // Add event listeners to account type radio buttons
-  var accountTypeRadios = document.querySelectorAll('input[name="account-type"]');
-  accountTypeRadios.forEach(function(radio) {
-      radio.addEventListener('change', toggleInstructorFields);
+  var accountTypeRadios = document.querySelectorAll(
+    'input[name="account-type"]'
+  );
+  accountTypeRadios.forEach(function (radio) {
+    radio.addEventListener("change", toggleInstructorFields);
   });
 
   // Initial call to set the correct visibility on page load
