@@ -23,7 +23,7 @@ HTML
 14. Add course Page - **Lisa**
 
 CSS:
-- <span style="color:orange"> 9-14
+- <span style="color:orange"> 7-14
 
 Backend:
 1. ~~Connect to database~~ - **Lisa**
@@ -32,7 +32,7 @@ Backend:
 
 Database:
 1. ~~User table~~ - **Lisa**
-2. Course table (not in the database yet but model created) - **Lisa**
+2. ~~Course table~~ - **Lisa**
 3. More ??
 
 **Next meeting: Friday, September 6th at 2:30 PM in building 1, floor 2 (big table)**
