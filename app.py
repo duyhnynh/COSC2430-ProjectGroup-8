@@ -268,10 +268,6 @@ def browse_by_name():
     # sort courses by alphabetical order of id
     courses = sorted(courses, key=lambda x: x['name'])
 
-    # # create slug for course names
-    # for course in courses:
-    #     course['slug'] = generate_slug(course['name'])
-
     session['courses'] = courses
 
     return render_template('browse_courses_name.html', courses=courses)
@@ -330,6 +326,10 @@ def instructor_profile(id):
         # get courses by instructor
         courses = db.get_data('course')
         courses = [course for course in courses if course['instructor'] == instructor['name']]
+
+        # save course ids in courses dict
+        for course in courses:
+            course['id'] = course.key.id
 
         # save courses in session
         session['courses'] = courses
