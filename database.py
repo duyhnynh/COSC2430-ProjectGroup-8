@@ -18,7 +18,8 @@ class Database():
     def get_data(self, kind, email=None, phone=None, id=None) -> str:
         """
         Retrieves data from the database based on the specified kind, id (email), or phone number.
-        @returns: a list of entities if no id and no phone number or phone number is specified, or one entity if id is specified.
+        @returns: a list of entities if no id, no email and no phone number.
+                  if id/email/id is specified, return onr entity.
         """
         if email is None and phone is None and id is None:
             # get all data
@@ -30,12 +31,13 @@ class Database():
             query = self.client.query(kind=kind)
             query.add_filter('phone', '=', int(phone))
             results = list(query.fetch())
-            return results[0]
+            return results[0] if len(results) > 0 else None
         elif email and kind == 'user':
+            # get data by email
             query = self.client.query(kind=kind)
             query.add_filter('email', '=', email)
             results = list(query.fetch())
-            return results[0]
+            return results[0] if len(results) > 0 else None
         else:
             # get data by id
             key = self.client.key(kind, id)
