@@ -15,21 +15,15 @@ class Database():
         # print('Database connected')
         # print('Project ID:', self.client.project)
 
-    def get_data(self, kind, id=None, phone=None) -> str:
+    def get_data(self, kind, email=None, phone=None, id=None) -> str:
         """
         Retrieves data from the database based on the specified kind, id (email), or phone number.
         @returns: a list of entities if no id and no phone number or phone number is specified, or one entity if id is specified.
         """
-        if id is None and phone is None:
+        if email is None and phone is None and id is None:
             # get all data
             query = self.client.query(kind=kind)
             results = list(query.fetch())
-            if kind == 'user':
-                for entity in results:
-                    entity['email'] = entity.key.name
-            elif kind == 'course':
-                for entity in results:
-                    entity['name'] = entity.key.name
             return results
         elif phone and kind == 'user':
             # get data by phone number
@@ -37,26 +31,24 @@ class Database():
             query.add_filter('phone', '=', int(phone))
             results = list(query.fetch())
             return results[0]
+        elif email and kind == 'user':
+            query = self.client.query(kind=kind)
+            query.add_filter('email', '=', email)
+            results = list(query.fetch())
+            return results[0]
         else:
             # get data by id
             key = self.client.key(kind, id)
             entity = self.client.get(key)
-            if entity != None:
-                if kind == 'user':
-                    # add email to the elemnt
-                    entity['email'] = entity.key.name
-                elif kind == 'course':
-                    # add course name to element
-                    entity['name'] = entity.key.name
             return entity
 
-    def insert_data(self, kind, id, data) -> None:
+    def insert_data(self, kind, data) -> None:
         """
         Inserts new data into the database.
         @returns: None
         """
         # create a key for the new entity
-        key = self.client.key(kind, id)
+        key = self.client.key(kind)
         entity = datastore.Entity(key=key)
         # update the entity with the data
         entity.update(data)
@@ -73,47 +65,45 @@ class Database():
         entity.update(data)
         self.client.put(entity)
 
-    def check_existing_user(self, kind, email=None, phone=None) -> bool:
+    def check_existing_user(self, email=None, phone=None) -> bool:
         """
         Checks if a user with the specified email or phone number already exists in the database.
         @returns: True if the user exists, otherwise False.
         """
-        query = self.client.query(kind=kind)
+        query = self.client.query(kind='user')
 
         if email: 
-            key = self.client.key(kind, email)
-            entity = self.client.get(key)
-            if entity != None:
-                return True
+            query.add_filter('email', '=', email)
+            results = list(query.fetch())
         elif phone:
             query.add_filter('phone', '=', int(phone))
             results = list(query.fetch())
-            if len(results) > 0:
-                return True
         
-        return False
+        if len(results) <= 0:
+            return False
+        
+        return True
     
-    def check_credentials(self, kind, password, email=None, phone=None) -> bool:
+    def check_credentials(self, password, email=None, phone=None) -> bool:
         """
         Checks if the provided credentials (email/phone number and password) are valid in the database.
         @returns: True for valid credentials, otherwise False.
         """
+        query = self.client.query(kind='user')
+
         if email:
-            # get data by id (email)
-            key = self.client.key(kind, email)
-            entity = self.client.get(key)
-            # check if password matches
-            if entity != None and entity['password'] == password:
-                return True
+            # get data by email
+            query.add_filter('email', '=', email)
+            results = list(query.fetch())
         elif phone:
-            query = self.client.query(kind=kind)
             query.add_filter('phone', '=', int(phone))
             results = list(query.fetch())
-            # check if password matches the entered phone number
-            if results[0]['password'] == password:
-                return True
+
+        # check password match
+        if results[0]['password'] != password:
+            return False
         
-        return False
+        return True
     
     def get_instructors(self) -> list:
         """

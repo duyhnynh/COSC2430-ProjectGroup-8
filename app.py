@@ -26,6 +26,7 @@ def root():
 
     return render_template('home.html', instructors=instructors)
 
+### PRIVACY ROUTE ###
 @app.route('/privacy')
 def privacy():
     return render_template('privacy.html')
@@ -58,35 +59,38 @@ def login():
 
         if email:
             # check if email exists
-            if not db.check_existing_user('user', email=email):
+            if not db.check_existing_user(email=email):
                 flash('Email does not exist')
+                
             # get user data
-            user_data = db.get_data('user', email)
+            user_data = db.get_data('user', email=email)
 
             if not user_data:
                 flash('Email does not exist')
                 return redirect('/login')
 
             # check if password is correct
-            if not db.check_credentials('user', password, email=email):
+            if not db.check_credentials(password, email=email):
                 flash('Incorrect password')
+                return redirect('/login')
         else:
             # check if phone number exists
-            if not db.check_existing_user('user', phone=phone):
+            if not db.check_existing_user(phone=phone):
                 flash('Phone does not exist')
             
             # get user data
             user_data = db.get_data('user', phone=phone)
+
             # check if password is correct
             if not db.check_credentials('user', password, phone=phone):
                 flash('Incorrect password')
-
-        user_data['email'] = user_data.key.name
+                return redirect('/login')
 
         # store user data in session
         if user_data:
             session['user'] = user_data
-            
+        
+        # redirect to account page
         return redirect('/account')
 
     return render_template('account.html', user_data=None)
@@ -100,16 +104,18 @@ def account():
               otherwise, redirects to the login page.
     """
     if session.get('user'):
+        # get user data
         user_data = {
-            'full_name': f"{session['user']['first_name']} {session['user']['last_name']}",
+            'name': session['user']['name'],
             'image': session['user']['image'],
             'address': f"{session['user']['address']}, {session['user']['city']}, {session['user']['zipcode']}, {session['user']['country']}",
             'email': session['user']['email'],
             'phone': session['user']['phone'],
         }
-
-        return render_template('account.html', user_data=user_data)
+        
+        return render_template('account.html', user=user_data)
     
+    # redirect to login route if user is not logged in
     return redirect('/login')
 
 ### REGISTER ROUTE ###
@@ -159,18 +165,17 @@ def register():
         
         # upload profile picture to google storage
         if profile_picture:
-            print('has profile picture')
             storage.upload_file(profile_picture, email=email)
             picture_url = storage.get_file(email=email)
             print(picture_url)
         
         # create data dictionary
         data = {
+            'name': first_name + ' ' + last_name,
+            'email': email,
             'phone': int(phone),
             'password': password,
             'image': picture_url if profile_picture else None,
-            'first_name': first_name,
-            'last_name': last_name,
             'address': address,
             'city': city,
             'zipcode': int(zipcode),
@@ -186,7 +191,7 @@ def register():
             data['specialization'] = specialization
         
         # insert data to database
-        db.insert_data(kind='user', id=email, data=data)
+        db.insert_data(kind='user', data=data)
         flash('Account successfully created')
 
         # redirect to login page
@@ -206,7 +211,7 @@ def forgot_password():
         email = request.form.get('email')
         
         # check if email exists
-        if not db.check_existing_user('user', email=email):
+        if not db.check_existing_user(email=email):
             flash('Email does not exist')
             return redirect('/forgot_password')
         
@@ -234,8 +239,11 @@ def reset_password():
             flash('Passwords do not match')
             return redirect('/reset_password')
         
+        # get the user
+        user = db.get_data('user', email=email)
+        
         # update password in database
-        db.update_data('user', email, {'password': password})
+        db.update_data('user', user.key.id, {'password': password})
         flash('Password successfully reset')
         
         return redirect('/login')
@@ -252,12 +260,16 @@ def browse_by_name():
     # get all courses
     courses = db.get_data('course')
 
+    # save ids
+    for course in courses:
+        course['id'] = course.key.id
+
     # sort courses by alphabetical order of id
     courses = sorted(courses, key=lambda x: x['name'])
 
-    # create slug for course names
-    for course in courses:
-        course['slug'] = generate_slug(course['name'])
+    # # create slug for course names
+    # for course in courses:
+    #     course['slug'] = generate_slug(course['name'])
 
     session['courses'] = courses
 
@@ -268,13 +280,17 @@ def browse_by_category():
     # get all courses
     courses = db.get_data('course')
 
+    # save ids
+    for course in courses:
+        course['id'] = course.key.id
+
     # sort courses by category
     courses = sorted(courses, key=lambda x: x['category'])
     # save courses by categories in session
 
-    # create slug for course names
-    for course in courses:
-        course['slug'] = generate_slug(course.key.name)
+    # # create slug for course names
+    # for course in courses:
+    #     course['slug'] = generate_slug(course.key.name)
 
     # get unique categories
     categories = set([course['category'] for course in courses])
@@ -291,13 +307,12 @@ def browse_by_category():
 def generate_slug(name):
     return name.replace(' ', '-').lower()
 
-@app.route('/courses/<course_slug>')
-def course_details(course_slug):
+@app.route('/courses/<id>')
+def course_details(id):
     # get courses by categories from session
     courses = session.get('courses')
-
-    # find course by slug
-    course = [course for course in courses if generate_slug(course['name']) == course_slug][0]
+    
+    course = [course for course in courses if int(course['id']) == int(id)][0]
 
     # get user role - default is 'guest' if not logged in
     user = session.get('user')
@@ -305,24 +320,15 @@ def course_details(course_slug):
 
     return render_template('course_details.html', course=course, user_role=user_role)
 
-@app.route('/instructor/<email>')
-def instructor_profile(email):
+@app.route('/instructor/<id>')
+def instructor_profile(id):
     # get instructor data
-    instructor = db.get_data('user', id=email)
+    instructor = db.get_data('user', id=int(id))
     
     if instructor is not None:
-        # add full name to instructor
-        instructor['full_name'] = instructor['first_name'] + ' ' + instructor['last_name']
-
         # get courses by instructor
         courses = db.get_data('course')
-
-        # filter courses by instructor
-        courses = [course for course in courses if course['instructor'] == instructor['full_name']]
-
-        # add slug to course names
-        for course in courses:
-            course['slug'] = generate_slug(course['name'])
+        courses = [course for course in courses if course['instructor'] == instructor['name']]
 
         # save courses in session
         session['courses'] = courses
@@ -332,7 +338,6 @@ def instructor_profile(email):
 
         return render_template('instructor_profile.html', instructor=instructor, new_courses=new_courses, courses=courses)
 
-    flash('Instructor does not exist')
     return redirect('/') # redirect to home page if instructor does not exist
 
 if __name__ == '__main__':
