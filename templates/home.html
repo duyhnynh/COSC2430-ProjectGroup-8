@@ -30,17 +30,20 @@
       <h2>All Instructors</h2>
         <div id="instructor-container">
           {% for instructor in instructors %}
-            <a href="/instructor/{{instructor.key.name}}">
+            <a href="/instructor/{{instructor.id}}">
               <img id="profile-image" class="profile-image" src="{{instructor.image}}" alt="instructor profile picture">
             </a>
-            <a href="/instructor/{{instructor.key.name}}">
-              {{instructor.first_name}} {{instructor.last_name}}
+            <a href="/instructor/{{instructor.id}}">
+              {{instructor.name}}
             </a>
             <br>
           {% endfor %}
         </div>
 
      </div>
+
+     <!-- add logout -->
+    <a href="/logout">Log out</a>
    
     <iframe src="/footer" id="iframe-footer"></iframe>
     <script src="/static/general.js"></script>

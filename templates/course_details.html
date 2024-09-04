@@ -20,7 +20,7 @@
     <div id="course-detail">
       <h1>{{ course.name }}</h1>
       <p>{{ course.description }}</p>
-      <img src="{{course.img}}" alt="{{course.name}}">
+      <img src="{{course.image}}" alt="{{course.name}}">
       <p><strong>Category:</strong> {{ course.category }}</p>
       <p><strong>Instructor:</strong> {{ course.instructor }}</p>
       <p><strong>Price:</strong> ${{ course.price }}</p>
@@ -28,7 +28,9 @@
       
       {% if user_role == 'learner' %}
         <button>Trial For 2-Day</button>
-        <button>Enrol</button>
+        <form action="/course_order_placement/{{course.id}}" method="POST">
+          <button>Enrol</button>
+        </form>
       {% elif user_role == 'instructor' %}
         <button>Edit course</button>
       {% endif %}

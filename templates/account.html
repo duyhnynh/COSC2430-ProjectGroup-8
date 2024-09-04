@@ -19,14 +19,14 @@
 
     <!-- Account Page -->
     <div id="account-page">
-        {% if user_data %}
+        {% if user %}
             <!-- account info -->
             <h1>Account Information</h1>
-            <p>Full name: {{user_data.full_name}}</p>
-            <p>Address: {{user_data.address}}</p>
-            <p>Email: {{user_data.email}}</p>
-            <p>Phone: {{user_data.phone}}</p>
-            <img id="profile-image" class="profile-image" src="{{user_data.image}}" alt="profile picture">
+            <p>Full name: {{user.name}}</p>
+            <p>Address: {{user.address}}</p>
+            <p>Email: {{user.email}}</p>
+            <p>Phone: {{user.phone}}</p>
+            <img id="profile-image" class="profile-image" src="{{user.image}}" alt="profile picture">
         
             <!-- temporary logout -->
             <a href="/logout">Log out</a>

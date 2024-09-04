@@ -38,7 +38,7 @@
     </header>
     <nav id="mobile-vertical-navbar">
       <img
-        src="../vertical_menu_button.png"
+        src="/static/pictures/vertical_menu_button.png"
         id="vertical-menu-button"
         onclick="showVerticalNavbar()"
       />
@@ -55,7 +55,7 @@
 
     <!-- MAIN SECTION -->
     <main>
-        <h1>{{instructor.first_name}} {{instructor.last_name}}</h1>
+        <h1>{{instructor.name}}</h1>
         <!-- image -->
         <img id="profile-image" class="profile-image" src="{{instructor.image}}" alt="instructor profile picture">
 
@@ -73,10 +73,10 @@
         {% for new_course in new_courses %}
         <h2>New Courses</h2>
             <div class="course-container">
-                <a href="/courses/{{new_course.slug}}">
+                <a href="/courses/{{new_course.id}}">
                     <img src="{{new_course.image}}" alt="course image">
                 </a>
-                <a href="/courses/{{new_course.slug}}">
+                <a href="/courses/{{new_course.id}}">
                     <h4>{{new_course.name}}</h4>
                 </a>
                 <p>Price: ${{new_course.price}}</p>
@@ -87,10 +87,10 @@
         <h2>All Courses</h2>
         <div class="course-container">
             {% for course in courses %}
-                <a href="/courses/{{course.slug}}">
+                <a href="/courses/{{course.id}}">
                     <img src="{{course.image}}" alt="course image">
                 </a>
-                <a href="/courses/{{course.slug}}">
+                <a href="/courses/{{course.id}}">
                     <h4>{{course.name}}</h4>
                 </a>
                 <p>Price: ${{course.price}}</p>

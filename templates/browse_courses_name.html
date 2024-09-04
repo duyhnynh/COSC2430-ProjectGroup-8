@@ -22,9 +22,9 @@
         <h1>Browse Courses by Name</h1>
         {% for course in courses %}
             <div class="course-card">
-                <img src="{{ course.img }}" alt="{{ course.key.name }}">
+                <img src="{{ course.image }}" alt="{{ course.name }}">
                 <div class="course-info">
-                    <h3><a href="/courses/{{ course.slug }}">{{ course.key.name }}</a></h3>
+                    <h3><a href="/courses/{{ course.id }}">{{ course.name }}</a></h3>
                     <p>Category: {{ course.category }}</p>
                     <p>Price: ${{ course.price }}</p>
                 </div>
