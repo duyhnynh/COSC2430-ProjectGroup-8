@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/static/styles/header.css"/>
+    <link rel="stylesheet" href="/static/styles/home.css" />
+    <link rel="stylesheet" href="/static/general.css">
+    <title>Course Order Placement</title>
+  </head>
+  <body>
+    <div id="body-container">
+      <iframe src="/header" id="iframe-header"></iframe>
+    </div>
+
+    <div id="course-order-placement" class="course-order-placement">
+      <h1>Order Placement</h1>
+      <p><strong>Description:</strong> {{ course.description }}</p>
+      <p><strong>Course:</strong> {{ course.name }}</p>
+      <p><strong>Instructor:</strong> {{ course.instructor }}</p>
+      <p><strong>Price:</strong> ${{ course.price }}</p>
+      <p><strong>Category:</strong> {{ course.category }}</p>
+      <img src="{{course.image}}" alt="{{course.name}}">
+      
+      <form id="course-order-form" class="course-order-form" action="/order/confirmation/{{course.id}}" method="POST">
+        <h3>Payment Method</h3>
+        <div>
+          <label for="credit-card">Credit Card</label>
+          <input type="radio" id="credit-card" name="payment-method" value="credit-card" required>
+        </div>
+        <div>
+          <label for="paypal">Paypal</label>
+          <input type="radio" id="paypal" name="payment-method" value="paypal" required>
+        </div>
+        <div>
+            <label for="e-wallet">E-Wallet</label>
+            <input type="radio" id="e-wallet" name="payment-method" value="e-wallet" required>
+        </div>
+        
+        <h3>Certification Options</h3>
+        <div>
+            <label for="certification-option">Include certification?</label>
+            <input type="checkbox" id="certification-option" name="certification-option" value="yes">
+        </div>
+
+        <h3>Access duration</h3>
+        <div>
+            <label for="permanent-access">Permanent Access</label>
+            <input type="radio" id="permanent-access" name="access-duration" value="permanent-access" required>
+        </div>
+        <div>
+            <label for="7-day-access">7-Day Access</label>
+            <input type="radio" id="7-day-access" name="access-duration" value="7-day-access" required>
+        </div>
+
+        <a href="/courses/{{course.id}}"><button type="button">Cancel</button></a>
+        <button type="submit">Order</button>
+      </form>
+   
+    <iframe src="/footer" id="iframe-footer"></iframe>
+    <script src="/static/general.js"></script>
+  </body>
+</html>
