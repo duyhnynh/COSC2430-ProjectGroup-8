@@ -89,6 +89,7 @@ def login():
         # store user data in session
         if user_data:
             session['user'] = user_data
+            session['user']['id'] = user_data.key.id # save id
         
         # redirect to account page
         return redirect('/account')
@@ -339,6 +340,36 @@ def instructor_profile(id):
         return render_template('instructor_profile.html', instructor=instructor, new_courses=new_courses, courses=courses)
 
     return redirect('/') # redirect to home page if instructor does not exist
+
+## COURSE ORDER PLACEMENT ##
+@app.route('/courses/order/<course_id>', methods=['GET', 'POST'])
+def course_order_placement(course_id):
+    # get course
+    course = db.get_data('course', id=int(course_id))
+    
+    return render_template('course_order_placement.html', course=course)
+
+### THANK YOU ROUTE ###
+@app.route('/order/confirmation/<course_id>', methods=['GET', 'POST'])
+def order_confirmation(course_id):
+    if request.method == 'POST':
+        payment_method = request.form.get('payment-method')
+        certification = request.form.get('certification-option')
+        access_duration = request.form.get('access-duration')
+        
+        # save to database
+        data = {
+            'course_id': course_id,
+            'user_id': session['user']['id'],
+            'payment_method': payment_method,
+            'certification': certification,
+            'access_duration': access_duration,
+            'created_at': datetime.now(vn_tz).strftime('%Y-%m-%d %H:%M:%S')
+        }
+
+        db.insert_data(kind='order', data=data)
+    
+    return render_template('thank_you.html')
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True)
