@@ -28,7 +28,7 @@
       
       {% if user_role == 'learner' %}
         <button>Trial For 2-Day</button>
-        <form action="/course_order_placement/{{course.id}}" method="POST">
+        <form action="/courses/order/{{course.id}}" method="POST">
           <button>Enrol</button>
         </form>
       {% elif user_role == 'instructor' %}
