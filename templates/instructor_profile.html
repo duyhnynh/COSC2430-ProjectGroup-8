@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/static/styles/home.css" />
     <link rel="stylesheet" href="/static/styles/header.css"/>
     <link rel="stylesheet" href="/static/general.css">
-    <title>Home</title>
+    <title>Instructor - {{instructor.name}}</title>
   </head>
   <body>
     <div id="body-container">
@@ -19,7 +19,7 @@
 
     <!-- HEADER -->
     <header class="header" id="header">
-      <img id="profile-image" class="profile-image" src="{{instructor.image}}" alt="instructor profile picture">
+      <img id="header-image" class="header-image" src="{{instructor.image}}" alt="instructor profile picture">
       <nav id="nav-bar">
         <a href="/" target="_parent">Home</a>
         <a href="" target="_parent">About Us</a>
@@ -62,16 +62,16 @@
         <!-- about -->
         <div id="instructor-about">
             <h2>About</h2>
-            <p>Email: {{instructor.email}}</p>
-            <p>Phone: {{instructor.phone}}</p>
-            <p>Address: {{instructor.address}}</p>
-            <p>Zipcode: {{instructor.zipcode}}</p>
-            <p>City: {{instructor.city}}</p>
-            <p>Country: {{instructor.country}}</p>
+            <p><strong>Email:  </strong> {{instructor.email}}</p>
+            <p><strong>Phone:  </strong> {{instructor.phone}}</p>
+            <p><strong>Address:</strong> {{instructor.address}}</p>
+            <p><strong>Zipcode:</strong> {{instructor.zipcode}}</p>
+            <p><strong>City:   </strong> {{instructor.city}}</p>
+            <p><strong>Country:</strong> {{instructor.country}}</p>
         </div>
         <!-- new courses -->
-        {% for new_course in new_courses %}
         <h2>New Courses</h2>
+        {% for new_course in new_courses %}
             <div class="course-container">
                 <a href="/courses/{{new_course.id}}">
                     <img src="{{new_course.image}}" alt="course image">
