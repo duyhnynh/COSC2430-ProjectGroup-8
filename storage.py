@@ -1,5 +1,6 @@
 import datetime
 from google.cloud import storage
+import re
 
 class Storage():
     def __init__(self) -> None:
@@ -15,18 +16,19 @@ class Storage():
         Uploads a file to the Google Cloud Storage.
         @returns: None
         """
-        # get file extension
-        extension = image.filename.split('.')[-1]
+        # default extension and content type for simplification 
+        extension = '.jpg' 
+        content_type = 'image/jpeg' 
 
         if email:
-            blob = self.bucket.blob('profile_pictures/' + email + '.' + extension)
+            blob = self.bucket.blob('profile_pictures/' + email + extension)
         elif course_name:
-            # remove spaces from course name
-            course_name = course_name.replace(' ', '_').lower()
-            blob = self.bucket.blob('course_images/' + course_name + '.' + extension)
-        
+            # remove slash or spaces from course name
+            course_name = re.sub(r'[/\s]', '_', course_name).lower()
+            blob = self.bucket.blob('course_images/' + course_name + extension)
+
         # upload the file to the bucket
-        blob.upload_from_string(image.read(), content_type=image.content_type)
+        blob.upload_from_string(image.read(), content_type=content_type)
 
     def get_file(self, email=None, course_name=None) -> str:
         """
@@ -36,7 +38,8 @@ class Storage():
         if email:
             blob = self.bucket.blob('profile_pictures/' + email + '.jpg')
         elif course_name:
-            course_name = course_name.replace(' ', '_').lower()
+            # replace slash or space with underscore in course name
+            course_name = re.sub(r'[/\s]', '_', course_name).lower()
             blob = self.bucket.blob('course_images/' + course_name + '.jpg')
         
         # generate a signed URL for the file
