@@ -82,7 +82,7 @@
         {% for new_course in new_courses %}
             <div class="course-container">
                 <a href="/courses/{{new_course.id}}">
-                    <img src="{{new_course.image}}" alt="course image">
+                    <img id="course-image" class="course-image" src="{{new_course.image}}" alt="course image">
                 </a>
                 <a href="/courses/{{new_course.id}}">
                     <h4>{{new_course.name}}</h4>
@@ -96,7 +96,7 @@
         <div class="course-container">
             {% for course in courses %}
                 <a href="/courses/{{course.id}}">
-                    <img src="{{course.image}}" alt="course image">
+                    <img id="course-image" class="course-image" src="{{course.image}}" alt="course image">
                 </a>
                 <a href="/courses/{{course.id}}">
                     <h4>{{course.name}}</h4>
