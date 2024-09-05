@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/static/styles/home.css" />
+    <link rel="stylesheet" href="/static/styles/header.css"/>
+    <link rel="stylesheet" href="/static/general.css">
+    <title>Home</title>
+  </head>
+  <body>
+    <div id="body-container">
+      <iframe src="/header" id="iframe-header"></iframe>
+    </div>
+
+    <h1>Add a New Course</h1>
+
+    <form id="course-add-form" class="course-add-form" action="/courses/add" method="POST" enctype="multipart/form-data">
+      <!-- name -->
+      <div class="form-group">
+        <label for="name">Course name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <!-- price -->
+      <div class="form-group">
+        <label for="price">Price ($):</label>
+        <input type="number" id="price" name="price" step="0.01" required>
+      </div>
+
+      <!-- description -->
+      <div class="form-group">
+        <label for="description">Course description: </label>
+        <textarea id="description" name="description" rows="5" required></textarea>
+      </div>
+
+      <!-- main image -->
+      <div class="form-group">
+        <label for="main-image">Main image: </label>
+        <input type="file" id="main-image" name="main-image" required>
+      </div>
+      
+      <!-- category -->
+      <div class="form-group">
+        <label for="category">Category:</label>
+          <select name="category" id="category" required>
+            <option value="" disabled selected>Select Category</option>
+            <option value="Programming">Programming</option>
+            <option value="Business">Business</option>
+            <option value="Design">Design</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Data Science">Data Science</option>
+            <option value="Cloud-computing">Cloud Computing</option>
+            <option value="Security">Security</option>
+            <option value="Other">Other</option>
+          </select>
+      </div>
+
+      <!-- submit button -->
+      <button type="submit" class="btn btn-primary">Add Course</button>
+    </form>
+
+    <!-- flash message -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="alert alert-danger" role="alert">
+          {{ messages[0] }}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <a href="/logout">Log out</a>
+   
+    <iframe src="/footer" id="iframe-footer"></iframe>
+    <script src="/static/general.js"></script>
+  </body>
+</html>
