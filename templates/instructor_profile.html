@@ -52,7 +52,7 @@
         <a href="" target="_parent">Contact</a>
       </div>
     </nav>
-
+    
     <!-- MAIN SECTION -->
     <main>
         <h1>{{instructor.name}}</h1>
@@ -69,6 +69,14 @@
             <p><strong>City:   </strong> {{instructor.city}}</p>
             <p><strong>Country:</strong> {{instructor.country}}</p>
         </div>
+        
+        <!-- add course button - only visible to instructors -->
+        {% if user_role == 'instructor' %}
+        <a href="/courses/add">
+          <button type="button">Add Course</button>
+        </a>
+        {% endif %}
+
         <!-- new courses -->
         <h2>New Courses</h2>
         {% for new_course in new_courses %}
@@ -98,11 +106,6 @@
         </div>
     </main>
 
-    {% if user_role == 'instructor' %}
-      <form action="/courses/add" method="POST">
-          <button type="submit">Add Course</button>
-      </form>
-    {% endif %}
    
     <iframe src="/footer" id="iframe-footer"></iframe>
     <script src="/static/general.js"></script>
