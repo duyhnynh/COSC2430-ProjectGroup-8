@@ -15,13 +15,12 @@ class Database():
         # print('Database connected')
         # print('Project ID:', self.client.project)
 
-    def get_data(self, kind, email=None, phone=None, id=None) -> str:
+    def get_data(self, kind, email=None, phone=None, course_name=None, id=None) -> str:
         """
-        Retrieves data from the database based on the specified kind, id (email), or phone number.
-        @returns: a list of entities if no id, no email and no phone number.
-                  if id/email/id is specified, return onr entity.
+        Retrieves data from the database based on the specified kind, email, phone number, course_name or id (unique integer).
+        @returns: the whole data for the specified kind if no email/phone/course/id is specified, otherwise return one entity.
         """
-        if email is None and phone is None and id is None:
+        if all(var is None for var in [email, phone, course_name, id]):
             # get all data
             query = self.client.query(kind=kind)
             results = list(query.fetch())
@@ -36,6 +35,12 @@ class Database():
             # get data by email
             query = self.client.query(kind=kind)
             query.add_filter('email', '=', email)
+            results = list(query.fetch())
+            return results[0] if len(results) > 0 else None
+        elif course_name and kind == 'course':
+            # get data by course name
+            query = self.client.query(kind=kind)
+            query.add_filter('name', '=', course_name)
             results = list(query.fetch())
             return results[0] if len(results) > 0 else None
         else:
@@ -103,6 +108,20 @@ class Database():
 
         # check password match
         if results[0]['password'] != password:
+            return False
+        
+        return True
+    
+    def check_existing_course(self, course_name) -> bool:
+        """
+        Checks if the specified course name is already in the database.
+        @returns: True if the course exists, otherwise False.
+        """
+        query = self.client.query(kind='course')
+        query.add_filter('name', '=', course_name)
+        results = list(query.fetch())
+        
+        if len(results) <= 0:
             return False
         
         return True
