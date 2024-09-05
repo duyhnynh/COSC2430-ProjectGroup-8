@@ -285,10 +285,6 @@ def browse_by_category():
     courses = sorted(courses, key=lambda x: x['category'])
     # save courses by categories in session
 
-    # # create slug for course names
-    # for course in courses:
-    #     course['slug'] = generate_slug(course.key.name)
-
     # get unique categories
     categories = set([course['category'] for course in courses])
 
@@ -337,7 +333,11 @@ def instructor_profile(id):
         # get latest 5 courses
         new_courses = sorted(courses, key=lambda x: x['created_at'], reverse=True)[:5]
 
-        return render_template('instructor_profile.html', instructor=instructor, new_courses=new_courses, courses=courses)
+        # get current user's role
+        user = session.get('user')
+        user_role = user.get('role') if user else 'guest'
+
+        return render_template('instructor_profile.html', instructor=instructor, new_courses=new_courses, courses=courses, user_role=user_role)
 
     return redirect('/') # redirect to home page if instructor does not exist
 
@@ -370,6 +370,12 @@ def order_confirmation(course_id):
         db.insert_data(kind='order', data=data)
     
     return render_template('thank_you.html')
+
+### ADD COURSE ROUTE ###
+@app.route('/courses/add', methods=['GET', 'POST'])
+def add_course():
+    if request.method == 'POST':
+        pass
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True)
