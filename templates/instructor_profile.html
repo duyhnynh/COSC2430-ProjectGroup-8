@@ -97,6 +97,12 @@
             {% endfor %}
         </div>
     </main>
+
+    {% if user_role == 'instructor' %}
+      <form action="/courses/add" method="POST">
+          <button type="submit">Add Course</button>
+      </form>
+    {% endif %}
    
     <iframe src="/footer" id="iframe-footer"></iframe>
     <script src="/static/general.js"></script>
