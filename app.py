@@ -199,6 +199,7 @@ def register():
     
     return render_template('register_account.html')
 
+### FORGOT PASSWORD ROUTE ###
 @app.route('/forgot_password', methods=['GET', 'POST'])
 def forgot_password():
     """
@@ -222,6 +223,7 @@ def forgot_password():
     
     return render_template('forgot_password.html', reset_link=reset_link)
 
+### RESET PASSWORD ROUTE ###
 @app.route('/reset_password', methods=['POST'])
 def reset_password():
     """
@@ -250,11 +252,13 @@ def reset_password():
     
     return render_template('reset_password.html')
 
+### LOGOUT ROUTE ###
 @app.route('/logout')
 def logout():
     session.pop('user', None)
     return redirect('/')
 
+### BROWSE BY NAME ROUTE ###
 @app.route('/courses/browse/name')
 def browse_by_name():
     # get all courses
@@ -271,6 +275,7 @@ def browse_by_name():
 
     return render_template('browse_courses_name.html', courses=courses)
 
+### BROWSE BY CATEGORY ROUTE ###
 @app.route('/courses/browse/category')
 def browse_by_category():
     # get all courses
@@ -296,21 +301,19 @@ def browse_by_category():
 
     return render_template('browse_courses_category.html', courses=courses_by_categories)
 
-def generate_slug(name):
-    return name.replace(' ', '-').lower()
-
+### COURSE DETAILS ROUTE ###
 @app.route('/courses/<id>')
 def course_details(id):
     # get courses by categories from session
     courses = session.get('courses')
     
-    course = [course for course in courses if int(course['id']) == int(id)][0]
+    selected_course = [course for course in courses if int(course['id']) == int(id)][0] if courses else None
 
     # get user role - default is 'guest' if not logged in
     user = session.get('user')
     user_role = user.get('role') if user else 'guest'
 
-    return render_template('course_details.html', course=course, user_role=user_role)
+    return render_template('course_details.html', course=selected_course, user_role=user_role)
 
 @app.route('/instructor/<id>')
 def instructor_profile(id):
@@ -414,9 +417,12 @@ def add_course():
 
         # get session courses
         courses = session.get('courses')
-        courses = courses.append(course) if courses else [course]
 
-        # save courses in session
+        if courses:
+            courses.append(course)
+        else:
+            courses = [course]
+
         session['courses'] = courses
 
         # redirect to course details page
