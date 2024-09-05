@@ -34,6 +34,11 @@ body {
   align-items: center;
 }
 
+.course-card-container {
+  display: contents;
+  width: 100%;
+}
+
 .course-card {
   width: 60%;
   margin-top: 20px;
@@ -43,6 +48,11 @@ body {
   align-items: center;
   padding: 10px;
   border: 1px solid black;
+}
+
+#course-image {
+  height: 150px;
+  width: 200px;
 }
 
 #profile-image {
