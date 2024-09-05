@@ -168,7 +168,6 @@ def register():
         if profile_picture:
             storage.upload_file(profile_picture, email=email)
             picture_url = storage.get_file(email=email)
-            print(picture_url)
         
         # create data dictionary
         data = {
@@ -375,7 +374,55 @@ def order_confirmation(course_id):
 @app.route('/courses/add', methods=['GET', 'POST'])
 def add_course():
     if request.method == 'POST':
-        pass
+        # get form data
+        name = request.form.get('name')
+        price = request.form.get('price')
+        description = request.form.get('description')
+        image = request.files.get('main-image')
+        category = request.form.get('category')
+        
+        # get instructor from current user
+        instructor = session['user']['name']
+        
+        # check if course name is already in use
+        if db.check_existing_course(course_name=name):
+            flash('Course name is already in use')
+            return redirect('/courses/add')
+        
+        if image:
+            # upload image to google storage
+            storage.upload_file(image, course_name=name)
+            image_url = storage.get_file(course_name=name) # get image url
+
+        # create data dictionary
+        data = {
+            'name': name,
+            'price': price,
+            'description': description,
+            'category': category,
+            'instructor': instructor,
+            'image': image_url if image else None,
+            'created_at': datetime.now(vn_tz).strftime('%Y-%m-%d %H:%M:%S')
+        }
+        
+        # insert data to database
+        db.insert_data(kind='course', data=data)
+        
+        # get the course id
+        course = db.get_data(kind='course', course_name=name)
+        course['id'] = course.key.id
+
+        # get session courses
+        courses = session.get('courses')
+        courses = courses.append(course) if courses else [course]
+
+        # save courses in session
+        session['courses'] = courses
+
+        # redirect to course details page
+        return redirect(f'/courses/{course["id"]}')
+    
+    return render_template('add_course.html')
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True)
