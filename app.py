@@ -4,6 +4,7 @@ from database import Database
 from storage import Storage
 from uuid import uuid4
 import pytz
+import csv
 
 # create flask app
 app = Flask(__name__)
@@ -12,6 +13,13 @@ app.secret_key = 'super secret' # used to encrypt session data, change later
 # create database and storage object
 db = Database()
 storage = Storage()
+
+# get country data from csv file    
+countries = []
+with open('country_data.csv', encoding='utf-8') as f:
+    reader = csv.DictReader(f) # do not include first row and read rows into a dictionary format
+    for row in reader:
+        countries.append({'code': row['Code'], 'name': row['Name']})
 
 # set timezone
 vn_tz = pytz.timezone('Asia/Ho_Chi_Minh')
@@ -83,7 +91,7 @@ def login():
             user_data = db.get_data('user', phone=phone)
 
             # check if password is correct
-            if not db.check_credentials('user', password, phone=phone):
+            if not db.check_credentials(password, phone=phone):
                 flash('Incorrect password')
                 return redirect('/login')
 
@@ -106,11 +114,14 @@ def account():
               otherwise, redirects to the login page.
     """
     if session.get('user'):
+        # get mapping of country code to name
+        country_name = country_code_to_name(session['user']['country'])
+
         # get user data
         user_data = {
             'name': session['user']['name'],
             'image': session['user']['image'],
-            'address': f"{session['user']['address']}, {session['user']['city']}, {session['user']['zipcode']}, {session['user']['country']}",
+            'address': f"{session['user']['address']}, {session['user']['city']}, {session['user']['zipcode']}, {country_name}",
             'email': session['user']['email'],
             'phone': session['user']['phone'],
         }
@@ -119,6 +130,10 @@ def account():
     
     # redirect to login route if user is not logged in
     return redirect('/login')
+
+def country_code_to_name(code):
+    country = [country['name'] for country in countries if country['code'] == code]
+    return country[0] if country else None
 
 ### REGISTER ROUTE ###
 @app.route('/register', methods=['GET', 'POST'])
@@ -151,12 +166,12 @@ def register():
             specialization = request.form.get('specialization')
         
         # check if email is already in use
-        if db.check_existing_user('user', email=email):
+        if db.check_existing_user(email=email):
             flash('Email is already in use')
             return redirect('/register')
         
         # also check if phone is already in use
-        if db.check_existing_user('user', phone=phone):
+        if db.check_existing_user(phone=phone):
             flash('Phone is already in use')
             return redirect('/register')
 
@@ -198,7 +213,7 @@ def register():
         # redirect to login page
         return redirect('/account')
     
-    return render_template('register_account.html')
+    return render_template('register_account.html', countries=countries)
 
 ### FORGOT PASSWORD ROUTE ###
 @app.route('/forgot-password', methods=['GET', 'POST'])
@@ -338,6 +353,9 @@ def instructor_profile(id):
     instructor = db.get_data('user', id=int(id))
     
     if instructor is not None:
+        # get instructor's country name
+        instructor['country'] = country_code_to_name(instructor['country'])
+
         # get courses by instructor
         courses = db.get_data('course')
         courses = [course for course in courses if course['instructor'] == instructor['name']]

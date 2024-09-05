@@ -73,10 +73,9 @@
         <label for="country">Country*</label>
         <select name="country" id="country" required>
           <option value="" disabled selected>Select Country</option>
-          <!-- TODO: change value for countries later, maybe do mapping -->
-          <option value="Vietnam">Vietnam</option> 
-          <option value="USA">USA</option>
-          <option value="Canada">Canada</option>
+          {% for country in countries %}
+          <option value="{{ country.code }}">{{ country.name }}</option>
+          {% endfor %}
         </select>
       </div>
       <!-- accont type -->
