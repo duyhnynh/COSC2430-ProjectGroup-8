@@ -24,7 +24,7 @@
       <p><strong>Instructor:</strong> {{ course.instructor }}</p>
       <p><strong>Price:</strong> ${{ course.price }}</p>
       <p><strong>Category:</strong> {{ course.category }}</p>
-      <img src="{{course.image}}" alt="{{course.name}}">
+      <img id="course-image" class="course-image" src="{{course.image}}" alt="{{course.name}}">
       
       <form id="course-order-form" class="course-order-form" action="/order/confirmation/{{course.id}}" method="POST">
         <h3>Payment Method</h3>
