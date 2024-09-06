@@ -336,10 +336,13 @@ def browse_by_category():
 ### COURSE DETAILS ROUTE ###
 @app.route('/courses/<id>')
 def course_details(id):
-    # get courses by categories from session
-    courses = session.get('courses')
+    # get course
+    selected_course = db.get_data('course', id=int(id))
     
-    selected_course = [course for course in courses if int(course['id']) == int(id)][0] if courses else None
+    # # get courses by categories from session
+    # courses = session.get('courses')
+    
+    # selected_course = [course for course in courses if int(course['id']) == int(id)][0] if courses else None
 
     # get user role - default is 'guest' if not logged in
     user = session.get('user')
