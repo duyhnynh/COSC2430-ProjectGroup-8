@@ -1,0 +1,38 @@
+/* FAQ Page Styling */
+.faq-section {
+    margin-top: 40px;
+}
+
+.faq-section details {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.faq-section summary {
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.faq-section p {
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+h1 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    color: #5336ca;
+}
+
+p {
+    font-family: "Open Sans", sans-serif;
+    font-size: 18px;
+    color: #333;
+}
