@@ -8,8 +8,8 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="/static/styles/home.css" />
-    <link rel="stylesheet" href="/static/styles/header.css"/>
-    <link rel="stylesheet" href="/static/general.css">
+    <link rel="stylesheet" href="/static/styles/header.css" />
+    <link rel="stylesheet" href="/static/general.css" />
     <title>Home</title>
   </head>
   <body>
@@ -25,8 +25,9 @@
     </div>
 
     <!-- MAIN CONTENT AREA -->
-     <div id="main-content-area">
-      <!-- New instructors -->
+    <!-- New instructors -->
+    <!--<div id="main-content-area">
+     
       <h2>All Instructors</h2>
         <div id="instructor-container">
           {% for instructor in instructors %}
@@ -40,12 +41,125 @@
           {% endfor %}
         </div>
 
-     </div>
+     </div>-->
 
-     <!-- add logout -->
+    <div class="featured-container">
+      <h2>Get started with Our Featured Course</h2>
+      <button class="featured-button">View all Courses</button>
+
+      <div class="featured-tabs">
+        <button class="featured-tab active" data-target="course">
+          Courses
+        </button>
+        <button class="featured-tab" data-target="instructor">
+          Instructors
+        </button>
+      </div>
+
+      <div class="featured-content" id="course">
+        <div class="featured-cards">
+          <div class="featured-card">
+            <img src="" alt="Course Image" />
+            <div class="card-content">
+              <p class="card-title">Something course</p>
+              <h3>Deep Learning</h3>
+              <p>Something Course</p>
+              <p>Course description</p>
+            </div>
+          </div>
+          <div class="featured-card">
+            <img src="" alt="Course Image" />
+            <div class="card-content">
+              <p class="card-title">Something course</p>
+              <h3>Deep Learning</h3>
+              <p>Something Course</p>
+              <p>Course description</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="featured-content" id="instructor" style="display: none">
+        <div class="featured-cards">
+          <div class="featured-card">
+            <img src="" alt="Instructor Image" />
+            <div class="card-content">
+              <p class="card-title">Something instructor</p>
+              <h3>Instructor Something</h3>
+              <p>Instructor description</p>
+            </div>
+          </div>
+          <div class="featured-card">
+            <img src="" alt="Instructor Image" />
+            <div class="card-content">
+              <p class="card-title">Something instructor</p>
+              <h3>Instructor Something</h3>
+              <p>Instructor description</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Course Section -->
+    <div class="new-section-container">
+      <h2>New Course</h2>
+      <p>Explore our newest programs.</p>
+      <div class="course-cards">
+        <div class="course-card">
+          <img src="" alt="" />
+          <div class="card-info">
+            <p class="provider">Course Type</p>
+            <h3>Course name</h3>
+            <p>Something</p>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <img src="" alt="" />
+          <div class="card-info">
+            <p class="provider">Course Type</p>
+            <h3>Course name</h3>
+            <p>Something</p>
+          </div>
+        </div>
+      </div>
+
+      <button class="view-all">View all</button>
+    </div>
+
+    <!-- New Instructor -->
+    <div class="new-section-container">
+      <h2>New Instructor</h2>
+      <p>Explore our newest Instructor.</p>
+      <div class="course-cards">
+        <div class="course-card">
+          <img src="" alt="" />
+          <div class="card-info">
+            <p class="provider">Course Type</p>
+            <h3>Course name</h3>
+            <p>Something</p>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <img src="" alt="" />
+          <div class="card-info">
+            <p class="provider">Course Type</p>
+            <h3>Course name</h3>
+            <p>Something</p>
+          </div>
+        </div>
+      </div>
+
+      <button class="view-all">View all</button>
+    </div>
+
+    <!-- add logout -->
     <a href="/logout">Log out</a>
-   
+
     <iframe src="/footer" id="iframe-footer"></iframe>
     <script src="/static/general.js"></script>
+    <script src="/static/home.js"></script>
   </body>
 </html>

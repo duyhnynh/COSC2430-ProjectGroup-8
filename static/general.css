@@ -28,7 +28,7 @@ body {
   justify-content: center;
 }
 
-.course-container {
+/* .course-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,4 +65,4 @@ body {
   height: 50px;
   width: 50px;
   border-radius: 50%;
-}
+} */
