@@ -1,4 +1,5 @@
 Flask
+Flask-Session
 google-cloud-datastore
 google-cloud-storage
 requests
