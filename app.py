@@ -1,14 +1,19 @@
 from datetime import datetime
 from flask import Flask, flash, render_template, request, session, redirect, url_for
+from flask_session import Session
 from database import Database
 from storage import Storage
 from uuid import uuid4
+import random
 import pytz
 import csv
 
 # create flask app
 app = Flask(__name__)
 app.secret_key = 'super secret' # used to encrypt session data, change later
+app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_TYPE'] = 'filesystem' # store session data in the filesystem
+Session(app)
 
 # create database and storage object
 db = Database()
@@ -31,9 +36,50 @@ def root():
     Renders the home page.
     @returns: renders 'home.html'.
     """
-    instructors = db.get_instructors()
+    if not check_session_var('courses') or not check_session_var('instructors'):
+        # get all courses and instructors
+        courses = db.get_data('course')
+        instructors = db.get_instructors()
 
-    return render_template('home.html', instructors=instructors)
+        # save course ids in courses dict
+        for course in courses:
+            course['id'] = course.key.id
+    
+        # save instructor ids in instructors dict
+        for instructor in instructors:
+            instructor['id'] = instructor.key.id
+
+        # get latest 5 courses and instructors
+        new_courses = sorted(courses, key=lambda x: x['created_at'], reverse=True)[:5]
+        new_instructors = sorted(instructors, key=lambda x: x['created_at'], reverse=True)[:5]
+
+        # save courses and instructors in session
+        save_session_var('courses', courses)
+        save_session_var('instructors', courses)
+
+        # save latest courses and instructors in session
+        save_session_var('new_courses', new_courses)
+        save_session_var('new_instructors', new_instructors)
+    else:
+        # get latest courses and instructors from session
+        new_courses = session.get('new_courses')
+        new_instructors = session.get('new_instructors')
+
+    # check if featured courses and instructors are in session
+    if not session.get('featured_courses') or not session.get('featured_instructors'):
+        # get the five featured courses and instructors (random)
+        featured_courses = random.sample(courses, 5)
+        featured_instructors = random.sample(instructors, 5)
+
+        # save featured courses and instructors in session
+        save_session_var('featured_courses', featured_courses)
+        save_session_var('featured_instructors', featured_instructors)
+    else:
+        # get featured courses and instructors from session
+        featured_courses = session.get('featured_courses')
+        featured_instructors = session.get('featured_instructors')
+
+    return render_template('home.html', new_courses=new_courses, new_instructors=new_instructors, featured_courses=session['featured_courses'], featured_instructors=session['featured_instructors'])
 
 ### PRIVACY ROUTE ###
 @app.route('/privacy')
@@ -467,6 +513,20 @@ def add_course():
         return redirect(f'/courses/{course["id"]}')
     
     return render_template('add_course.html')
+
+
+#### session functionality ####
+def check_session_var(var: str):
+    if session.get(var):
+        return True
+    else:
+        return False
+    
+def save_session_var(var: str, value):
+    session[var] = value
+
+def remove_session_var(var: str):
+    session.pop(var, None)
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True)
