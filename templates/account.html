@@ -27,8 +27,17 @@
             <p>Email: {{user.email}}</p>
             <p>Phone: {{user.phone}}</p>
             <img id="profile-image" class="profile-image" src="{{user.image}}" alt="profile picture">
-        
-            <!-- temporary logout -->
+
+            {% if user.role == 'learner' %}
+                <h1>Course orders</h1>
+                {% for order in orders %}
+                  <h3>{{order.course_name}}</h3>
+                    <p><strong>Date ordered:</strong> {{order.created_at}}</p>
+                    <p><strong>Access duration:</strong> {{order.access_duration}}</p>
+                    <p><strong>Certification:</strong> {{order.certification}}</p>
+                  {% endfor %}
+            {% endif %}
+
             <a href="/logout">Log out</a>
         {% else %}
             <!-- login box -->
