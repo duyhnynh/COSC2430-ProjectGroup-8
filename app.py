@@ -56,7 +56,7 @@ def root():
 
         # save courses and instructors in session
         save_session_var('courses', courses)
-        save_session_var('instructors', courses)
+        save_session_var('instructors', instructors)
 
         # save latest courses and instructors in session
         save_session_var('new_courses', new_courses)
@@ -173,7 +173,7 @@ def account():
     @returns: if the user is logged in, renders 'account.html' with user data. 
               otherwise, redirects to the login page.
     """
-    if session.get('user'):
+    if check_session_var('user'):
         # get mapping of country code to name
         country_name = country_code_to_name(session['user']['country'])
 
@@ -184,16 +184,20 @@ def account():
             'address': f"{session['user']['address']}, {session['user']['city']}, {session['user']['zipcode']}, {country_name}",
             'email': session['user']['email'],
             'phone': session['user']['phone'],
+            'role': session['user']['role']
         }
+
+        # get orders
+        orders = db.get_orders(user_id=session['user']['id'])
         
-        return render_template('account.html', user=user_data)
+        # get course name for each order
+        for order in orders:
+            order['course_name'] = db.get_data('course', id=int(order['course_id']))['name']
+
+        return render_template('account.html', user=user_data, orders=orders)
     
     # redirect to login route if user is not logged in
     return redirect('/login')
-
-def country_code_to_name(code):
-    country = [country['name'] for country in countries if country['code'] == code]
-    return country[0] if country else None
 
 ### REGISTER ROUTE ###
 @app.route('/register', methods=['GET', 'POST'])
@@ -285,7 +289,6 @@ def forgot_password():
     """
     reset_link = None
     if request.method == 'POST':
-        print('inside post')
         email = request.form.get('email')
         
         # check if email exists
@@ -295,13 +298,12 @@ def forgot_password():
         
         # generate reset token
         reset_token = str(uuid4())
-        print(f'Reset token: {reset_token}')
 
         # create reset link
         reset_link = url_for('reset_password', reset_token=reset_token, _external=True)
 
         # save email and reset link in session
-        session['reset_email'] = email
+        save_session_var('reset_email', email)
 
         # flash reset link
         flash(reset_link, category='link')
@@ -347,39 +349,53 @@ def reset_password(reset_token):
 ### LOGOUT ROUTE ###
 @app.route('/logout')
 def logout():
-    session.pop('user', None)
+    remove_session_var('user')
+    remove_session_var('courses')
     return redirect('/')
 
 ### BROWSE BY NAME ROUTE ###
 @app.route('/courses/browse/name')
 def browse_by_name():
-    # get all courses
-    courses = db.get_data('course')
+    # check if courses are in session
+    if not session.get('courses'):
+        # get all courses
+        courses = db.get_data('course')
 
-    # save ids
-    for course in courses:
-        course['id'] = course.key.id
+        # save ids
+        for course in courses:
+            course['id'] = course.key.id
+
+        # save courses in session
+        save_session_var('courses', courses)
+    else:
+        # get courses from session
+        courses = session.get('courses')
 
     # sort courses by alphabetical order of id
     courses = sorted(courses, key=lambda x: x['name'])
-
-    session['courses'] = courses
 
     return render_template('browse_courses_name.html', courses=courses)
 
 ### BROWSE BY CATEGORY ROUTE ###
 @app.route('/courses/browse/category')
 def browse_by_category():
-    # get all courses
-    courses = db.get_data('course')
+    # check if courses are in session
+    if not session.get('courses'):
+        # get all courses
+        courses = db.get_data('course')
 
-    # save ids
-    for course in courses:
-        course['id'] = course.key.id
+        # save ids
+        for course in courses:
+            course['id'] = course.key.id
+
+        # save courses in session
+        save_session_var('courses', courses)
+    else:
+        # get courses from session
+        courses = session.get('courses')
 
     # sort courses by category
     courses = sorted(courses, key=lambda x: x['category'])
-    # save courses by categories in session
 
     # get unique categories
     categories = set([course['category'] for course in courses])
@@ -396,13 +412,14 @@ def browse_by_category():
 ### COURSE DETAILS ROUTE ###
 @app.route('/courses/<id>')
 def course_details(id):
-    # get course
-    selected_course = db.get_data('course', id=int(id))
+    if not session.get('courses'):
+        courses = db.get_data('course')
+        save_session_var('courses', courses)
+    else:
+        courses = session.get('courses')
     
-    # # get courses by categories from session
-    # courses = session.get('courses')
-    
-    # selected_course = [course for course in courses if int(course['id']) == int(id)][0] if courses else None
+    # find the selected course
+    selected_course = [course for course in courses if int(course['id']) == int(id)][0]
 
     # get user role - default is 'guest' if not logged in
     user = session.get('user')
@@ -412,40 +429,45 @@ def course_details(id):
 
 @app.route('/instructor/<id>')
 def instructor_profile(id):
-    # get instructor data
-    instructor = db.get_data('user', id=int(id))
+    if not session.get('instructors'):
+        # get all instructors
+        instructors = db.get_instructors()
+        save_session_var('instructors', instructors)
+    else:
+        instructors = session.get('instructors')
+
+    instructor = [instructor for instructor in instructors if int(instructor['id']) == int(id)][0]
     
-    if instructor is not None:
-        # get instructor's country name
-        instructor['country'] = country_code_to_name(instructor['country'])
+    # get instructor's country name
+    instructor['country'] = country_code_to_name(instructor['country'])
 
-        # get courses by instructor
+    if not check_session_var('courses'):
         courses = db.get_data('course')
-        courses = [course for course in courses if course['instructor'] == instructor['name']]
+        save_session_var('courses', courses)
+    else:
+        courses = session.get('courses')
 
-        # save course ids in courses dict
-        for course in courses:
-            course['id'] = course.key.id
+    courses = [course for course in courses if course['instructor'] == instructor['name']]
 
-        # save courses in session
-        session['courses'] = courses
+    # get latest 5 courses
+    new_courses = sorted(courses, key=lambda x: x['created_at'], reverse=True)[:5]
 
-        # get latest 5 courses
-        new_courses = sorted(courses, key=lambda x: x['created_at'], reverse=True)[:5]
+    # get current user's role
+    user = session.get('user')
+    user_role = user.get('role') if user else 'guest'
 
-        # get current user's role
-        user = session.get('user')
-        user_role = user.get('role') if user else 'guest'
-
-        return render_template('instructor_profile.html', instructor=instructor, new_courses=new_courses, courses=courses, user_role=user_role)
-
-    return redirect('/') # redirect to home page if instructor does not exist
+    return render_template('instructor_profile.html', instructor=instructor, new_courses=new_courses, courses=courses, user_role=user_role)
 
 ## COURSE ORDER PLACEMENT ##
 @app.route('/courses/order/<course_id>', methods=['GET', 'POST'])
 def course_order_placement(course_id):
-    # get course
-    course = db.get_data('course', id=int(course_id))
+    if not session.get('courses'):
+        courses = db.get_data('course')
+        save_session_var('courses', courses)
+    else:
+        courses = session.get('courses')
+    
+    course = [course for course in courses if int(course['id']) == int(course_id)][0]
     
     return render_template('course_order_placement.html', course=course)
 
@@ -512,7 +534,7 @@ def add_course():
         # get the course id
         course = db.get_data(kind='course', course_name=name)
         course['id'] = course.key.id
-
+        
         # get session courses
         courses = session.get('courses')
 
@@ -521,6 +543,7 @@ def add_course():
         else:
             courses = [course]
 
+        # update session courses
         session['courses'] = courses
 
         # redirect to course details page
@@ -541,6 +564,11 @@ def save_session_var(var: str, value):
 
 def remove_session_var(var: str):
     session.pop(var, None)
+
+### helper functions ###
+def country_code_to_name(code):
+    country = [country['name'] for country in countries if country['code'] == code]
+    return country[0] if country else None
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True)
