@@ -58,45 +58,31 @@
 
       <div class="featured-content" id="course">
         <div class="featured-cards">
+          {% for course in featured_courses %}
           <div class="featured-card">
-            <img src="" alt="Course Image" />
+            <img id="course-image" class="course-image" src="{{course.image}}" alt="Course Image" />
             <div class="card-content">
-              <p class="card-title">Something course</p>
-              <h3>Deep Learning</h3>
-              <p>Something Course</p>
-              <p>Course description</p>
+              <p class="card-title">{{course.category}}</p>
+              <h3>{{course.name}}</h3>
+              <p>{{course.description[:20]}}... <strong>Read more</strong></p>
             </div>
           </div>
-          <div class="featured-card">
-            <img src="" alt="Course Image" />
-            <div class="card-content">
-              <p class="card-title">Something course</p>
-              <h3>Deep Learning</h3>
-              <p>Something Course</p>
-              <p>Course description</p>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
 
       <div class="featured-content" id="instructor" style="display: none">
         <div class="featured-cards">
+          {% for instructor in featured_instructors %}
           <div class="featured-card">
-            <img src="" alt="Instructor Image" />
+            <img id="profile-image" class="profile-image" src="{{instructor.image}}" alt="Instructor Image" />
             <div class="card-content">
-              <p class="card-title">Something instructor</p>
-              <h3>Instructor Something</h3>
-              <p>Instructor description</p>
+              <p class="card-title">{{instructor.school_name}}</p>
+              <h3>{{instructor.name}}</h3>
+              <p>{{instructor.job_title}}</p>
             </div>
           </div>
-          <div class="featured-card">
-            <img src="" alt="Instructor Image" />
-            <div class="card-content">
-              <p class="card-title">Something instructor</p>
-              <h3>Instructor Something</h3>
-              <p>Instructor description</p>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -106,23 +92,16 @@
       <h2>New Course</h2>
       <p>Explore our newest programs.</p>
       <div class="course-cards">
+        {% for course in new_courses %}
         <div class="course-card">
-          <img src="" alt="" />
+          <img id="course-image" class="course-image" src="{{course.image}}" alt="Course image" />
           <div class="card-info">
-            <p class="provider">Course Type</p>
-            <h3>Course name</h3>
-            <p>Something</p>
+            <p class="provider">{{course.category}}</p>
+            <h3>{{course.name}}</h3>
+            <p>{{course.description[:10]}}</p>
           </div>
         </div>
-
-        <div class="course-card">
-          <img src="" alt="" />
-          <div class="card-info">
-            <p class="provider">Course Type</p>
-            <h3>Course name</h3>
-            <p>Something</p>
-          </div>
-        </div>
+        {% endfor %}
       </div>
 
       <button class="view-all">View all</button>
@@ -133,23 +112,16 @@
       <h2>New Instructor</h2>
       <p>Explore our newest Instructor.</p>
       <div class="course-cards">
+        {% for instructor in new_instructors %}
         <div class="course-card">
-          <img src="" alt="" />
+          <img id="profile-image" class="profile-image" src="{{instructor.image}}" alt="Instructor image" />
           <div class="card-info">
-            <p class="provider">Course Type</p>
-            <h3>Course name</h3>
-            <p>Something</p>
+            <p class="provider">{{instructor.school_name}}</p>
+            <h3>{{instructor.name}}</h3>
+            <p>{{instructor.job_title}}</p>
           </div>
         </div>
-
-        <div class="course-card">
-          <img src="" alt="" />
-          <div class="card-info">
-            <p class="provider">Course Type</p>
-            <h3>Course name</h3>
-            <p>Something</p>
-          </div>
-        </div>
+        {% endfor %}
       </div>
 
       <button class="view-all">View all</button>
