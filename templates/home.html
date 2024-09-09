@@ -15,33 +15,7 @@
   <body>
     <div id="body-container">
       <iframe src="/header" id="iframe-header"></iframe>
-      <!-- <div>
-          <img src="/static/img/banner.png" id="banner" />
-          <div id="image-container">
-            <h1>Your App Name</h1>
-            <h4>Your Slogan here here <br>  your slogan your slogan here</h2>
-          </div>
-        </div> -->
     </div>
-
-    <!-- MAIN CONTENT AREA -->
-    <!-- New instructors -->
-    <!--<div id="main-content-area">
-     
-      <h2>All Instructors</h2>
-        <div id="instructor-container">
-          {% for instructor in instructors %}
-            <a href="/instructor/{{instructor.id}}">
-              <img id="profile-image" class="profile-image" src="{{instructor.image}}" alt="instructor profile picture">
-            </a>
-            <a href="/instructor/{{instructor.id}}">
-              {{instructor.name}}
-            </a>
-            <br>
-          {% endfor %}
-        </div>
-
-     </div>-->
 
     <div class="featured-container">
       <h2>Get started with Our Featured Course</h2>
@@ -60,7 +34,7 @@
         <div class="featured-cards">
           {% for course in featured_courses %}
           <div class="featured-card">
-            <img id="course-image" class="course-image" src="{{course.image}}" alt="Course Image" />
+            <img id="card-image" class="card-image" src="{{course.image}}" alt="Course Image" />
             <div class="card-content">
               <p class="card-title">{{course.category}}</p>
               <h3>{{course.name}}</h3>
@@ -75,7 +49,7 @@
         <div class="featured-cards">
           {% for instructor in featured_instructors %}
           <div class="featured-card">
-            <img id="profile-image" class="profile-image" src="{{instructor.image}}" alt="Instructor Image" />
+            <img id="card-image" class="card-image" src="{{instructor.image}}" alt="Instructor Image" />
             <div class="card-content">
               <p class="card-title">{{instructor.school_name}}</p>
               <h3>{{instructor.name}}</h3>
@@ -94,7 +68,7 @@
       <div class="course-cards">
         {% for course in new_courses %}
         <div class="course-card">
-          <img id="course-image" class="course-image" src="{{course.image}}" alt="Course image" />
+          <img id="card-image" class="card-image" src="{{course.image}}" alt="Course image" />
           <div class="card-info">
             <p class="provider">{{course.category}}</p>
             <h3>{{course.name}}</h3>
@@ -114,7 +88,7 @@
       <div class="course-cards">
         {% for instructor in new_instructors %}
         <div class="course-card">
-          <img id="profile-image" class="profile-image" src="{{instructor.image}}" alt="Instructor image" />
+          <img id="card-image" class="card-image" src="{{instructor.image}}" alt="Instructor image" />
           <div class="card-info">
             <p class="provider">{{instructor.school_name}}</p>
             <h3>{{instructor.name}}</h3>
