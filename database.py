@@ -135,3 +135,13 @@ class Database():
         query.add_filter('role', '=', 'instructor')
         results = list(query.fetch())
         return results
+    
+    def get_orders(self, user_id) -> list:
+        """
+        Retrieves all orders from the database for the specified user.
+        @returns: a list of orders.
+        """
+        query = self.client.query(kind='order')
+        query.add_filter('user_id', '=', user_id)
+        results = list(query.fetch())
+        return results
