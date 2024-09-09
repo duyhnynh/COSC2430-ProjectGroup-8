@@ -33,8 +33,9 @@ vn_tz = pytz.timezone('Asia/Ho_Chi_Minh')
 @app.route('/')
 def root():
     """
-    Renders the home page.
-    @returns: renders 'home.html'.
+    Retrieves all courses and instructors from the database, and saves their IDs. 
+    It then selects the latest 5 courses and instructors as well as featured courses and instructors (by random) and saves them in session variables.
+    @returns: the rendered 'home.html' template with the new and featured courses and instructors.
     """
     if not check_session_var('courses') or not check_session_var('instructors'):
         # get all courses and instructors
@@ -84,15 +85,27 @@ def root():
 ### PRIVACY ROUTE ###
 @app.route('/privacy')
 def privacy():
+    """
+    Renders the privacy.html template.
+    @returns: privacy.html template.
+    """
     return render_template('privacy.html')
 
 ### HEADER AND FOOTER ROUTES ###
 @app.route('/header')
 def header():
+    """
+    Renders the header.html.
+    @returns: header.html.
+    """
     return render_template('header.html')
 
 @app.route('/footer')
 def footer():
+    """
+    Renders the footer.html.
+    @returns: footer.html.
+    """
     return render_template('footer.html')
 
 ### LOGIN ROUTE ###
@@ -143,8 +156,9 @@ def login():
 
         # store user data in session
         if user_data:
-            session['user'] = user_data
-            session['user']['id'] = user_data.key.id # save id
+            # save user id
+            user_data['id'] = user_data.key.id
+            save_session_var('user', user_data)
         
         # redirect to account page
         return redirect('/account')
