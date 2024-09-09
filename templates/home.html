@@ -34,10 +34,15 @@
         <div class="featured-cards">
           {% for course in featured_courses %}
           <div class="featured-card">
-            <img id="card-image" class="card-image" src="{{course.image}}" alt="Course Image" />
+            <!-- add link to image -->
+            <a href="/courses/{{course.id}}">
+              <img id="card-image" class="card-image" src="{{course.image}}" alt="Course Image" />
+            </a>
             <div class="card-content">
               <p class="card-title">{{course.category}}</p>
-              <h3>{{course.name}}</h3>
+              <a href="/courses/{{course.id}}">
+                <h3>{{course.name}}</h3>
+              </a>
               <p>{{course.description[:20]}}... <strong>Read more</strong></p>
             </div>
           </div>
@@ -49,10 +54,14 @@
         <div class="featured-cards">
           {% for instructor in featured_instructors %}
           <div class="featured-card">
-            <img id="card-image" class="card-image" src="{{instructor.image}}" alt="Instructor Image" />
+            <a href="/instructor/{{instructor.id}}">
+              <img id="card-image" class="card-image" src="{{instructor.image}}" alt="Instructor Image" />
+            </a>
             <div class="card-content">
               <p class="card-title">{{instructor.school_name}}</p>
-              <h3>{{instructor.name}}</h3>
+              <a href="/instructor/{{instructor.id}}">
+                <h3>{{instructor.name}}</h3>
+              </a>
               <p>{{instructor.job_title}}</p>
             </div>
           </div>
@@ -68,10 +77,14 @@
       <div class="course-cards">
         {% for course in new_courses %}
         <div class="course-card">
-          <img id="card-image" class="card-image" src="{{course.image}}" alt="Course image" />
+          <a href="/courses/{{course.id}}">
+            <img id="card-image" class="card-image" src="{{course.image}}" alt="Course Image" />
+          </a>
           <div class="card-info">
             <p class="provider">{{course.category}}</p>
-            <h3>{{course.name}}</h3>
+            <a href="/courses/{{course.id}}">
+              <h3>{{course.name}}</h3>
+            </a>
             <p>{{course.description[:10]}}</p>
           </div>
         </div>
@@ -88,10 +101,14 @@
       <div class="course-cards">
         {% for instructor in new_instructors %}
         <div class="course-card">
-          <img id="card-image" class="card-image" src="{{instructor.image}}" alt="Instructor image" />
+          <a href="/instructor/{{instructor.id}}">
+            <img id="card-image" class="card-image" src="{{instructor.image}}" alt="Instructor image" />
+          </a>
           <div class="card-info">
             <p class="provider">{{instructor.school_name}}</p>
-            <h3>{{instructor.name}}</h3>
+            <a href="/instructor/{{instructor.id}}">
+              <h3>{{instructor.name}}</h3>
+            </a>
             <p>{{instructor.job_title}}</p>
           </div>
         </div>
