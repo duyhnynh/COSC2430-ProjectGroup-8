@@ -6,15 +6,34 @@
     <link rel="stylesheet" href="/static/general.css" />
     <link rel="stylesheet" href="/static/styles/account.css" />
     <title>My Account</title>
+    <style>
+      /* Inline styles for centering the account page */
+      {% if user %}
+      #account-page {
+        top: 65px;
+        margin: 0 150px 0px 0;
+      }
+      {% else %}
+      #account-page {
+        margin: 0 150px 100px 0;
+      }
+      {% endif %}
+    </style>
   </head>
   <body>
     <iframe src="/header" id="iframe-header"></iframe>
+    <div></div>
     <div id="main-container">
       <div id="image-container">
         <img src="/static/img/AccountBackground.png" />
         <div id="text-overlay">
+          {% if user %}
+          <h1>Welcome Back</h1>
+          <p>{{user.name}}</p>
+          {% else %}
           <h1>Join and learn with us</h1>
           <p>Log in to get started!</p>
+          {% endif %}
         </div>
       </div>
 
