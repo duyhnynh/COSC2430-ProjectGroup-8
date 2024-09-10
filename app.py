@@ -90,6 +90,14 @@ def privacy():
     @returns: privacy.html template.
     """
     return render_template('privacy.html')
+### ABOUT ROUTE ###
+@app.route('/about')
+def about():
+    """
+    Renders the about.html template.
+    @returns: about.html template.
+    """
+    return render_template('about.html')
 
 ### TERMS ROUTE ###
 @app.route('/terms')
