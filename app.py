@@ -91,6 +91,15 @@ def privacy():
     """
     return render_template('privacy.html')
 
+### TERMS ROUTE ###
+@app.route('/terms')
+def terms():
+    """
+    Renders the terms.html template.
+    @returns: terms.html template.
+    """
+    return render_template('terms.html')
+
 ### HEADER AND FOOTER ROUTES ###
 @app.route('/header')
 def header():

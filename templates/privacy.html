@@ -2,55 +2,74 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/static/styles/general.css" />
-    <link rel="stylesheet" href="/static/styles/header.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/styles/home.css" />
+    <link rel="stylesheet" href="/static/styles/header.css" />
     <link rel="stylesheet" href="/static/styles/footer.css" />
+    <link rel="stylesheet" href="/static/general.css" />
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            color: #333;
-            background-color: #f4f6f8;
-            padding-top: 60px; /* Space between header and content */
-        }
-
-        h1 {
-            font-size: 2.3rem;
-            font-weight: bold;
-            color: #2d2d2d;
-            text-align: left;
-            margin-bottom: 30px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #ddd;
-        }
-
-        h2 {
-            font-size: 1.6rem;
-            color: #444;
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 1rem;
-            margin-bottom: 20px;
-            line-height: 1.7;
-            color: #555;
+            font-family: 'Montserrat', sans-serif;
+            padding-top: 60px;
+            background-color: #f9f9f9;
         }
 
         .container {
             background-color: #ffffff;
-            padding: 60px 80px;
+            padding: 40px;
             border-radius: 8px;
             box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 20px; /* Reduced margin-top to adjust the spacing */
+            margin-top: 20px;
             max-width: 900px;
             margin-left: auto;
             margin-right: auto;
-            margin-bottom: 60px; /* Space before footer */
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 40px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .key-info {
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: #f1f1f1;
+            margin-bottom: 30px;
+        }
+
+        .key-info ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .key-info ul li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            text-decoration: none;
         }
     </style>
     <title>Privacy Policy</title>
@@ -58,52 +77,44 @@
 
 <body>
     <div id="body-container">
-        <!-- Load the header from an external file to keep it consistent -->
         <iframe src="/header" id="iframe-header"></iframe>
     </div>
 
     <div class="container">
         <h1>Privacy Policy</h1>
-        <p>Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your
-            information when you use our online learning platform.</p>
+        <p>Effective: August 28, 2024.</p>
 
-        <h2>Information We Collect</h2>
-        <p>We collect information from you when you register on our site, enroll in a course, or interact with our
-            platform. This information includes your name, email address, phone number, and payment details.</p>
+        <div class="key-info">
+            <h2>Key Information</h2>
+            <ul>
+                <li><strong>Your Company</strong> is the data controller of the personal data we collect about you.</li>
+                <li>We collect personal data such as name, email address, account details, and identity verification data.</li>
+                <li>We use your personal data to provide and improve services, ensure security, and for research purposes.</li>
+                <li>You have several rights related to your data, which you can exercise as outlined in the “Your Rights” section.</li>
+            </ul>
+        </div>
 
-        <h2>How We Use Your Information</h2>
-        <p>We use your information to provide and improve our services, process transactions, send notifications, and
-            personalize your experience on our platform.</p>
+        <h2>What Personal Data We Collect</h2>
+        <p>We collect the following personal data when you use our platform: name, email address, payment details, and any information you provide during account registration or course enrollment.</p>
 
-        <h2>Sharing Your Information</h2>
-        <p>We do not sell or rent your personal information to third parties. We may share your information with trusted
-            partners who assist us in operating our website, conducting our business, or providing services to you, as
-            long as those parties agree to keep your information confidential.</p>
+        <h2>How We Use Personal Data</h2>
+        <p>We use your personal data to manage your account, process transactions, and personalize your learning experience. Additionally, we may share your information with trusted partners who help us provide our services, under strict confidentiality agreements.</p>
 
         <h2>Your Rights</h2>
-        <p>You have the right to access, correct, or delete your personal information at any time. You can also opt-out
-            of receiving promotional communications from us.</p>
-
-        <h2>Data Security</h2>
-        <p>We implement a variety of security measures to maintain the safety of your personal information when you
-            enter, submit, or access your personal information.</p>
+        <p>You have the right to access, correct, or delete your personal data at any time. You can also object to data processing in certain circumstances. For more details, refer to the “Your Rights” section on our Contact page.</p>
 
         <h2>Cookies</h2>
-        <p>We use cookies to enhance your experience on our website. Cookies are small files that a site or its service
-            provider transfers to your computer's hard drive through your web browser (if you allow) that enables the
-            site's systems to recognize your browser and capture and remember certain information.</p>
+        <p>We use cookies to improve your experience on our website. These small files help us understand how users interact with the site and personalize your experience. You can control cookie settings in your browser.</p>
 
         <h2>Changes to This Privacy Policy</h2>
-        <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated
-            revision date.</p>
+        <p>We may update this policy from time to time. Any changes will be posted on this page with the updated date at the top.</p>
 
-        <h2>Contact Us</h2>
-        <p>If you have any questions about this Privacy Policy, please contact us using the information provided on our
-            Contact Us page.</p>
+        <p>If you have any questions, feel free to contact us through our Contact page.</p>
     </div>
 
-    <!-- Load the footer from an external file to keep it consistent -->
-    <iframe src="/footer" id="iframe-footer"></iframe>
+    <div id="footer-container">
+        <iframe src="/footer" id="iframe-footer"></iframe>
+    </div>
 
     <script src="/static/general.js"></script>
 </body>
