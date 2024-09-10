@@ -11,7 +11,7 @@ body {
     max-width: 900px;
     margin: 0 auto; /* Center the table */
     padding: 20px;
-    background-color: white;
+    background-color: #edf1d6;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
@@ -20,12 +20,13 @@ body {
 h1 {
     text-align: center;
     font-family: "Montserrat", sans-serif;
-    font-size: 36px;
+    font-size: 3rem;
     font-weight: 700;
-    color: #5336ca;
-    margin-bottom: 20px;
+    color: #609966;
+    margin-bottom: 30px;
     text-transform: uppercase;
     letter-spacing: 2px;
+    font-weight: bold;
 }
 
 /* Adjust the subheading */
@@ -72,16 +73,16 @@ h1 + p {
   
   /* Even Row Background and Hover Effect */
   .price-table tr:nth-child(even) {
-      background-color: #f9f9f9;
+      background-color: rgb(227, 236, 181);
   }
   
   .price-table tr:hover {
-      background-color: #eeeeee;
+      background-color: #c7cf96;
   }
   
   /* Icons for Check and Cross */
   .price-table .fa-check {
-      color: #5336ca;
+      color: #9dc08b;
   }
   
   .price-table .fa-times {
@@ -100,7 +101,7 @@ h1 + p {
   
   /* Head Row Styling */
   .price-table tr.price-table-head {
-      background-color: #5336ca;
+      background-color: #609966;
       color: #FFFFFF;
       font-size: 18px;
       font-weight: 600;
@@ -110,7 +111,7 @@ h1 + p {
   
   /* Price Column */
   .price-table td.price {
-      color: #f43f54;
+      color: #a2702e;
       padding: 16px 24px;
       font-size: 24px;
       font-weight: 700;
@@ -119,7 +120,7 @@ h1 + p {
   
   /* Button Styling */
   .price-table td.price a {
-      background-color: #5336ca;
+      background-color: #609966;
       color: #FFFFFF;
       padding: 12px 32px;
       margin-top: 16px;
@@ -139,8 +140,8 @@ h1 + p {
   /* Popular Tag Styling */
   .price-table td.price-table-popular {
       font-family: "Montserrat", sans-serif;
-      border-top: 3px solid #5336ca;
-      color: #5336ca;
+      border-top: 3px solid #609966;
+      color: #609966;
       text-transform: uppercase;
       font-size: 14px;
       padding: 12px 48px;
@@ -149,6 +150,6 @@ h1 + p {
   
   /* Blank Cells */
   .price-table .price-blank {
-      background-color: #fafafa;
+      background-color: #9dc08b;
       border: 0 none;
   }
