@@ -101,12 +101,35 @@ def terms():
     return render_template('terms.html')
 
 ### CONTACT ROUTE ###
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
     """
     Renders the contact.html template.
     @returns: contact.html template.
     """
+    if request.method == 'POST':
+        purpose = request.form.get('purpose')
+        name = request.form.get('name')
+        email = request.form.get('email')
+        phone = request.form.get('phone')
+        message = request.form.get('message')
+
+        # save to database
+        data = {
+            'purpose': purpose,
+            'name': name,
+            'email': email,
+            'phone': phone,
+            'message': message,
+            'created_at': datetime.now(vn_tz).strftime('%Y-%m-%d %H:%M:%S')
+        }
+
+        try:
+            db.insert_data(kind='contact', data=data)
+            flash('Message sent successfully. We will get back to you soon.')
+        except Exception as e:
+            flash('An error occurred. Please try again later.')
+
     return render_template('contact.html')
 
 ### HEADER AND FOOTER ROUTES ###
