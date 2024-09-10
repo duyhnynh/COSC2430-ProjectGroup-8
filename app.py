@@ -108,6 +108,24 @@ def terms():
     """
     return render_template('terms.html')
 
+### FAQs ROUTE ###
+@app.route('/faqs')
+def faqs():
+    """
+    Renders the faqs.html template.
+    @returns: faqs.html template.
+    """
+    return render_template('faqs.html')
+
+### PRICING ROUTE ###
+@app.route('/pricing')
+def pricing():
+    """
+    Renders the pricing.html template.
+    @returns: pricing.html template.
+    """
+    return render_template('pricing.html')
+
 ### CONTACT ROUTE ###
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
