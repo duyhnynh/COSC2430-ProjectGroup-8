@@ -113,7 +113,7 @@
     <!-- Main Contact Form -->
     <div class="contact-container">
         <h1>Contact Us</h1>
-        <form action="/contact_submit" method="POST">
+        <form action="/contact" method="POST">
             <div class="form-group">
                 <label for="purpose">Contact Purpose</label>
                 <select class="form-control" id="purpose" name="purpose" required>
@@ -157,6 +157,12 @@
             </div>
         </form>
     </div>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <p class="flashed-msg">{{messages[0]}}</p>
+        {% endif %}
+    {% endwith %}
 
     <!-- Footer -->
     <iframe src="/footer" id="iframe-footer"></iframe>
