@@ -24,3 +24,5 @@ __pycache__/
 .history/
 
 service-account-key.json
+
+flask_session/

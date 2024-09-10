@@ -3,10 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
     <link rel="stylesheet" href="/static/general.css" />
     <link rel="stylesheet" href="/static/styles/account.css" />
     <title>My Account</title>
@@ -14,85 +10,82 @@
   <body>
     <iframe src="/header" id="iframe-header"></iframe>
     <div id="main-container">
-      <div id="left-container">
-        <div id="image-container">
-          <img src="/static/img/AccountBackground.png" />
-          <div id="text-overlay">
-            <h1>Join and learn with us</h1>
-            <p>Log in to get started!</p>
-          </div>
+      <div id="image-container">
+        <img src="/static/img/AccountBackground.png" />
+        <div id="text-overlay">
+          <h1>Join and learn with us</h1>
+          <p>Log in to get started!</p>
         </div>
       </div>
-      <div id="right-container">
-        <div id="account-page">
-          {% if user %}
-          <!-- account info -->
-          <h1>Account Information</h1>
-          <p>Full name: {{user.name}}</p>
-          <p>Address: {{user.address}}</p>
-          <p>Email: {{user.email}}</p>
-          <p>Phone: {{user.phone}}</p>
-          <img
-            id="profile-image"
-            class="profile-image"
-            src="{{user.image}}"
-            alt="profile picture"
-          />
 
-          {% if user.role == 'learner' %}
-          <h1>Course orders</h1>
-          {% for order in orders %}
-          <h3>{{order.course_name}}</h3>
-          <p><strong>Date ordered:</strong> {{order.created_at}}</p>
-          <p><strong>Access duration:</strong> {{order.access_duration}}</p>
-          <p><strong>Certification:</strong> {{order.certification}}</p>
-          {% endfor %} {% endif %}
+      <div id="account-page">
+        {% if user %}
+        <!-- account info -->
+        <h1>Account Information</h1>
+        <p>Full name: {{user.name}}</p>
+        <p>Address: {{user.address}}</p>
+        <p>Email: {{user.email}}</p>
+        <p>Phone: {{user.phone}}</p>
+        <img
+          id="profile-image"
+          class="profile-image"
+          src="{{user.image}}"
+          alt="profile picture"
+        />
 
-          <a href="/logout">Log out</a>
-          {% else %}
-          <!-- login box -->
-          <h1>Login</h1>
-          <form action="/login" method="POST">
-            <div>
-              <label for="username">Email or Phone:</label>
-              <input
-                type="text"
-                class="username-input"
-                id="username"
-                name="username"
-                required
-              />
-            </div>
-            <div>
-              <label for="password">Password:</label>
-              <input
-                type="password"
-                class="password-input"
-                id="password"
-                name="password"
-                required
-              />
-            </div>
-            <button type="submit">Login</button>
-          </form>
-          <div id="button-container">
-            <!-- forgot password link -->
-            <a href="/forgot-password">Forgot Password?</a>
-            <a href="/register">Register</a>
+        {% if user.role == 'learner' %}
+        <h1>Course orders</h1>
+        {% for order in orders %}
+        <h3>{{order.course_name}}</h3>
+        <p><strong>Date ordered:</strong> {{order.created_at}}</p>
+        <p><strong>Access duration:</strong> {{order.access_duration}}</p>
+        <p><strong>Certification:</strong> {{order.certification}}</p>
+        {% endfor %} {% endif %}
+
+        <a href="/logout">Log out</a>
+        {% else %}
+        <!-- login box -->
+        <h1>Login</h1>
+        <form action="/login" method="POST">
+          <div>
+            <label for="username">Email or Phone:</label>
+            <input
+              type="text"
+              class="username-input"
+              id="username"
+              name="username"
+              required
+            />
           </div>
-          <div id="">
-            <p class="disclaimer">
-              By logging in, you agree to our<br />
-              <a href="/terms">Terms of service</a> and
-              <a href="/privacy">Privacy Policy</a>.
-            </p>
+          <div>
+            <label for="password">Password:</label>
+            <input
+              type="password"
+              class="password-input"
+              id="password"
+              name="password"
+              required
+            />
           </div>
-
-          <!-- get flashed mesage -->
-          {% with messages = get_flashed_messages() %} {% if messages %}
-          <p class="flashed-msg">{{ messages[-1]}}</p>
-          {% endif %} {% endwith %} {% endif %}
+          <button type="submit">Login</button>
+        </form>
+        <div id="button-container">
+          <!-- forgot password link -->
+          <a href="/forgot-password">Forgot Password?</a>
+          <a href="/register">Register</a>
         </div>
+        <div id="disclaimer-text">
+          <p>
+            By logging in, you agree to our<br />
+            <a href="/terms">Terms of service</a> and
+            <a href="/privacy">Privacy Policy</a>.
+          </p>
+        </div>
+
+        <!-- get flashed mesage -->
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <p class="flashed-msg">{{ messages[-1]}}</p>
+        {% endif %} {% endwith %} {% endif %}
       </div>
     </div>
 
