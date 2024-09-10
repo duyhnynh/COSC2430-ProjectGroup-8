@@ -26,3 +26,5 @@ __pycache__/
 service-account-key.json
 
 flask_session/
+
+.DS_Store
