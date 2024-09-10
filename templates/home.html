@@ -36,7 +36,12 @@
           <div class="featured-card">
             <!-- add link to image -->
             <a href="/courses/{{course.id}}">
-              <img id="card-image" class="card-image" src="{{course.image}}" alt="Course Image" />
+              <img
+                id="card-image"
+                class="card-image"
+                src="{{course.image}}"
+                alt="Course Image"
+              />
             </a>
             <div class="card-content">
               <p class="card-title">{{course.category}}</p>
@@ -55,7 +60,12 @@
           {% for instructor in featured_instructors %}
           <div class="featured-card">
             <a href="/instructor/{{instructor.id}}">
-              <img id="card-image" class="card-image" src="{{instructor.image}}" alt="Instructor Image" />
+              <img
+                id="card-image"
+                class="card-image"
+                src="{{instructor.image}}"
+                alt="Instructor Image"
+              />
             </a>
             <div class="card-content">
               <p class="card-title">{{instructor.school_name}}</p>
@@ -78,7 +88,12 @@
         {% for course in new_courses %}
         <div class="course-card">
           <a href="/courses/{{course.id}}">
-            <img id="card-image" class="card-image" src="{{course.image}}" alt="Course Image" />
+            <img
+              id="card-image"
+              class="card-image"
+              src="{{course.image}}"
+              alt="Course Image"
+            />
           </a>
           <div class="card-info">
             <p class="provider">{{course.category}}</p>
@@ -102,7 +117,12 @@
         {% for instructor in new_instructors %}
         <div class="course-card">
           <a href="/instructor/{{instructor.id}}">
-            <img id="card-image" class="card-image" src="{{instructor.image}}" alt="Instructor image" />
+            <img
+              id="card-image"
+              class="card-image"
+              src="{{instructor.image}}"
+              alt="Instructor image"
+            />
           </a>
           <div class="card-info">
             <p class="provider">{{instructor.school_name}}</p>

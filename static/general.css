@@ -3,10 +3,24 @@
 }
 body {
   padding-top: 60px;
+  font-family: sans-serif;
+}
+#iframe-header {
+  top: 0px;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  position: fixed;
+  z-index: 100;
+  border: none;
+}
+
+#iframe-footer {
+  border: none;
+  width: 100%;
 }
 
 #register-form,
-#account-page,
 #forgot-password,
 #reset-link,
 #course-detail {
@@ -67,4 +81,4 @@ body {
   height: 50px;
   width: 50px;
   border-radius: 50%;
-} 
+}
