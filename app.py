@@ -100,6 +100,15 @@ def terms():
     """
     return render_template('terms.html')
 
+### CONTACT ROUTE ###
+@app.route('/contact')
+def contact():
+    """
+    Renders the contact.html template.
+    @returns: contact.html template.
+    """
+    return render_template('contact.html')
+
 ### HEADER AND FOOTER ROUTES ###
 @app.route('/header')
 def header():

@@ -4,83 +4,114 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../styles/general.css" />
-    <link rel="stylesheet" href="../styles/header.css" />
-    <link rel="stylesheet" href="../styles/home.css" />
-    <link rel="stylesheet" href="../styles/contact.css" /> <!-- New CSS file for contact page -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/styles/home.css" />
+    <link rel="stylesheet" href="/static/styles/header.css" />
+    <link rel="stylesheet" href="/static/styles/footer.css" />
+    <link rel="stylesheet" href="/static/general.css" />
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            color: #333;
-            background-color: #f9f9f9;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f0f4f8;
             padding-top: 60px;
-            /* Space between header and content */
         }
 
         h1 {
             font-size: 2.5rem;
-            font-weight: bold;
-            color: #2d2d2d;
+            font-weight: 700;
+            color: #333;
             text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #ddd;
+            margin-bottom: 40px;
         }
 
-        .container {
-            background-color: #ffffff;
-            padding: 40px 60px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        .contact-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 40px;
             max-width: 800px;
             margin: 0 auto;
             margin-bottom: 60px;
-            /* Space before footer */
         }
 
         .form-group label {
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            display: block;
+            font-weight: 700;
             color: #555;
-        }
-
-        /* Adjust dropdown for full text visibility */
-        select.form-control {
-            font-size: 1rem;
-            padding: 8px;
-            overflow: hidden;
         }
 
         .form-control {
             font-size: 1rem;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+
+        .form-group select {
+            width: 100%;
+            font-size: 1rem;
+            padding: 12px;
+            box-sizing: border-box;
+            appearance: none; /* Ensure that the browser's default dropdown styling is overridden */
+            -moz-appearance: none; /* For Firefox */
+            -webkit-appearance: none; /* For Chrome, Safari, Opera */
+        }
+
+        .form-group select option {
             padding: 10px;
-            margin-bottom: 20px;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
 
         .btn-primary {
             background-color: #007bff;
-            border-color: #007bff;
-            font-size: 1rem;
-            padding: 10px 20px;
+            font-size: 1.2rem;
+            padding: 12px 20px;
+            border-radius: 50px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
         }
 
         .btn-secondary {
-            font-size: 1rem;
-            padding: 10px 20px;
+            font-size: 1.2rem;
+            padding: 12px 20px;
+            border-radius: 50px;
         }
+
+        .form-footer {
+            text-align: center;
+        }
+
+        /* To handle text overflow inside the select */
+        select.form-control option {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        /* Additional styles to fix potential rendering issues */
+        .form-group select {
+            height: auto; /* Adjust height to fit text */
+            line-height: 1.5; /* Line height to ensure full text visibility */
+        }
+
     </style>
     <title>Contact Us</title>
 </head>
 
 <body>
+    <!-- Header -->
     <div id="body-container">
-        <iframe src="header.html" id="iframe-header"></iframe>
+        <iframe src="/header" id="iframe-header"></iframe>
     </div>
 
-    <div class="container mt-5">
+    <!-- Main Contact Form -->
+    <div class="contact-container">
         <h1>Contact Us</h1>
         <form action="/contact_submit" method="POST">
             <div class="form-group">
@@ -94,17 +125,17 @@
 
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" minlength="3" required>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" minlength="3" required>
             </div>
 
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
             </div>
 
             <div class="form-group">
                 <label for="phone">Phone</label>
-                <input type="tel" class="form-control" id="phone" name="phone" minlength="9" maxlength="11">
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" minlength="9" maxlength="11">
             </div>
 
             <div class="form-group">
@@ -117,19 +148,19 @@
 
             <div class="form-group">
                 <label for="message">Message</label>
-                <textarea class="form-control" id="message" name="message" rows="5" minlength="50" maxlength="500"
-                    required></textarea>
+                <textarea class="form-control" id="message" name="message" placeholder="Type your message" rows="5" minlength="50" maxlength="500" required></textarea>
             </div>
 
-            <div class="form-group">
+            <div class="form-footer">
                 <button type="reset" class="btn btn-secondary">Clear</button>
                 <button type="submit" class="btn btn-primary">Send</button>
             </div>
         </form>
     </div>
 
-    <iframe src="footer.html" id="iframe-footer"></iframe>
-    <script src="../general.js"></script>
+    <!-- Footer -->
+    <iframe src="/footer" id="iframe-footer"></iframe>
+    <script src="/static/general.js"></script>
 </body>
 
 </html>
