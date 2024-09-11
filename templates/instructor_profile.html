@@ -7,107 +7,85 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/styles/home.css" />
-    <link rel="stylesheet" href="/static/styles/header.css"/>
-    <link rel="stylesheet" href="/static/general.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles/instructor_profile.css" />
+    <link rel="stylesheet" href="/static/general.css" />
     <title>Instructor - {{instructor.name}}</title>
   </head>
   <body>
-    <div id="body-container">
-      <iframe src="/header" id="iframe-header"></iframe>
-    </div>
+    <iframe src="/header" id="iframe-header"></iframe>
 
-    <!-- HEADER -->
-    <header class="header" id="header">
-      <img id="header-image" class="header-image" src="{{instructor.image}}" alt="instructor profile picture">
-      <nav id="nav-bar">
-        <a href="/" target="_parent">Home</a>
-        <a href="" target="_parent">About Us</a>
-        <a href="" target="_parent">Pricing</a>
-        <a href="/account" target="_parent">My Account</a>
-        <div class="dropdown">
-          <button class="dropdown-button">Browse</button>
-          <div class="dropdown-content">
-            <a href="/courses/browse/name">Browse By Name</a>
-            <a href="/courses/browse/category">Browse By Category</a>
-          </div>
-        </div>
-        <a href="" target="_parent">FAQs</a>
-        <a href="" target="_parent">Contact</a>
-      </nav>
-    </header>
-    <nav id="mobile-vertical-navbar">
-      <img
-        src="/static/pictures/vertical_menu_button.png"
-        id="vertical-menu-button"
-        onclick="showVerticalNavbar()"
-      />
-      <div id="hidden-vertical-navbar" style="display: none">
-        <a href="/" target="_parent">Home</a>
-        <a href="" target="_parent">About Us</a>
-        <a href="" target="_parent">Pricing</a>
-        <a href="/account" target="_parent">My Account</a>
-        <a href="" target="_parent">Browse</a>
-        <a href="" target="_parent">FAQs</a>
-        <a href="" target="_parent">Contact</a>
-      </div>
-    </nav>
-    
     <!-- MAIN SECTION -->
     <main>
-        <h1>{{instructor.name}}</h1>
-        <!-- image -->
-        <img id="card-image" class="card-image" src="{{instructor.image}}" alt="instructor profile picture">
+      <h1>{{instructor.name}}</h1>
+      <!-- image -->
+      <img
+        id="card-image"
+        class="card-image"
+        src="{{instructor.image}}"
+        alt="instructor profile picture"
+      />
 
-        <!-- about -->
-        <div id="instructor-about">
-            <h2>About</h2>
-            <p><strong>Email:  </strong> {{instructor.email}}</p>
-            <p><strong>Phone:  </strong> {{instructor.phone}}</p>
-            <p><strong>Address:</strong> {{instructor.address}}</p>
-            <p><strong>Zipcode:</strong> {{instructor.zipcode}}</p>
-            <p><strong>City:   </strong> {{instructor.city}}</p>
-            <p><strong>Country:</strong> {{instructor.country}}</p>
-        </div>
-        
-        <!-- add course button - only visible to instructors -->
-        {% if user_role == 'instructor' or user_role == 'admin' %}
-        <a href="/courses/add">
-          <button type="button">Add Course</button>
+      <!-- about -->
+      <div id="instructor-about">
+        <h2>About</h2>
+        <p><strong>Email: </strong> {{instructor.email}}</p>
+        <p><strong>Phone: </strong> {{instructor.phone}}</p>
+        <p><strong>Address:</strong> {{instructor.address}}</p>
+        <p><strong>Zipcode:</strong> {{instructor.zipcode}}</p>
+        <p><strong>City: </strong> {{instructor.city}}</p>
+        <p><strong>Country:</strong> {{instructor.country}}</p>
+      </div>
+
+      <!-- add course button - only visible to instructors -->
+      {% if user_role == 'instructor' or user_role == 'admin' %}
+      <a href="/courses/add">
+        <button type="button">Add Course</button>
+      </a>
+      {% endif %}
+
+      <!-- new courses -->
+      <h2>New Courses</h2>
+      {% for new_course in new_courses %}
+      <div class="course-container">
+        <a href="/courses/{{new_course.id}}">
+          <img
+            id="course-image"
+            class="course-image"
+            src="{{new_course.image}}"
+            alt="course image"
+          />
         </a>
-        {% endif %}
+        <a href="/courses/{{new_course.id}}">
+          <h4>{{new_course.name}}</h4>
+        </a>
+        <p>Price: ${{new_course.price}}</p>
+      </div>
+      {% endfor %}
 
-        <!-- new courses -->
-        <h2>New Courses</h2>
-        {% for new_course in new_courses %}
-            <div class="course-container">
-                <a href="/courses/{{new_course.id}}">
-                    <img id="course-image" class="course-image" src="{{new_course.image}}" alt="course image">
-                </a>
-                <a href="/courses/{{new_course.id}}">
-                    <h4>{{new_course.name}}</h4>
-                </a>
-                <p>Price: ${{new_course.price}}</p>
-            </div>
+      <!-- all courses -->
+      <h2>All Courses</h2>
+      <div class="course-container">
+        {% for course in courses %}
+        <a href="/courses/{{course.id}}">
+          <img
+            id="course-image"
+            class="course-image"
+            src="{{course.image}}"
+            alt="course image"
+          />
+        </a>
+        <a href="/courses/{{course.id}}">
+          <h4>{{course.name}}</h4>
+        </a>
+        <p>Price: ${{course.price}}</p>
         {% endfor %}
-        
-        <!-- all courses -->
-        <h2>All Courses</h2>
-        <div class="course-container">
-            {% for course in courses %}
-                <a href="/courses/{{course.id}}">
-                    <img id="course-image" class="course-image" src="{{course.image}}" alt="course image">
-                </a>
-                <a href="/courses/{{course.id}}">
-                    <h4>{{course.name}}</h4>
-                </a>
-                <p>Price: ${{course.price}}</p>
-            {% endfor %}
-        </div>
+      </div>
     </main>
 
-   
     <iframe src="/footer" id="iframe-footer"></iframe>
     <script src="/static/general.js"></script>
   </body>

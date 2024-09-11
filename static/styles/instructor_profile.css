@@ -1,0 +1,93 @@
+main {
+  max-width: 1200px;
+  width: 90%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #edf1d6;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0.5, 0.5, 0.5, 0.5);
+}
+
+h1 {
+  text-align: center;
+  font-size: 32px;
+  color: #2b2b3d;
+  margin-bottom: 20px;
+}
+
+.card-image {
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0.1, 0.1, 0.1, 0.3);
+}
+
+#instructor-about {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+#instructor-about h2 {
+  font-size: 24px;
+  color: #2b2b3d;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+#instructor-about p {
+  margin: 8px 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+}
+
+.course-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.course-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.course-container h4 {
+  font-size: 18px;
+  color: #28a745;
+  margin: 10px 0;
+}
+
+.course-container p {
+  font-size: 16px;
+  color: #333;
+  margin: 5px 0;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: block;
+  margin: 20px auto;
+}
+
+button:hover {
+  background-color: #218838;
+}
