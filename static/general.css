@@ -36,12 +36,6 @@ body {
   justify-content: center;
 }
 
-#card-image,
-#course-image {
-  height: 150px;
-  width: 200px;
-}
-
 #profile-image {
   height: 100px;
   width: 100px;
