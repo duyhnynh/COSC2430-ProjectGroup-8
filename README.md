@@ -58,3 +58,11 @@ Report:
 **Next meeting: Wednesday, September 11th at 11 am in building 1, floor 2 (big table)**
 
 **Next meeting: Friday, September 13th at 2:30pm am in building 1, floor 2 (big table)**
+
+
+
+Mark contribution:
+
+Lisa; 6
+Eddie: 4
+Dom and Ning : 10
