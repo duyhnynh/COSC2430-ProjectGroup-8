@@ -1,0 +1,232 @@
+body {
+    background-color: #f0f4f8;
+    padding-top: 60px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.contact-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 60px;
+}
+
+.form-group label {
+    font-weight: 700;
+    /* font-size:  1.1rem; */
+    color: #555;
+}
+
+.form-control {
+    font-size: 1rem;
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+.form-group select {
+    background: url('/static/img/dropdown-icon.jpg') no-repeat right 10px center;
+    /* Path to your arrow icon */
+    background-size: 16px;
+    /* Adjust the size of the arrow */
+    padding-right: 40px;
+    /* Ensure there's enough space for the arrow */
+    width: 100%;
+    font-size: 1rem;
+    padding: 12px;
+    box-sizing: border-box;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+.form-group select option {
+    padding: 10px;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* General Button Styles */
+.btn-primary,
+.btn-secondary {
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: 1px solid #609966;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    width: 100px;
+}
+
+/* Primary Button (Send) */
+.btn-primary {
+    background-color: #609966;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #507a56;
+    color: white;
+}
+
+/* Secondary Button (Clear) */
+.btn-secondary {
+    background-color: transparent;
+    color: #609966;
+}
+
+.btn-secondary:hover {
+    background-color: #f4f6f8;
+    color: #609966;
+}
+
+
+.form-footer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+
+/* To handle text overflow inside the select */
+select.form-control option {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Additional styles to fix potential rendering issues */
+.form-group select {
+    height: auto;
+    /* Adjust height to fit text */
+    line-height: 1.5;
+    /* Line height to ensure full text visibility */
+}
+
+input:invalid {
+    border-color: red;
+    box-shadow: none;
+}
+
+input:valid {
+    border-color: green;
+}
+
+
+/* For desktop devices (1200px or wider) */
+@media (min-width: 1200px) {
+    .contact-container {
+        max-width: 1200px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .form-control {
+        font-size: 1.2rem;
+        padding: 14px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        font-size: 1.2rem;
+        padding: 14px 24px;
+    }
+}
+
+/* For tablet devices (768px to 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .contact-container {
+        max-width: 900px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .form-control {
+        font-size: 1.1rem;
+        padding: 12px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        font-size: 1.1rem;
+        padding: 12px 20px;
+    }
+}
+
+/* For smartphones (767px or narrower) */
+@media (max-width: 767px) {
+    .contact-container {
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .form-control {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        font-size: 1rem;
+        padding: 10px 16px;
+    }
+
+    /* Ensure radio buttons and labels stack vertically */
+    .form-group input[type="radio"],
+    .form-group label {
+        display: inline-block;
+    }
+
+    .form-group select {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    /* Reduce the padding for buttons on small screens */
+    .btn-primary,
+    .btn-secondary {
+        padding: 10px 16px;
+    }
+}
+
+/* Align checkboxes horizontally on desktop */
+@media (min-width: 1200px) {
+    .contact-days-group {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+/* Stack checkboxes vertically on smaller screens */
+@media (max-width: 767px) {
+    .contact-days-group {
+        display: block;
+    }
+
+    .contact-days-group label {
+        display: block;
+        margin-bottom: 10px;
+    }
+}

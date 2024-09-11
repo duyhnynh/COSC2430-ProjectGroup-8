@@ -2,102 +2,15 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/styles/home.css" />
     <link rel="stylesheet" href="/static/styles/header.css" />
     <link rel="stylesheet" href="/static/styles/footer.css" />
     <link rel="stylesheet" href="/static/general.css" />
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #f9f9f9;
-            padding-top: 60px;
-        }
-
-        .about-container {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            padding: 50px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 30px;
-            font-weight: bold;
-        }
-
-        .section {
-            margin-bottom: 40px;
-        }
-
-        .team-member {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .team-member img {
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .team-member img:hover {
-            transform: scale(1.1);
-        }
-
-        .team-member h4 {
-            margin-top: 15px;
-            font-weight: bold;
-        }
-
-        /* Modal styling */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            padding-top: 100px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            text-align: center;
-            border-radius: 10px;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/styles/about.css" />
     <title>About Us</title>
 </head>
 
@@ -130,7 +43,7 @@
 
             <div class="row">
                 <div class="col-md-6 team-member">
-                    <img src="path-to-random-photo3.jpg" alt="Lisa Maria Huynh" id="modalBtn3">
+                    <img src="/static/img/lisa_portrait.PNG" alt="Lisa Maria Huynh" id="modalBtn3">
                     <h4>Lisa Maria Huynh</h4>
                     <p>RMIT University, Saigon South Campus</p>
                 </div>
@@ -206,23 +119,23 @@
         const close4 = document.getElementById('close4');
 
         // Open modal functions
-        btn1.onclick = () => { modal1.style.display = 'block'; }
-        btn2.onclick = () => { modal2.style.display = 'block'; }
-        btn3.onclick = () => { modal3.style.display = 'block'; }
-        btn4.onclick = () => { modal4.style.display = 'block'; }
+        btn1.onclick = () => { modal1.classList.add('show'); }
+        btn2.onclick = () => { modal2.classList.add('show'); }
+        btn3.onclick = () => { modal3.classList.add('show'); }
+        btn4.onclick = () => { modal4.classList.add('show'); }
 
         // Close modal functions
-        close1.onclick = () => { modal1.style.display = 'none'; }
-        close2.onclick = () => { modal2.style.display = 'none'; }
-        close3.onclick = () => { modal3.style.display = 'none'; }
-        close4.onclick = () => { modal4.style.display = 'none'; }
+        close1.onclick = () => { modal1.classList.remove('show'); }
+        close2.onclick = () => { modal2.classList.remove('show'); }
+        close3.onclick = () => { modal3.classList.remove('show'); }
+        close4.onclick = () => { modal4.classList.remove('show'); }
 
         // Close modal when clicking outside of the content
         window.onclick = (event) => {
-            if (event.target === modal1) { modal1.style.display = 'none'; }
-            if (event.target === modal2) { modal2.style.display = 'none'; }
-            if (event.target === modal3) { modal3.style.display = 'none'; }
-            if (event.target === modal4) { modal4.style.display = 'none'; }
+            if (event.target === modal1) { modal1.classList.remove('show'); }
+            if (event.target === modal2) { modal2.classList.remove('show'); }
+            if (event.target === modal3) { modal3.classList.remove('show'); }
+            if (event.target === modal4) { modal4.classList.remove('show'); }
         }
     </script>
 </body>
