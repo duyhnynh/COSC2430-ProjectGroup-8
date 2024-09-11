@@ -1,12 +1,14 @@
 var iframe = document.querySelector("iframe"); // Correctly target the iframe
 iframe.addEventListener("load", function () {
   var header = iframe.contentDocument.querySelector("header"); // Access the header inside the iframe
-
+  var logoImage = header.querySelector("#logo-container img");
   window.addEventListener("scroll", function () {
     if (window.scrollY > 0) {
       header.className = "header-scroll";
+      logoImage.src = "/static/img/logo-light-color.png";
     } else {
       header.className = "header";
+      logoImage.src = "/static/img/logo.png";
     }
   });
 });
