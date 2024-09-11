@@ -71,7 +71,7 @@
         </div>
         
         <!-- add course button - only visible to instructors -->
-        {% if user_role == 'instructor' %}
+        {% if user_role == 'instructor' or user_role == 'admin' %}
         <a href="/courses/add">
           <button type="button">Add Course</button>
         </a>
