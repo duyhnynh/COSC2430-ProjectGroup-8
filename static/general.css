@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
 }
 body {
   padding-top: 60px;
@@ -75,4 +76,10 @@ body {
   height: 50px;
   width: 50px;
   border-radius: 50%;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 32px;
+  color: #609966;
 }
