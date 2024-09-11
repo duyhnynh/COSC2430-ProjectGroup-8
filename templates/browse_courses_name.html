@@ -7,6 +7,7 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/styles/home.css" />
     <link rel="stylesheet" href="/static/styles/header.css"/>
     <link rel="stylesheet" href="/static/general.css">
@@ -19,16 +20,24 @@
 
     <!-- display all courses -->
     <div class="course-container">
-        <h1>Browse Courses by Name</h1>
-        {% for course in courses %}
-            <div class="course-card">
+      <h1>Browse Courses by Name</h1>
+      {% for course in courses %}
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ course.image }}" alt="Card image cap">
+        <div class="card-body">
+          <h3 class="card-text">{{ course.name }}</h3>
+          <p class="card-text">{{ course.category }}</p>
+          <p class="card-text">Price: ${{ course.price }}</p>
+        </div>
+      </div>
+            <!-- <div class="course-card">
                 <img id="course-image" class="course-image" src="{{ course.image }}" alt="{{ course.name }}">
                 <div class="course-info">
                     <h3><a href="/courses/{{ course.id }}">{{ course.name }}</a></h3>
                     <p>Category: {{ course.category }}</p>
                     <p>Price: ${{ course.price }}</p>
                 </div>
-            </div>
+            </div> -->
         {% endfor %}
      </div>
 
