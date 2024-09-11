@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/static/styles/header.css" />
     <title>Header</title>
   </head>
@@ -26,6 +29,9 @@
         </div>
         <a href="/faqs" target="_parent">FAQs</a>
         <a href="/contact" target="_parent">Contact</a>
+        {% if session['user'] %}
+        <a href="/logout" target="_parent">Log out</a>
+        {% endif %}
       </nav>
     </header>
     <nav id="mobile-vertical-navbar">
@@ -50,6 +56,9 @@
         </div>
         <a href="/faqs" target="_parent">FAQs</a>
         <a href="/contact" target="_parent">Contact</a>
+        {% if session['user'] %}
+        <a href="/logout" target="_parent">Log out</a>
+        {% endif %}
       </div>
     </nav>
     <script src="/static/general.js"></script>
