@@ -37,29 +37,6 @@ body {
   justify-content: center;
 }
 
-/* .course-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.course-card-container {
-  display: contents;
-  width: 100%;
-}
-
-.course-card {
-  width: 60%;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  border: 1px solid black;
-}
-*/
-
 #card-image,
 #course-image {
   height: 150px;
@@ -86,5 +63,4 @@ h1 {
   font-size: 3rem;
   margin-bottom: 30px;
   font-weight: bold;
- 
 }
