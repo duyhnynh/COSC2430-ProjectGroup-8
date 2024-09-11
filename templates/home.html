@@ -37,7 +37,6 @@
         <div class="featured-cards">
           {% for course in featured_courses %}
           <div class="featured-card">
-            <!-- add link to image -->
             <a href="/courses/{{course.id}}">
               <img
                 id="card-image"
@@ -85,8 +84,8 @@
 
     <!-- New Course Section -->
     <div class="new-section-container">
-      <h2>New Course</h2>
-      <p>Explore our newest programs.</p>
+      <h2>New Courses</h2>
+      <p>Explore our five newest programs.</p>
       <div class="course-cards">
         {% for course in new_courses %}
         <div class="course-card">
@@ -103,7 +102,7 @@
             <a href="/courses/{{course.id}}">
               <h3>{{course.name}}</h3>
             </a>
-            <p>{{course.description[:10]}}</p>
+            <p>{{course.description[:20]}}... <strong>Read more</strong></p>
           </div>
         </div>
         {% endfor %}
@@ -116,8 +115,8 @@
 
     <!-- New Instructor -->
     <div class="new-section-container">
-      <h2>New Instructor</h2>
-      <p>Explore our newest Instructor.</p>
+      <h2>New Instructors</h2>
+      <p>Explore our five newest instructors.</p>
       <div class="course-cards">
         {% for instructor in new_instructors %}
         <div class="course-card">
