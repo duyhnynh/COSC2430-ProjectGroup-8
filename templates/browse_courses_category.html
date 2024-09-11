@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/styles/home.css" />
     <link rel="stylesheet" href="/static/styles/header.css"/>
+    <link rel="stylesheet" href="/static/styles/browse.css"/>
     <link rel="stylesheet" href="/static/general.css">
     <title>Browse Courses</title>
   </head>
@@ -19,17 +20,19 @@
     </div>
 
     <div class="course-container">
-      <h1>Browse Courses by Category</h1>
+      <h1 class="text-center">Browse Courses by Category</h1>
       {% for category, courses in courses.items() %}
         <h2>{{ category }}</h2>
-        <div class="course-card-container">
+        <div class="course-cards">
           {% for course in courses %}
             <div class="course-card">
-              <img id="course-image" class="course-image" src="{{ course.image }}" alt="{{ course.name }}">
+              <a href="/courses/{{ course.key.id}}">
+                <img id="card-img" class="card-image" src="{{ course.image }}" alt="{{ course.name }}">
+              </a>
               <div class="course-info">
-                <h3><a href="/courses/{{ course.key.id }}">{{ course.name }}</a></h3>
-                <p>Category: {{ course.category }}</p>
-                <p>Price: ${{ course.price }}</p>
+                <h3 class="mt-3"><a href="/courses/{{ course.key.id }}">{{ course.name }}</a></h3>
+                <p class="mt-3">Category: {{ course.category }}</p>
+                <p class="mt-3">Price: ${{ course.price }}</p>
               </div>
             </div>
           {% endfor %}

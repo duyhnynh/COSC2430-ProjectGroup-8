@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/styles/home.css" />
     <link rel="stylesheet" href="/static/styles/header.css"/>
+    <link rel="stylesheet" href="/static/styles/browse.css"/>
     <link rel="stylesheet" href="/static/general.css">
     <title>Browse Courses</title>
   </head>
@@ -20,28 +21,49 @@
 
     <!-- display all courses -->
     <div class="course-container">
-      <h1>Browse Courses by Name</h1>
-      {% for course in courses %}
-      <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="{{ course.image }}" alt="Card image cap">
-        <div class="card-body">
-          <h3 class="card-text">{{ course.name }}</h3>
-          <p class="card-text">{{ course.category }}</p>
-          <p class="card-text">Price: ${{ course.price }}</p>
+      <h1 class="text-center">Browse Courses by Name</h1>
+      <div class="course-cards">
+        {% for course in courses %}
+        <div class="course-card" style="width: 18rem;">
+          <a href="/courses/{{ course.key.id}}">
+            <img id="card-img" class="card-image" src="{{ course.image }}" alt="Course image">
+          </a>
+          <div class="card-info">
+            <h3 class="card-text"><a href="/courses/{{ course.key.id}}">{{ course.name }}</a></h3>
+            <p class="card-text">{{ course.category }}</p>
+            <p class="card-text">Price: ${{ course.price }}</p>
+          </div>
         </div>
-      </div>
-            <!-- <div class="course-card">
-                <img id="course-image" class="course-image" src="{{ course.image }}" alt="{{ course.name }}">
-                <div class="course-info">
-                    <h3><a href="/courses/{{ course.id }}">{{ course.name }}</a></h3>
-                    <p>Category: {{ course.category }}</p>
-                    <p>Price: ${{ course.price }}</p>
-                </div>
-            </div> -->
         {% endfor %}
+      </div>
      </div>
 
-   
+     <!-- <div class="new-section-container"></div>
+      <h2>New Course</h2>
+      <p>Explore our newest programs.</p>
+      <div class="course-cards">
+        {% for course in courses %}
+        <div class="course-card">
+          <a href="/courses/{{course.id}}">
+            <img
+              id="card-image"
+              class="card-image"
+              src="{{course.image}}"
+              alt="Course Image"
+            />
+          </a>
+          <div class="card-info">
+            <p class="provider">{{course.category}}</p>
+            <a href="/courses/{{course.id}}">
+              <h3>{{course.name}}</h3>
+            </a>
+            <p>{{course.description[:10]}}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div> -->
+
+  
     <iframe src="/footer" id="iframe-footer"></iframe>
     <script src="/static/general.js"></script>
   </body>
