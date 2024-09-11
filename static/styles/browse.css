@@ -7,12 +7,12 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: flex-start; /* Align cards to the left */
+    justify-content: flex-start; 
 }
 
 .course-card {
-    flex: 0 1 300px; /* Fixed width for the cards */
-    max-width: 300px; /* Ensure the cards do not grow larger than this width */
+    flex: 0 1 300px; 
+    max-width: 300px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
@@ -29,7 +29,7 @@
 
 .card-info {
     padding: 15px;
-    flex-grow: 1; /
+    flex-grow: 1; 
 }
 
 .card-text {
