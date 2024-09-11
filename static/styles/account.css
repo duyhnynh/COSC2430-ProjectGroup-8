@@ -1,3 +1,7 @@
+#body {
+  margin: 0px;
+  padding: 0px;
+}
 #main-container {
   display: flex;
   flex-direction: row;
@@ -20,12 +24,13 @@
 #account-page {
   position: absolute;
   right: 0;
-
+  height: 100vh;
   padding: 40px;
   width: 400px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0.5, 0.5, 0.5, 0.5);
+  overflow: auto;
 }
 
 #account-page h1 {
