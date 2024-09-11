@@ -12,13 +12,6 @@ body {
     margin: 0 auto;
 }
 
-h1 {
-    text-align: center;
-    font-size: 3rem;
-    margin-bottom: 30px;
-    font-weight: bold;
-}
-
 .section {
     margin-bottom: 40px;
 }
