@@ -48,6 +48,11 @@ body {
   border-radius: 50%;
 }
 
+#course-image {
+  height: 200px;
+  width: 200px;
+}
+
 h1 {
   font-weight: 700;
   font-size: 32px;
