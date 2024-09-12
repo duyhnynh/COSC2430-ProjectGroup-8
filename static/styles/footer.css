@@ -2,12 +2,15 @@ body {
   margin: 0px;
   font-family: 'Montserrat', sans-serif;
 }
+
 #footer {
   background-color: #333; /* Dark background for the footer */
   color: white;
   width: 100%;
   padding: 20px 0;
   text-align: center;
+  flex-shrink: 0; 
+  position: relative; 
 }
 
 .footer-content {
