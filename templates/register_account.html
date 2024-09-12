@@ -32,7 +32,7 @@
           enctype="multipart/form-data"
         >
           <h1>Sign Up</h1>
-          <p>Already sign up? <a href="/account">Sign In Now</a></p>
+          <p>Already signed up? <a href="/account">Sign In Now</a></p>
 
           <!-- email -->
           <div class="input-box">
@@ -111,8 +111,8 @@
             <label for="country">Country*</label>
             <select name="country" id="country" required>
               <option value="" disabled selected>Select Country</option>
-              {% for country in countries %}
-              <option value="{{ country.code }}">{{ country.name }}</option>
+              {% for code, name in countries.items() %}
+              <option value="{{ code }}">{{ name }}</option>
               {% endfor %}
             </select>
           </div>
@@ -148,16 +148,30 @@
 
             <!-- specialization -->
             <label for="specialization">Specialization*</label>
-            <input type="checkbox" id="s1" name="s1" value="History" />
-            <label for="s1">History</label>
-            <input type="checkbox" id="s2" name="s2" value="Math" />
-            <label for="s2">Math</label>
-            <input type="checkbox" id="s3" name="s3" value="Science" />
-            <label for="s3">Science</label>
-            <input type="checkbox" id="s4" name="s4" value="Art" />
-            <label for="s4">Art</label>
-            <input type="checkbox" id="s5" name="s5" value="Music" />
-            <label for="s5">Music</label>
+            <input type="checkbox" id="specialization" name="specialization" value="1">
+            <label for="specialization">Computer Science</label>
+            <input type="checkbox" id="specialization" name="specialization" value="2">
+            <label for="specialization">Data Science</label>
+            <input type="checkbox" id="specialization" name="specialization" value="3">
+            <label for="specialization">Web Development</label>
+            <input type="checkbox" id="specialization" name="specialization" value="4"> 
+            <label for="specialization">Cyber Security</label>
+            <input type="checkbox" id="specialization" name="specialization" value="5">
+            <label for="specialization">Digital Marketing</label>
+            <input type="checkbox" id="specialization" name="specialization" value="6">
+            <label for="specialization">Cloud Computing</label>
+            <input type="checkbox" id="specialization" name="specialization" value="7">
+            <label for="specialization">UX/UI Design</label>
+            <input type="checkbox" id="specialization" name="specialization" value="8">
+            <label for="specialization">Product Management</label>
+            <input type="checkbox" id="specialization" name="specialization" value="9">
+            <label for="specialization">Business Analytics</label>
+            <input type="checkbox" id="specialization" name="specialization" value="10">
+            <label for="specialization">Artificial Intelligence</label>
+            <input type="checkbox" id="specialization" name="specialization" value="11">
+            <label for="specialization">Machine Learning</label>
+            <input type="checkbox" id="specialization" name="specialization" value="12">
+            <label for="specialization">Other</label>
           </div>
           <!-- submit button -->
           <div>
