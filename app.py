@@ -155,6 +155,7 @@ def contact():
         email = request.form.get('email')
         phone = request.form.get('phone')
         message = request.form.get('message')
+        contact_method = request.form.get('contact_method')
         contact_days = request.form.getlist('contact_days')
 
         # save to database
@@ -164,6 +165,7 @@ def contact():
             'email': email,
             'phone': phone,
             'message': message,
+            'contact_method': contact_method,
             'contact_days': ', '.join(contact_days),
             'created_at': datetime.now(vn_tz).strftime('%Y-%m-%d %H:%M:%S')
         }
