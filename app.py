@@ -20,12 +20,26 @@ db = Database()
 storage = Storage()
 
 # get country data from csv file    
-countries = []
+countries =  {}
 with open('country_data.csv', encoding='utf-8') as f:
     reader = csv.DictReader(f) # do not include first row and read rows into a dictionary format
     for row in reader:
-        countries.append({'code': row['Code'], 'name': row['Name']})
+        countries[row['Code']] = row['Name']
 
+specializations = {
+    1: 'Computer Science',
+    2: 'Data Science',
+    3: 'Web Development',
+    4: 'Cybersecurity',
+    5: 'Digital Marketing',
+    6: 'Cloud Computing',
+    7: 'UX/UI Design',
+    8: 'Product Management',
+    9: 'Business Analytics',
+    10: 'Artificial Intelligence',
+    11: 'Machine Learning',
+    12: 'Other'
+}
 # set timezone
 vn_tz = pytz.timezone('Asia/Ho_Chi_Minh')
 
@@ -49,6 +63,8 @@ def root():
         # save instructor ids in instructors dict
         for instructor in instructors:
             instructor['id'] = instructor.key.id
+            instructor['country'] = country_code_to_name(instructor['country'])
+            instructor['specialization'] = specialization_code_to_name(instructor['specialization'])
 
         # get latest 5 courses and instructors
         new_courses = sorted(courses, key=lambda x: x['created_at'], reverse=True)[:5]
@@ -225,6 +241,8 @@ def login():
         if user_data:
             # save user id
             user_data['id'] = user_data.key.id
+            # change country code to country name
+            user_data['country'] = country_code_to_name(user_data['country'])
             save_session_var('user', user_data)
         
         # redirect to account page
@@ -241,14 +259,11 @@ def account():
               otherwise, redirects to the login page.
     """
     if check_session_var('user'):
-        # get mapping of country code to name
-        country_name = country_code_to_name(session['user']['country'])
-
         # get user data
         user_data = {
             'name': session['user']['name'],
             'image': session['user']['image'],
-            'address': f"{session['user']['address']}, {session['user']['city']}, {session['user']['zipcode']}, {country_name}",
+            'address': f"{session['user']['address']}, {session['user']['city']}, {session['user']['zipcode']}, {session['user']['country']}",
             'email': session['user']['email'],
             'phone': session['user']['phone'],
             'role': session['user']['role']
@@ -294,8 +309,8 @@ def register():
         if account_type == 'instructor':
             school_name = request.form.get('school-name')
             job_title = request.form.get('job-title')
-            specialization = request.form.get('specialization')
-        
+            specialization = request.form.getlist('specialization')
+
         # check if email is already in use
         if db.check_existing_user(email=email):
             flash('Email is already in use')
@@ -418,6 +433,7 @@ def reset_password(reset_token):
 def logout():
     remove_session_var('user')
     remove_session_var('courses')
+    remove_session_var('instructors')
     return redirect('/')
 
 ### BROWSE BY NAME ROUTE ###
@@ -499,14 +515,17 @@ def instructor_profile(id):
     if not session.get('instructors'):
         # get all instructors
         instructors = db.get_instructors()
+        # save country code to name mapping
+        for instructor in instructors:
+            instructor['country'] = country_code_to_name(instructor['country'])
         save_session_var('instructors', instructors)
     else:
         instructors = session.get('instructors')
 
     instructor = [instructor for instructor in instructors if int(instructor['id']) == int(id)][0]
     
-    # get instructor's country name
-    instructor['country'] = country_code_to_name(instructor['country'])
+    # # get instructor's country name
+    # instructor['country'] = 
 
     if not check_session_var('courses'):
         courses = db.get_data('course')
@@ -634,8 +653,16 @@ def remove_session_var(var: str):
 
 ### helper functions ###
 def country_code_to_name(code):
-    country = [country['name'] for country in countries if country['code'] == code]
-    return country[0] if country else None
+    return countries.get(code)
 
+def specialization_code_to_name(code):
+    if isinstance(code, list):
+        species_list = []
+        for c in code:
+            species_list.append(specializations.get(int(c)))
+        species = ', '.join(species_list)
+        return species
+    else:
+        return specializations.get(int(code))
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True)
