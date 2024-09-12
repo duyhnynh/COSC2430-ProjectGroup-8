@@ -1,155 +1,207 @@
 /* General Styling for Body */
 body {
-    font-family: "Open Sans", sans-serif;
     background-color: #f9f9f9;
     padding: 0;
     margin: 0;
+    font-size: 16px; /* Base font size */
 }
 
-/* Table Wrapper to Control Width */
-.table {
-    max-width: 900px;
-    margin: 0 auto; /* Center the table */
-    padding: 20px;
+/* Table Wrapper for Responsiveness */
+.table-wrapper {
+    width: 100%;
+
+}
+
+/* Basic Table Styling */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1.25rem;
     background-color: #edf1d6;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    border-radius: 0.5rem;
 }
 
 /* Heading Styling */
 h1 {
-    text-align: center;
-    font-family: "Montserrat", sans-serif;
-    font-size: 3rem;
+    font-size: 2.25rem;
     font-weight: 700;
-    color: #609966;
-    margin-bottom: 30px;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: bold;
+    letter-spacing: 0.125rem;
 }
 
 /* Adjust the subheading */
 h1 + p {
     text-align: center;
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 400;
     color: #333;
-    margin-bottom: 40px;
+    margin-bottom: 2.5rem;
 }
 
+/* Price Table */
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 0;
+}
 
-  
-  /* Main Container */
-  .main {
-      box-shadow: 0 0 24px rgba(0, 0, 0, 0.15);
-      width: 100%;
-      max-width: 1170px;
-      margin: 0 auto;
-      padding: 20px;
-  }
-  
-  /* Price Table */
-  .price-table {
-      width: 100%;
-      border-collapse: collapse;
-      border: 0 none;
-  }
-  
-  .price-table tr:not(:last-child) {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-  
-  .price-table tr td {
-      border-left: 1px solid rgba(0, 0, 0, 0.05);
-      padding: 12px 24px;
-      font-size: 16px;
-      text-align: center;
-  }
-  
-  .price-table tr td:first-child {
-      border-left: 0 none;
-  }
-  
-  /* Even Row Background and Hover Effect */
-  .price-table tr:nth-child(even) {
-      background-color: rgb(227, 236, 181);
-  }
-  
-  .price-table tr:hover {
-      background-color: #c7cf96;
-  }
-  
-  /* Icons for Check and Cross */
-  .price-table .fa-check {
-      color: #9dc08b;
-  }
-  
-  .price-table .fa-times {
-      color: #d8d6e3;
-  }
-  
-  /* Highlight Popular Column */
-  .price-table tr td:nth-child(3) {
-      background-color: rgba(216, 214, 227, 0.15);
-      padding: 12px 48px;
-  }
-  
-  .price-table tr:nth-child(2n) td:nth-child(3) {
-      background-color: rgba(216, 214, 227, 0.25);
-  }
-  
-  /* Head Row Styling */
-  .price-table tr.price-table-head {
-      background-color: #609966;
-      color: #FFFFFF;
-      font-size: 18px;
-      font-weight: 600;
-      font-family: "Montserrat", sans-serif;
-      text-transform: uppercase;
-  }
-  
-  /* Price Column */
-  .price-table td.price {
-      color: #a2702e;
-      padding: 16px 24px;
-      font-size: 24px;
-      font-weight: 700;
-      font-family: "Montserrat", sans-serif;
-  }
-  
-  /* Button Styling */
-  .price-table td.price a {
-      background-color: #609966;
-      color: #FFFFFF;
-      padding: 12px 32px;
-      margin-top: 16px;
-      font-size: 14px;
-      font-weight: 600;
-      font-family: "Montserrat", sans-serif;
-      text-transform: uppercase;
-      display: inline-block;
-      border-radius: 50px;
-      text-decoration: none;
-  }
-  
-  .price-table td.price a:hover {
-      background-color: #4b2fb3;
-  }
-  
-  /* Popular Tag Styling */
-  .price-table td.price-table-popular {
-      font-family: "Montserrat", sans-serif;
-      border-top: 3px solid #609966;
-      color: #609966;
-      text-transform: uppercase;
-      font-size: 14px;
-      padding: 12px 48px;
-      font-weight: 700;
-  }
-  
-  /* Blank Cells */
-  .price-table .price-blank {
-      background-color: #9dc08b;
-      border: 0 none;
-  }
+/* Table Data Padding and Font Sizes */
+.price-table tr td {
+    border-left: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 0.75rem 3rem;
+    font-size: 1.1rem; /* Relative font size */
+    text-align: center;
+}
+
+.price-table tr td:first-child {
+    border-left: 0 none;
+}
+
+/* Even Row Background and Hover Effect */
+.price-table tr:nth-child(even) {
+    background-color: rgb(227, 236, 181);
+}
+
+.price-table tr:hover {
+    background-color: #c7cf96;
+}
+
+/* Highlight Popular Column */
+.price-table tr td:nth-child(3) {
+    background-color: rgba(216, 214, 227, 0.15);
+}
+
+.price-table tr:nth-child(2n) td:nth-child(3) {
+    background-color: rgba(216, 214, 227, 0.25);
+}
+
+/* Head Row Styling */
+.price-table tr.price-table-head {
+    background-color: #609966;
+    color: #FFFFFF;
+    font-size: 1.125rem;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+}
+
+/* Price Column */
+.price-table td.price {
+    color: #a2702e;
+    padding: 1rem 1.25rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+    font-family: "Montserrat", sans-serif;
+}
+
+/* Button Styling */
+.price-table td.price a {
+    background-color: #609966;
+    color: #FFFFFF;
+    padding: 0.75rem 1.5rem;
+    margin-top: 0.8rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    display: inline-block;
+    border-radius: 50px;
+    text-decoration: none;
+}
+
+.price-table td.price a:hover {
+    background-color: #4b2fb3;
+}
+
+/* Popular Tag Styling */
+.price-table td.price-table-popular {
+    border-top: 3px solid #051807;
+    color: #609966;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/* Blank Cells */
+.price-table .price-blank {
+    background-color: #9dc08b;
+    border: 0 none;
+}
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 1199px) {
+    .table {
+        max-width: 100%;
+    }
+
+    /* Scale down font sizes */
+    h1 {
+        font-size: 2rem;
+    }
+
+    .price-table tr td {
+        padding: 0.75rem 1.75rem;
+        font-size: 1rem;
+    }
+
+    .price-table td.price {
+        font-size: 1.25rem;
+        padding: 1rem 1.25rem;
+    }
+
+    .price-table td.price a {
+        padding: 0.5rem 1.25rem;
+        font-size: 0.75rem;
+        margin-top: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Further scale down font sizes */
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    .price-table tr td {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
+
+    .price-table td.price {
+        font-size: 0.75rem;
+        padding: 0.75rem 1rem;
+    }
+
+    .price-table td.price a {
+        padding: 0.3 1rem;
+        font-size: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    
+}
+
+@media (max-width: 480px) {
+    /* Adjust fonts for mobile */
+    h1 {
+        font-size: 1.35rem;
+    }
+
+    .price-table tr td {
+        padding: 0.5rem;
+        font-size: 0.65rem;
+    }
+
+    .price-table td.price {
+        font-size: 0.55rem;
+        padding: 0.55rem 0.75rem;
+    }
+
+    .price-table td.price a {
+        padding: 0.25rem 0.75rem;
+        font-size: 0.45rem;
+        margin-top: 0.5rem;
+    }
+}
