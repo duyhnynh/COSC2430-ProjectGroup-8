@@ -26,7 +26,7 @@ h3 {
     gap: 10px;
   }
 
-  .featured-button {
+.featured-button {
     background-color: #609966;
     color: white;
     border: none;
@@ -34,4 +34,4 @@ h3 {
     padding: 10px 20px;
     cursor: pointer;
     margin-bottom: 20px;
-  }
+}
