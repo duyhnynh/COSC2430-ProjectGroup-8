@@ -24,7 +24,7 @@
       <p>{{ course.description }}</p>
       <img id="course-image" class="course-image" src="{{course.image}}" alt="{{course.name}}">
       <p><strong>Category:</strong> {{ course.category }}</p>
-      <p><strong>Instructor:</strong> {{ course.instructor }}</p>
+      <p><strong>Instructor:</strong> <a href="/instructor/{{instructor_id}}">{{ course.instructor }}</a></p>
       <p><strong>Price:</strong> ${{ course.price }}</p>
       <p><strong>Created At:</strong> {{ course.created_at }}</p>
       
