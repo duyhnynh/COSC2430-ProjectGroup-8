@@ -212,13 +212,16 @@ def login():
               if login fails, it renders the 'account.html' template no 'user_data'.
     """
     if request.method == 'POST':
-        # get form data
-        if '@' in request.form.get('username'):
-            email = request.form.get('username')
-        else:
-            phone = int(request.form.get('username'))
-            email = None
-        password = request.form.get('password')
+        try:
+            if '@' in request.form.get('username'):
+                email = request.form.get('username')
+            else:
+                phone = int(request.form.get('username'))
+                email = None
+            password = request.form.get('password')
+        except:
+            flash('Invalid input')
+            return redirect('/login')
 
         if email:
             # check if email exists

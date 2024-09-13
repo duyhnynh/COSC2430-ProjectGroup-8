@@ -105,9 +105,12 @@ class Database():
         elif phone:
             query.add_filter('phone', '=', int(phone))
             results = list(query.fetch())
-
-        # check password match
-        if results[0]['password'] != password:
+        
+        try:
+            # check password match
+            if results[0]['password'] != password:
+                return False
+        except:
             return False
         
         return True
