@@ -61,7 +61,7 @@
           alt="profile picture"
         />
 
-        {% if user.role == 'learner' %}
+        {% if user.role == 'learner' or user.role == 'admin' %}
         <h1>Course orders</h1>
         {% for order in orders %}
         <h3>{{order.course_name}}</h3>
