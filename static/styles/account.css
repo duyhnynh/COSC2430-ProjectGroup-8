@@ -2,6 +2,7 @@
   margin: 0px;
   padding: 0px;
 }
+
 #main-container {
   display: flex;
   flex-direction: row;
@@ -24,68 +25,119 @@
 #account-page {
   position: absolute;
   right: 0;
-
   padding: 40px;
   width: 400px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0.5, 0.5, 0.5, 0.5);
   overflow: auto;
+  margin-top: 40px;
 }
 
+/* Consistent h1 styling for all sections */
 #account-page h1 {
-  text-align: center;
   font-size: 24px;
-  margin-bottom: 20px;
+  color: #609966;
+  margin-bottom: 30px;
 }
 
-#account-page form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+/* Wrap form fields for better control */
+.form-wrapper {
   margin-bottom: 20px;
+  text-align: left; /* Left-align the labels and inputs */
 }
 
-.username-input,
-.password-input {
+.form-wrapper label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="file"] {
   width: 100%;
-  padding: 10px;
-  margin-top: 5px;
+  padding: 12px;
+  margin: 10px 0 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   border: 1px solid #ccc;
   border-radius: 5px;
-}
-#account-page button[type="submit"] {
-  background-color: #28a745;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
   font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  text-align: left; /* Ensure input fields text aligns left */
 }
 
-#account-page button[type="submit"]:hover {
+/* Add Course button and other submit buttons */
+#account-page button[type="submit"],
+button {
+  background-color: #28a745;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  display: block;
+  margin: 20px auto;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#account-page button[type="submit"]:hover,
+button:hover {
   background-color: #218838;
 }
 
-#username,
-#password {
-  margin-bottom: 10px;
-}
-
+/* Forgot password and register links */
 #button-container {
-  width: 85%;
   display: flex;
-  justify-content: space-between;
-  margin-top: 5px;
+  justify-content: space-around;
+  margin-top: 10px;
 }
 
+#button-container a {
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#button-container a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Disclaimer text below login form */
+#disclaimer-text {
+  font-size: 12px;
+  color: #666;
+  margin-top: 10px;
+  text-align: center;
+}
+
+#disclaimer-text a {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+/* Profile image in account page */
+#profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 10px auto;
+  display: block;
+}
+
+/* Text overlay for account welcome message */
 #text-overlay {
   position: absolute;
   top: 45%;
   left: 20%;
 }
+
 #text-overlay h1 {
   font-size: 3.5vw;
   margin: 0;
@@ -94,6 +146,7 @@
   font-weight: bold;
   color: #2b2b3d;
 }
+
 #text-overlay p {
   text-align: center;
   font-size: 1.5vw;
@@ -101,15 +154,7 @@
   color: #555;
 }
 
-#right-container p {
-  text-align: center;
-  font-size: 12px;
-}
-
-#disclaimer-text {
-  text-align: center;
-}
-
+/* Responsive styling */
 @media (max-width: 1199px) {
   #main-container {
     flex-direction: column;
@@ -128,19 +173,3 @@
   }
 }
 
-button {
-  background-color: #28a745;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  display: block;
-  margin: 20px auto;
-}
-
-button:hover {
-  background-color: #218838;
-}
