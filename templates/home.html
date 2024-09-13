@@ -1,108 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/static/img/website-logo.png" type="image/x-icon" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/static/styles/home.css" />
-    <link rel="stylesheet" href="/static/general.css" />
-    <title>Home</title>
-  </head>
-  <body>
-    <div id="body-container">
-      <iframe src="/header" id="iframe-header"></iframe>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/static/img/website-logo.png" type="image/x-icon" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/static/styles/home.css" />
+  <link rel="stylesheet" href="/static/general.css" />
+  <title>Home</title>
+</head>
+
+<body>
+  <div id="body-container">
+    <iframe src="/header" id="iframe-header"></iframe>
+  </div>
+
+  <h1 class="text-center mb-4">Welcome to your online learning platform</h1>
+
+  <div class="featured-container">
+    <h2>Get started with Our Featured Course</h2>
+    <a href="/courses/browse/name">
+      <button class="featured-button">View all Courses</button>
+    </a>
+    <div class="featured-tabs">
+      <button class="featured-tab active" data-target="course">
+        Courses
+      </button>
+      <button class="featured-tab" data-target="instructor">
+        Instructors
+      </button>
     </div>
 
-    <h1 class="text-center mb-4">Welcome to your online learning platform</h1>
-
-    <div class="featured-container">
-      <h2>Get started with Our Featured Course</h2>
-      <a href="/courses/browse/name">
-        <button class="featured-button">View all Courses</button>
-      </a>
-      <div class="featured-tabs">
-        <button class="featured-tab active" data-target="course">
-          Courses
-        </button>
-        <button class="featured-tab" data-target="instructor">
-          Instructors
-        </button>
-      </div>
-
-      <div class="featured-content" id="course">
-        <div class="featured-cards">
-          {% for course in featured_courses %}
-          <div class="featured-card">
-            <a href="/courses/{{course.id}}">
-              <img
-                id="card-image"
-                class="card-image"
-                src="{{course.image}}"
-                alt="Course Image"
-              />
-            </a>
-            <div class="card-content">
-              <p class="card-title">{{course.category}}</p>
-              <a href="/courses/{{course.id}}">
-                <h3>{{course.name}}</h3>
-              </a>
-              <p>{{course.description[:20]}}... <strong>Read more</strong></p>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-
-      <div class="featured-content" id="instructor" style="display: none">
-        <div class="featured-cards">
-          {% for instructor in featured_instructors %}
-          <div class="featured-card">
-            <a href="/instructor/{{instructor.id}}">
-              <img
-                id="card-image"
-                class="card-image"
-                src="{{instructor.image}}"
-                alt="Instructor Image"
-              />
-            </a>
-            <div class="card-content">
-              <p class="card-title">{{instructor.school_name}}</p>
-              <a href="/instructor/{{instructor.id}}">
-                <h3>{{instructor.name}}</h3>
-              </a>
-              <p>{{instructor.job_title}}</p>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-
-    <!-- New Course Section -->
-    <div class="new-section-container">
-      <h2>New Courses</h2>
-      <p>Explore our five newest programs.</p>
-      <div class="course-cards">
-        {% for course in new_courses %}
-        <div class="course-card">
+    <div class="featured-content" id="course">
+      <div class="featured-cards">
+        {% for course in featured_courses %}
+        <div class="featured-card">
           <a href="/courses/{{course.id}}">
-            <img
-              id="card-image"
-              class="card-image"
-              src="{{course.image}}"
-              alt="Course Image"
-            />
+            <img id="card-image" class="card-image" src="{{course.image}}" alt="Course Image" />
           </a>
-          <div class="card-info">
-            <p class="provider">{{course.category}}</p>
+          <div class="card-content">
+            <p class="card-title">{{course.category}}</p>
             <a href="/courses/{{course.id}}">
               <h3>{{course.name}}</h3>
             </a>
@@ -111,29 +52,17 @@
         </div>
         {% endfor %}
       </div>
-
-      <a href="/courses/browse/name">
-        <button class="view-all">View all</button>
-      </a>
     </div>
 
-    <!-- New Instructor -->
-    <div class="new-section-container">
-      <h2>New Instructors</h2>
-      <p>Explore our five newest instructors.</p>
-      <div class="course-cards">
-        {% for instructor in new_instructors %}
-        <div class="course-card">
+    <div class="featured-content" id="instructor" style="display: none">
+      <div class="featured-cards">
+        {% for instructor in featured_instructors %}
+        <div class="featured-card">
           <a href="/instructor/{{instructor.id}}">
-            <img
-              id="card-image"
-              class="card-image"
-              src="{{instructor.image}}"
-              alt="Instructor image"
-            />
+            <img id="card-image" class="card-image" src="{{instructor.image}}" alt="Instructor Image" />
           </a>
-          <div class="card-info">
-            <p class="provider">{{instructor.school_name}}</p>
+          <div class="card-content">
+            <p class="card-title">{{instructor.school_name}}</p>
             <a href="/instructor/{{instructor.id}}">
               <h3>{{instructor.name}}</h3>
             </a>
@@ -142,14 +71,60 @@
         </div>
         {% endfor %}
       </div>
+    </div>
+  </div>
 
-      <a href="/courses/browse/name">
-        <button class="view-all">View all</button>
-      </a>
+  <!-- New Course Section -->
+  <div class="new-section-container">
+    <h2>New Courses</h2>
+    <p>Explore our five newest programs.</p>
+    <div class="course-cards">
+      {% for course in new_courses %}
+      <div class="course-card">
+        <a href="/courses/{{course.id}}">
+          <img id="card-image" class="card-image" src="{{course.image}}" alt="Course Image" />
+        </a>
+        <div class="card-info">
+          <p class="provider">{{course.category}}</p>
+          <a href="/courses/{{course.id}}">
+            <h3>{{course.name}}</h3>
+          </a>
+          <p>{{course.description[:20]}}... <strong>Read more</strong></p>
+        </div>
+      </div>
+      {% endfor %}
     </div>
 
-    <iframe src="/footer" id="iframe-footer"></iframe>
-    <script src="/static/general.js"></script>
-    <script src="/static/home.js"></script>
-  </body>
+    <a href="/courses/browse/name">
+      <button class="view-all">View all</button>
+    </a>
+  </div>
+
+  <!-- New Instructor -->
+  <div class="new-section-container">
+    <h2>New Instructors</h2>
+    <p>Explore our five newest instructors.</p>
+    <div class="course-cards">
+      {% for instructor in new_instructors %}
+      <div class="course-card">
+        <a href="/instructor/{{instructor.id}}">
+          <img id="card-image" class="card-image" src="{{instructor.image}}" alt="Instructor image" />
+        </a>
+        <div class="card-info">
+          <p class="provider">{{instructor.school_name}}</p>
+          <a href="/instructor/{{instructor.id}}">
+            <h3>{{instructor.name}}</h3>
+          </a>
+          <p>{{instructor.job_title}}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <iframe src="/footer" id="iframe-footer"></iframe>
+  <script src="/static/general.js"></script>
+  <script src="/static/home.js"></script>
+</body>
+
 </html>
