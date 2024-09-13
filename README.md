@@ -7,7 +7,7 @@ HTML
 2. ~~About Us Page (static) modals windows~~, center the modal window back - **Dom and Ning**
 3. ~~Pricing Page ~~-  **Eddie**
 4. ~~FAQs Page (static)~~ - **Eddie**
-5. Copyright  ~~ ToS and ~~~~Privacy Policy Page~~ (quite good)- **Dom and Ning**
+5. ~~Copyright ToS and Privacy Policy Page~~- **Dom and Ning**
 6. ~~Contact Page~~ - **Dom and Ning**
 7. ~~My Account Page~~
    1. ~~(if user is logged in) - display user information -~~ **Lisa**
@@ -40,6 +40,9 @@ Backend:
 3. ~~User login~~ - **Lisa**
 
 backend for contact days
+
+
+white space under footer
 
 
 

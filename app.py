@@ -123,6 +123,14 @@ def terms():
     @returns: terms.html template.
     """
     return render_template('terms.html')
+### COPYRIGHT ROUTE ###
+@app.route('/copyright')
+def copyright():
+    """
+    Renders the copyright.html template.
+    @returns: copyright.html template.
+    """
+    return render_template('copyright.html')
 
 ### FAQs ROUTE ###
 @app.route('/faqs')
