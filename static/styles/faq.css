@@ -24,15 +24,10 @@
     line-height: 1.5;
 }
 
-/* h1 {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-    font-size: 32px;
-    color: #5336ca;
-} */
-
-p {
-    font-family: "Open Sans", sans-serif;
-    font-size: 18px;
-    color: #333;
+@media (max-width: 768px) {
+    
+    .faq-section p {
+        margin-top: 1rem;
+        font-size: 0.75rem;
+    } 
 }
