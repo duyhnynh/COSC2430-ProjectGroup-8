@@ -60,7 +60,7 @@
           src="{{user.image}}"
           alt="profile picture"
         />
-
+        <br>
         {% if user.role == 'learner' or user.role == 'admin' %}
         <h1>Course orders</h1>
         {% for order in orders %}
@@ -68,7 +68,14 @@
         <p><strong>Date ordered:</strong> {{order.created_at}}</p>
         <p><strong>Access duration:</strong> {{order.access_duration}}</p>
         <p><strong>Certification:</strong> {{order.certification}}</p>
-        {% endfor %} {% endif %} {% else %}
+        {% endfor %}
+         {% endif %}
+         {% if user.role == 'instructor' or user.role == 'admin' %}
+         <a href="/courses/add">
+          <button type="button">Add Course</button>
+        </a>
+        {% endif %}
+         {% else %}
         <!-- login box -->
         <h1>Login</h1>
         <form action="/login" method="POST">

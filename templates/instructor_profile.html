@@ -42,13 +42,6 @@
         <p><strong>Specialization:</strong> {{instructor.specialization}}</p>
       </div>
 
-      <!-- add course button - only visible to instructors -->
-      {% if user_role == 'instructor' or user_role == 'admin' %}
-      <a href="/courses/add">
-        <button type="button">Add Course</button>
-      </a>
-      {% endif %}
-
       <!-- new courses -->
       <h2>New Courses</h2>
       {% for new_course in new_courses %}
