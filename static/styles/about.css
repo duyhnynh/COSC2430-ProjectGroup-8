@@ -9,7 +9,7 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     padding: 50px;
     max-width: 900px;
-    margin: 0 auto;
+    margin: 20px auto;
 }
 
 .section {
@@ -50,7 +50,7 @@ body {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
-    animation: fadeOut 0.3s;
+    transition: all 0.5s ease-in-out;
 }
 
 .modal-content {
@@ -69,10 +69,13 @@ body {
 }
 
 .close {
-    color: #aaa;
-    float: right;
+    position: absolute;
+    top: 10px; /* Positioning close button at the top-right */
+    right: 15px;
     font-size: 28px;
     font-weight: bold;
+    color: #333;
+    transition: color 0.3s;
 }
 
 .close:hover,
@@ -123,4 +126,11 @@ body {
 .modal.hide {
     display: none;
     animation: fadeOut 0.5s ease;
+}
+
+/* For mobile responsiveness */
+@media (max-width: 767px) {
+    .modal-content {
+        width: 90%; /* Adjust modal width for smaller screens */
+    }
 }

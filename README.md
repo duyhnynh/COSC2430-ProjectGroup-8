@@ -3,11 +3,11 @@
 Front end:
 
 HTML
-1. ~~Home Page - ~~make the header~~ and footer~~ (to be used on all pages) **Dom and Ning**
+1. ~~Home Page - ~~ **Dom and Ning**
 2. ~~About Us Page (static) modals windows~~, center the modal window back - **Dom and Ning**
-3. ~~Pricing Page ~~- (header and footer are not working...) **Eddie**
+3. ~~Pricing Page ~~-  **Eddie**
 4. ~~FAQs Page (static)~~ - **Eddie**
-5. Copyright  ~~ ToS and ~~~~Privacy Policy Page~~ (static)  (quite good)- **Dom and Ning**
+5. Copyright  ~~ ToS and ~~~~Privacy Policy Page~~ (quite good)- **Dom and Ning**
 6. ~~Contact Page~~ - **Dom and Ning**
 7. ~~My Account Page~~
    1. ~~(if user is logged in) - display user information -~~ **Lisa**
@@ -25,14 +25,14 @@ CSS:
 - <span style="color:orange"> 7-14
 
 css for instructors profiles
-media for every css files.
-modal windows in about.css
+~~media for every css files.~~
+~~modal windows in about.css~~
 
-add media query for all css files.
+~~add media query for all css files (general css)~~
 
-profile picture for About Us
+profile picture for About Us (only Ning left)
 
-finding images for course and instructors - 30 for each.
+~~finding images for course and instructors - 30 for each.~~
 
 Backend:
 1. ~~Connect to database~~ - **Lisa**
@@ -46,7 +46,6 @@ backend for contact days
 Database:
 1. ~~User table~~ - **Lisa**
 2. ~~Course table~~ - **Lisa**
-3. More ??
 
 Report:
  
