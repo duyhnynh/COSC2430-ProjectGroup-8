@@ -456,15 +456,7 @@ def logout():
 def browse_by_name():
     # check if courses are in session
     if not session.get('courses'):
-        # get all courses
-        courses = db.get_data('course')
-
-        # save ids
-        for course in courses:
-            course['id'] = course.key.id
-
-        # save courses in session
-        save_session_var('courses', courses)
+        courses = get_all_courses()
     else:
         # get courses from session
         courses = session.get('courses')
@@ -479,15 +471,7 @@ def browse_by_name():
 def browse_by_category():
     # check if courses are in session
     if not session.get('courses'):
-        # get all courses
-        courses = db.get_data('course')
-
-        # save ids
-        for course in courses:
-            course['id'] = course.key.id
-
-        # save courses in session
-        save_session_var('courses', courses)
+        courses = get_all_courses()
     else:
         # get courses from session
         courses = session.get('courses')
@@ -511,8 +495,7 @@ def browse_by_category():
 @app.route('/courses/<id>')
 def course_details(id):
     if not session.get('courses'):
-        courses = db.get_data('course')
-        save_session_var('courses', courses)
+        courses = get_all_courses()
     else:
         courses = session.get('courses')
     
@@ -523,7 +506,11 @@ def course_details(id):
     user = session.get('user')
     user_role = user.get('role') if user else 'guest'
 
-    return render_template('course_details.html', course=selected_course, user_role=user_role)
+    # find instructor id
+    instructors = session.get('instructors')
+    instructor_id = [instructor['id'] for instructor in instructors if instructor['name'] == selected_course['instructor']][0]
+    
+    return render_template('course_details.html', course=selected_course, user_role=user_role, instructor_id=instructor_id)
 
 @app.route('/instructor/<id>')
 def instructor_profile(id):
@@ -538,9 +525,6 @@ def instructor_profile(id):
         instructors = session.get('instructors')
 
     instructor = [instructor for instructor in instructors if int(instructor['id']) == int(id)][0]
-    
-    # # get instructor's country name
-    # instructor['country'] = 
 
     if not check_session_var('courses'):
         courses = db.get_data('course')
@@ -667,6 +651,19 @@ def remove_session_var(var: str):
     session.pop(var, None)
 
 ### helper functions ###
+def get_all_courses():
+    # get all courses
+    courses = db.get_data('course')
+
+    # save ids
+    for course in courses:
+        course['id'] = course.key.id
+
+    # save courses in session
+    save_session_var('courses', courses)
+
+    return courses
+
 def country_code_to_name(code):
     return countries.get(code)
 
