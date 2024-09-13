@@ -5,7 +5,7 @@ Front end:
 HTML
 1. ~~Home Page - ~~make the header~~ and footer~~ (to be used on all pages) **Dom and Ning**
 2. ~~About Us Page (static) modals windows~~, center the modal window back - **Dom and Ning**
-3. ~~Pricing Page ~~- (header and footer are not working...) **Eddie**
+3. ~~Pricing Page ~~- (now working) **Eddie**
 4. ~~FAQs Page (static)~~ - **Eddie**
 5. Copyright  ~~ ToS and ~~~~Privacy Policy Page~~ (static)  (quite good)- **Dom and Ning**
 6. ~~Contact Page~~ - **Dom and Ning**
