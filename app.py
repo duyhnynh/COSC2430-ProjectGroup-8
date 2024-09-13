@@ -660,13 +660,11 @@ def country_code_to_name(code):
     return countries.get(code)
 
 def specialization_code_to_name(code):
-    if isinstance(code, list):
-        species_list = []
-        for c in code:
-            species_list.append(specializations.get(int(c)))
-        species = ', '.join(species_list)
-        return species
-    else:
-        return specializations.get(int(code))
+    species_list = []
+    for c in code:
+        species_list.append(specializations.get(int(c)))
+    species = ', '.join(species_list)
+    return species
+    
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True)
