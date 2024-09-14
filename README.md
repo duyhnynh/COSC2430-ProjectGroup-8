@@ -57,4 +57,4 @@ To test the application, you can use the following test users:
 - Password: hej
 
 ## Link to the demo video
-Here is the link to the demo video of the application: XXXX.
+Here is the link to the demo video of the application: [Demo](https://youtu.be/CKkMY91C08Q).
