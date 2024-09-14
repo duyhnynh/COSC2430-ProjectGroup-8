@@ -1,70 +1,60 @@
-# COSC2430-ProjectGroup-8
+# LearnifyX (COSC2430 Web Programming - Full-Stack Web Application)
+This is a full-stack web application project for COSC2430 Web Programming course at RMIT University (Semester 2, 2024). The project is developed by Group 8, a team of 4 students. This web application concerns creating an online learning platform for learners and instructors called LearnifyX. The application is developed using Python Flask for the backend and HTML, CSS, and JavaScript for the frontend with Jinja2 templating engine. The database used is Google Cloud Datastore and for image storage, Google Cloud Storage is used.
 
-Front end:
+## Contribution Scores
+All team members have contributed to the project. The contribution scores are as follows:
+- Duy Huynh Ngoc (s3924704) - 5 points
+- Eduardo Salcedo Fuentes (s4118015) - 5 points
+- Lisa Maria Huynh (s4110118) - 5 points
+- Tu Tran Thanh (s3957386) - 5 points
 
-HTML
-1. ~~Home Page - ~~ **Dom and Ning**
-2. ~~About Us Page (static) modals windows~~, center the modal window back - **Dom and Ning**
-3. ~~Pricing Page ~~-  **Eddie**
-4. ~~FAQs Page (static)~~ - **Eddie**
-5. ~~Copyright ToS and Privacy Policy Page~~- **Dom and Ning**
-6. ~~Contact Page~~ - **Dom and Ning**
-7. ~~My Account Page~~
-   1. ~~(if user is logged in) - display user information -~~ **Lisa**
-   2. ~~login box~~ - **Lisa**
-8. ~~Forgot Password Page~~ - **Lisa**
-9.  ~~Register account Page~~ - **Lisa**
-10. ~~Instructor Profile Page~~ - **Lisa**
-11. ~~Browse Courses Page~~ - **Lisa**
-12. ~~Course details Page~~ - **Lisa**
-13. ~~Course order placement Page~~  - **Lisa**
-14. ~~Add course Page~~ - **Lisa**
-15. Log out button on the top right corner for users navbar.- **Lisa**
-16. Change the specialization options - register - **Lisa**.
-CSS:
-- <span style="color:orange"> 7-14
+In conclusion, all team members have contributed equally to the project.
 
-css for instructors profiles
-~~media for every css files.~~
-~~modal windows in about.css~~
+## Instructions to run the application
 
-~~add media query for all css files (general css)~~
+### Prerequisites
+- Python 3.11 or higher
 
-profile picture for About Us (only Ning left)
+### Steps
+1. Open a terminal and change directory to the project folder.
+2. Create a virtual python environment by running the following command:
+   ```bash
+   python3 -m venv venv
+   ```
+3. Activate the virtual environment by running the following command:
 
-~~finding images for course and instructors - 30 for each.~~
+   On macOS and Linux:
+   ```bash
+   source venv/bin/activate
+   ```
+   On Windows:
+   ```bash
+   venv\Scripts\activate
+   ```
+4. Install the required packages by running the following command:
+   ```bash
+   pip install -r requirements.txt
+   ```
+5. Run the application by running the following command:
+   ```bash
+   python app.py
+   ```
+6. Open a web browser and go to `http://127.0.0.1:5000/` to view the application.
 
-Backend:
-1. ~~Connect to database~~ - **Lisa**
-2. ~~User registration~~ - **Lisa**
-3. ~~User login~~ - **Lisa**
+## Test users
+To test the application, you can use the following test users:
 
-backend for contact days
+### Admin
+- Email: admin@admin.com
+- Password: admin
 
+### Instructor
+- Email: brooze3@sun.com
+- Password: password
+  
+### Learner
+- Email: jdoe@example.com
+- Password: hej
 
-white space under footer (important)
-
-
-
-Database:
-1. ~~User table~~ - **Lisa**
-2. ~~Course table~~ - **Lisa**
-
-Report:
- 
-
-**Next meeting: Friday, September 6th at 2:30 PM in building 1, floor 2 (big table)**
-
-**Next meeting: Sunday, September 8th at 3:00 PM via Teams**
-
-**Next meeting: Wednesday, September 11th at 11 am in building 1, floor 2 (big table)**
-
-**Next meeting: Friday, September 13th at 2:30pm am in building 1, floor 2 (big table)**
-
-
-
-Mark contribution:
-
-Lisa; 6
-Eddie: 4
-Dom and Ning : 10
+## Link to the demo video
+Here is the link to the demo video of the application: XXXX.
