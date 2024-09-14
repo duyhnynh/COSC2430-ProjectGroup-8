@@ -1,0 +1,83 @@
+/* General Reset for Margin and Padding */
+body {
+    background-color: #f9f9f9;
+    padding-top: 60px;
+}
+  
+  /* Container for Course Details */
+  #course-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+    margin: 0 auto;
+    max-width: 1200px;
+    background-color: #f9f9f9;
+  }
+  
+  h1 {
+    font-size: 36px;
+    color: #609966;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  
+  p {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  #course-image {
+    width: 80%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Button Styling Consistency */
+  button {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px; /* Consistent button style */
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px auto;
+    display: block;
+    width: 200px;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  /* Hover effect for buttons */
+  button:hover {
+    background-color: #218838;
+    transform: translateY(-3px);  /* Adds slight lift effect */
+  }
+  
+  /* Header and Footer Consistency */
+  #iframe-header, #iframe-footer {
+    width: 100%;
+    border: none;
+  }
+  
+  #body-container {
+    margin: 0;
+    padding: 0;
+    background-color: #edf1d6;
+  }
+  
+/* Specific styles for mobile */
+@media (max-width: 600px) {
+    button {
+        width: 100%;  /* Make buttons full width on mobile */
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+  

@@ -1,0 +1,80 @@
+body {
+    padding-top: 60px;
+    background-color: #f9f9f9;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #609966;
+    text-align: center;
+    margin: 30px;
+}
+
+.course-add-form {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px;
+}
+
+.form-group label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #609966;
+    box-shadow: 0 0 5px rgba(96, 153, 102, 0.5);
+    outline: none;
+}
+
+button[type="submit"] {
+    background-color: #609966;
+    color: white;
+    font-size: 1.2rem;
+    padding: 12px 20px;
+    border-radius: 50px;
+    border: none;
+    transition: background-color 0.2s ease;
+    width: 100%;
+}
+
+button[type="submit"]:hover {
+    background-color: #4a7853;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.alert {
+    max-width: 700px;
+    margin: 20px auto;
+}
