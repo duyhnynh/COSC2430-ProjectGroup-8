@@ -60,5 +60,7 @@ To test the application, you can use the following test users:
 - Email: jdoe@example.com
 - Password: hej
 
+In case, the passwords do not work, you can reset the password by clicking on the "Forgot password" link on the login page.
+
 ## Link to the demo video
 Here is the link to the demo video of the application: [Demo](https://youtu.be/CKkMY91C08Q).
