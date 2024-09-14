@@ -70,40 +70,42 @@ h1 {
 /* Styles for desktop computers (width >= 1200px) */
 @media (min-width: 1200px) {
   .contact-container, .about-container {
-      max-width: 900px;
+    min-width: 800px;
+    max-width: 900px;
   }
 
   /* Adjust form and layout for large screens */
   .form-group label, .form-group input, .form-group select {
-      font-size: 1rem;
+    font-size: 1rem;
   }
 }
 
 /* Styles for tablets (width between 768px and 1199px) */
 @media (min-width: 768px) and (max-width: 1199px) {
   .contact-container, .about-container {
-      max-width: 700px;
+    min-width: 700px;
+    max-width: 700px;
   }
 
   .form-group label, .form-group input, .form-group select {
-      font-size: 0.9rem;
+    font-size: 0.9rem;
   }
 
   h1 {
-      font-size: 2.3rem;
+    font-size: 2.3rem;
   }
 
   .team-member img {
-      width: 80px;
-      height: 80px;
+    width: 80px;
+    height: 80px;
   }
 }
 
 /* Styles for smartphones (width <= 767px) */
 @media (max-width: 767px) {
   .contact-container, .about-container {
-      max-width: 100%;
-      padding: 20px;
+    max-width: 100%;
+    padding: 20px;
   }
 
   .form-group label, .form-group input, .form-group select {
