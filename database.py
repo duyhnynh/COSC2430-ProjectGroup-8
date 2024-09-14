@@ -139,6 +139,16 @@ class Database():
         results = list(query.fetch())
         return results
     
+    def get_instructor(self, instructor_name) -> dict:
+        """
+        Retrieves instructor from database based on the specified name.
+        @returns: the instructor entity.
+        """
+        query = self.client.query(kind='user')
+        query.add_filter('name', '=', instructor_name)
+        results = list(query.fetch())
+        return results[0] if len(results) > 0 else None
+    
     def get_orders(self, user_id) -> list:
         """
         Retrieves all orders from the database for the specified user.
