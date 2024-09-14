@@ -17,11 +17,15 @@ In conclusion, all team members have contributed equally to the project.
 
 ### Steps
 1. Open a terminal and change directory to the project folder.
-2. Create a virtual python environment by running the following command:
+2. Install virtualenv by running the following command:
+   ```bash
+   pip install virtualenv
+   ```
+3. Create a virtual python environment by running the following command:
    ```bash
    python3 -m venv venv
    ```
-3. Activate the virtual environment by running the following command:
+4. Activate the virtual environment by running the following command:
 
    On macOS and Linux:
    ```bash
@@ -31,15 +35,15 @@ In conclusion, all team members have contributed equally to the project.
    ```bash
    venv\Scripts\activate
    ```
-4. Install the required packages by running the following command:
+5. Install the required packages by running the following command:
    ```bash
    pip install -r requirements.txt
    ```
-5. Run the application by running the following command:
+6. Run the application by running the following command:
    ```bash
    python app.py
    ```
-6. Open a web browser and go to `http://127.0.0.1:5000/` to view the application.
+7. Open a web browser and go to `http://127.0.0.1:5000/` to view the application.
 
 ## Test users
 To test the application, you can use the following test users:
