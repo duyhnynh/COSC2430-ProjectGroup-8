@@ -508,7 +508,13 @@ def course_details(id):
 
     # find instructor id
     instructors = session.get('instructors')
-    instructor_id = [instructor['id'] for instructor in instructors if instructor['name'] == selected_course['instructor']][0]
+    try:
+        instructor_id = [instructor['id'] for instructor in instructors if instructor['name'] == selected_course['instructor']][0]
+    except:
+        # couldn't find instructor in session
+        # get id from database by name
+        instructor = db.get_instructor(selected_course['instructor'])
+        instructor_id = instructor.key.id
     
     return render_template('course_details.html', course=selected_course, user_role=user_role, instructor_id=instructor_id)
 
@@ -524,7 +530,12 @@ def instructor_profile(id):
     else:
         instructors = session.get('instructors')
 
-    instructor = [instructor for instructor in instructors if int(instructor['id']) == int(id)][0]
+    try:
+        instructor = [instructor for instructor in instructors if int(instructor['id']) == int(id)][0]
+    except:
+        # get instructor from database
+        instructor = db.get_data('user', id=int(id))
+        instructor['country'] = country_code_to_name(instructor['country'])
 
     if not check_session_var('courses'):
         courses = db.get_data('course')
