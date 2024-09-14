@@ -23,34 +23,37 @@
     <div class="course-container">
       <div class="course-order-placement">
         <h1>Order Placement</h1>
-        <p><strong>Description:</strong> {{ course.description }}</p>
         <p><strong>Course:</strong> {{ course.name }}</p>
         <p><strong>Instructor:</strong> {{ course.instructor }}</p>
         <p><strong>Price:</strong> ${{ course.price }}</p>
         <p><strong>Category:</strong> {{ course.category }}</p>
+        <p><strong>Description:</strong> {{ course.description }}</p>
         <img id="course-image" class="course-image" src="{{course.image}}" alt="{{course.name}}">
-        
+
         <form id="course-order-form" class="course-order-form" action="/order/confirmation/{{course.id}}" method="POST">
           <h3>Payment Method</h3>
           <div>
             <label for="credit-card">Credit Card</label>
+            <img class="payment-image" src="/static/img/credit_card.png" alt="Credit Card Image">
             <input type="radio" id="credit-card" name="payment-method" value="credit-card" required>
           </div>
           <div>
             <label for="paypal">Paypal</label>
+            <img class="payment-image" src="/static/img/paypal.png" alt="Paypal Image">
             <input type="radio" id="paypal" name="payment-method" value="paypal" required>
           </div>
           <div>
               <label for="e-wallet">E-Wallet</label>
+              <img class="payment-image" src="/static/img/e_wallet.png" alt="eWallet Image">
               <input type="radio" id="e-wallet" name="payment-method" value="e-wallet" required>
           </div>
-          
+          <br>
           <h3>Certification Options</h3>
           <div>
               <label for="certification-option">Include certification?</label>
               <input type="checkbox" id="certification-option" name="certification-option" value="yes">
           </div>
-
+          <br>
           <h3>Access duration</h3>
           <div>
               <label for="permanent-access">Permanent Access</label>
@@ -60,8 +63,8 @@
               <label for="7-day-access">7-Day Access</label>
               <input type="radio" id="7-day-access" name="access-duration" value="7-day-access" required>
           </div>
-
-          <a href="/courses/{{course.id}}"><button type="button" class="featured-button">Cancel</button></a>
+          <br>
+          <a href="/courses/{{course.id}}"><button type="button" id="cancel-button" class="featured-button">Cancel</button></a>
           <button type="submit" class="featured-button">Order</button>
         </form>
       </div>
