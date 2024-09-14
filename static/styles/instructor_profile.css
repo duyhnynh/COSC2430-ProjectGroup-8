@@ -51,10 +51,21 @@ h1 {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
   text-align: center;
 }
+
+.course-containers {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #9dc08b;
+  gap: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  padding: 20px;
+  overflow-x: auto;
+}
+
 
 .course-container img {
   width: 100%;
@@ -73,4 +84,8 @@ h1 {
   font-size: 16px;
   color: #333;
   margin: 5px 0;
+}
+
+h4 {
+  font-weight: bold;
 }

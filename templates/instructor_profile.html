@@ -44,8 +44,10 @@
 
       <!-- new courses -->
       <h2>New Courses</h2>
-      {% for new_course in new_courses %}
-      <div class="course-container">
+      
+      <div class="course-containers">
+        {% for new_course in new_courses %}
+        <div class="course-container">
         <a href="/courses/{{new_course.id}}">
           <img
             id="course-image"
@@ -59,12 +61,15 @@
         </a>
         <p>Price: ${{new_course.price}}</p>
       </div>
-      {% endfor %}
+        {% endfor %}
+      </div>
+      
 
       <!-- all courses -->
       <h2>All Courses</h2>
-      <div class="course-container">
+      <div class="course-containers">
         {% for course in courses %}
+      <div class="course-container">
         <a href="/courses/{{course.id}}">
           <img
             id="course-image"
@@ -77,6 +82,7 @@
           <h4>{{course.name}}</h4>
         </a>
         <p>Price: ${{course.price}}</p>
+      </div>
         {% endfor %}
       </div>
     </main>
