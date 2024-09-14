@@ -21,6 +21,7 @@
 
   <h1 class="text-center mb-4">Welcome to your online learning platform</h1>
 
+  <!-- Featured section -->
   <div class="featured-container">
     <h2>Get started with Our Featured Course</h2>
     <a href="/courses/browse/name">
@@ -34,7 +35,8 @@
         Instructors
       </button>
     </div>
-
+    
+    <!-- Featured courses -->
     <div class="featured-content" id="course">
       <div class="featured-cards">
         {% for course in featured_courses %}
@@ -53,7 +55,8 @@
         {% endfor %}
       </div>
     </div>
-
+    
+    <!-- Featured instructors -->
     <div class="featured-content" id="instructor" style="display: none">
       <div class="featured-cards">
         {% for instructor in featured_instructors %}
