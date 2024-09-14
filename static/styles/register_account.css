@@ -24,6 +24,7 @@
   width: 300px;
 }
 form {
+  height: 100vh;
   position: absolute;
   width: 600px;
   top: 65px;
@@ -33,6 +34,7 @@ form {
   padding: 20px 0;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0.5, 0.5, 0.5, 0.5);
+  overflow: auto;
 }
 form h1 {
   text-align: center;
@@ -108,7 +110,7 @@ form .account-type-div p {
 #text-overlay {
   position: absolute;
   top: 45%;
-  left: 28%;
+  left: 20%;
 }
 #text-overlay h1 {
   font-size: 3.5vw;
